@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific
+cache/
+data/raw/*.csv
+data/processed/*.csv
+venv/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/
