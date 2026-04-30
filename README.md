@@ -12,17 +12,30 @@ A machine learning project to predict Formula 1 race winners using race results,
 - Model training (logistic regression baseline → XGBoost)
 - Streamlit dashboard for race-by-race predictions
 
-## Key Findings (2024 Season EDA)
+## Key Findings (2022–2024 EDA)
 
-![Total points by driver](notebooks/chart_points_by_driver.png)
+### Driver dominance shifts dramatically between seasons
+![Top drivers by season](notebooks/chart_champions_by_season.png)
 
-- **Verstappen won the championship** with 399 points, ahead of Norris (344) and Leclerc (327)
-- **Four constructors took race wins**: Red Bull (9), McLaren (6), Ferrari (5), Mercedes (4)
-- **Grid position vs finish position correlation:  0.736** — strong signal that qualifying performance is a meaningful predictor, but with enough variance that a model has room to add value beyond just "predict the pole-sitter wins"
+Verstappen led every season but the gap to second varied enormously: 142 points (2022) → **270 points (2023, the largest in F1 history)** → just 55 points (2024). The 2024 grid is the closest at the top in three seasons.
 
-![Win rate by constructor](notebooks/chart_constructor_winrate.png)
+### Constructor balance reset between 2023 and 2024
+![Constructor dominance](notebooks/chart_constructor_dominance.png)
 
-These findings inform the feature set: any model needs to capture both **driver/team strength** (long-term performance) and **race-specific factors** (grid position, qualifying time, circuit type) to outperform a "pole-sitter wins" baseline.
+Red Bull's win rate collapsed from **95.5% in 2023 to 37.5% in 2024**, while McLaren went from zero wins to a 25% win rate — the steepest single-season swing in modern F1.
+
+### Grid position became more predictive each year
+![Grid correlation by season](notebooks/chart_grid_correlation_by_season.png)
+
+| Season | Grid → Finish Correlation |
+|--------|---------------------------|
+| 2022   | 0.525 |
+| 2023   | 0.581 |
+| 2024   | 0.732 |
+
+This monotonic increase suggests qualifying performance has become a stronger predictor of race outcomes as cars converged after the 2022 regulation reset.
+
+**Implication for modelling**: this non-stationarity matters. A model trained only on the most predictable season (2024) would overestimate its accuracy when applied to more chaotic regulation eras. Cross-validation strategy needs to account for season-level shifts in baseline predictability.
 
 ## Tech Stack
 
@@ -44,16 +57,24 @@ pip install -r requirements.txt
 
 ## Usage
 
-Load the 2024 season data:
+Load race results for one or more seasons:
 
 ```bash
+# Single season (default: 2024)
 python3 src/load_season.py
+
+# Multiple seasons
+python3 src/load_season.py 2022 2023 2024
 ```
 
-Run the EDA notebook:
+Run the EDA notebooks:
 
 ```bash
+# 2024 season analysis
 jupyter notebook notebooks/01_eda_2024_season.ipynb
+
+# 2022–2024 multi-season comparative analysis
+jupyter notebook notebooks/02_multi_season_eda.ipynb
 ```
 
 ## Author
