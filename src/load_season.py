@@ -3,9 +3,14 @@ Load F1 race results for a given season using fastf1.
 Saves consolidated results to data/raw/season_<year>_results.csv
 """
 
+import warnings
+warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL")
+
 import fastf1
 import pandas as pd
+import requests
 from pathlib import Path
+from typing import Optional
 import time
 
 # Project root (one level up from src/)
@@ -20,8 +25,58 @@ DATA_RAW_DIR.mkdir(parents=True, exist_ok=True)
 # Enable fastf1's local cache — critical for not hammering the API
 fastf1.Cache.enable_cache(str(CACHE_DIR))
 
+JOLPICA_BASE = "https://api.jolpi.ca/ergast/f1"
 
-from typing import Optional
+
+def load_race_results_jolpica(year: int, round_num: int) -> Optional[pd.DataFrame]:
+    """Fallback: pull race results from Jolpica (Ergast replacement) when fastf1 fails."""
+    try:
+        url = f"{JOLPICA_BASE}/{year}/{round_num}/results.json"
+        resp = requests.get(url, timeout=15)
+        resp.raise_for_status()
+        data = resp.json()
+
+        races = data.get("MRData", {}).get("RaceTable", {}).get("Races", [])
+        if not races:
+            return None
+
+        race = races[0]
+        results = race.get("Results", [])
+        if not results:
+            return None
+
+        rows = []
+        for r in results:
+            rows.append({
+                "DriverNumber": r.get("number"),
+                "Abbreviation": r["Driver"].get("code"),
+                "DriverId": r["Driver"].get("driverId"),
+                "FirstName": r["Driver"].get("givenName"),
+                "LastName": r["Driver"].get("familyName"),
+                "FullName": f"{r['Driver'].get('givenName', '')} {r['Driver'].get('familyName', '')}".strip(),
+                "TeamName": r["Constructor"].get("name"),
+                "TeamId": r["Constructor"].get("constructorId"),
+                "Position": r.get("position"),
+                "ClassifiedPosition": r.get("positionText"),
+                "GridPosition": r.get("grid"),
+                "Status": r.get("status"),
+                "Points": r.get("points"),
+                "Laps": r.get("laps"),
+                "Time": r.get("Time", {}).get("time") if r.get("Time") else None,
+                "Year": year,
+                "Round": round_num,
+                "EventName": race.get("raceName"),
+                "EventDate": race.get("date"),
+                "Circuit": race.get("Circuit", {}).get("Location", {}).get("locality"),
+            })
+
+        return pd.DataFrame(rows)
+
+    except Exception as e:
+        print(f"    Jolpica fallback also failed: {e}")
+        return None
+
+
 
 def load_race_results(year: int, round_num: int) -> Optional[pd.DataFrame]:
     """Load race results for a single round. Returns None if unavailable."""
@@ -52,34 +107,46 @@ def load_season(year: int, max_rounds: int = 24) -> pd.DataFrame:
         print(f"Loading {year} Round {round_num}...")
         df = load_race_results(year, round_num)
 
-        if df is not None:
+        if df is not None and len(df) > 0:
             all_results.append(df)
-            print(f"  ✓ Loaded {len(df)} drivers")
+            print(f"  Loaded {len(df)} drivers (fastf1)")
         else:
-            # Likely a round that hasn't happened yet — stop the loop
-            print(f"  → No data, stopping at round {round_num}")
-            break
+            # Try Jolpica fallback
+            print(f"  fastf1 returned no data, trying Jolpica...")
+            df = load_race_results_jolpica(year, round_num)
+            if df is not None and len(df) > 0:
+                all_results.append(df)
+                print(f"  Loaded {len(df)} drivers (Jolpica)")
+            else:
+                print(f"  No data from either source, stopping at round {round_num}")
+                break
 
-        # Be polite to the API even with cache (first run only)
         time.sleep(0.5)
+
+    print(f"\n  DEBUG: collected {len(all_results)} rounds before combining")
 
     if not all_results:
         raise RuntimeError(f"No race data loaded for {year}")
 
     combined = pd.concat(all_results, ignore_index=True)
+    print(f"  DEBUG: combined DataFrame shape = {combined.shape}")
     return combined
 
 
 if __name__ == "__main__":
-    YEAR = 2024
+    import sys
 
-    print(f"Loading {YEAR} season race results...\n")
-    df = load_season(YEAR)
+    # Allow CLI args: python3 src/load_season.py 2022 2023 2024
+    if len(sys.argv) > 1:
+        years = [int(y) for y in sys.argv[1:]]
+    else:
+        years = [2024]  # default
 
-    output_path = DATA_RAW_DIR / f"season_{YEAR}_results.csv"
-    df.to_csv(output_path, index=False)
-
-    print(f"\nSaved {len(df)} rows to {output_path}")
-    print(f"   Rounds: {df['Round'].nunique()}")
-    print(f"   Drivers: {df['Abbreviation'].nunique()}")
-    print(f"\nColumns: {list(df.columns)}")
+    for year in years:
+        print(f"\n{'='*50}\nLoading {year} season\n{'='*50}")
+        df = load_season(year)
+        output_path = DATA_RAW_DIR / f"season_{year}_results.csv"
+        df.to_csv(output_path, index=False)
+        print(f"\nSaved {len(df)} rows to {output_path}")
+        print(f"   Rounds: {df['Round'].nunique()}, Drivers: {df['Abbreviation'].nunique()}")
+    
