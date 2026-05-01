@@ -45,6 +45,24 @@ This monotonic increase suggests qualifying performance has become a stronger pr
 - **Modelling:** `scikit-learn`, `XGBoost` (planned)
 - **Deployment:** Streamlit (planned)
 
+## Project Structure
+
+```
+f1-race-predictor/
+├── cache/                                # fastf1 local cache (gitignored)
+├── data/
+│   ├── raw/                              # raw season results
+│   └── processed/                        # feature-engineered datasets
+├── notebooks/
+│   ├── 01_eda_2024_season.ipynb          # single-season exploration
+│   └── 02_multi_season_eda.ipynb         # 2022–2024 comparative analysis
+├── src/
+│   └── load_season.py                    # season data loader (fastf1 + Jolpica)
+├── requirements.txt
+└── README.md
+```
+
+
 ## Setup
 
 ```bash
