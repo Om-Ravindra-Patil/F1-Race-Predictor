@@ -218,6 +218,63 @@ def add_quali_gap_zscore(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
+def add_pole_to_p2_gap(df: pd.DataFrame) -> pd.DataFrame:
+    """Add the gap (seconds) between pole-sitter and P2 qualifier.
+
+    This is the same value for every driver within a race, but captures
+    'race competitiveness' — a small pole-to-P2 gap signals an unpredictable
+    race; large gap signals pole-sitter dominance.
+    """
+    p2_times = (
+        df[df["QualifyingPosition"] == 2]
+        .groupby(["Year", "Round"])["BestQualiTime"]
+        .min()
+        .reset_index()
+        .rename(columns={"BestQualiTime": "P2Time"})
+    )
+
+    df = df.merge(p2_times, on=["Year", "Round"], how="left")
+    df["PoleToP2Gap"] = df["P2Time"] - df["PoleTime"]
+    df = df.drop(columns=["P2Time"])
+
+    # Cap at 2 seconds — anything beyond this is data noise, not signal
+    df["PoleToP2Gap"] = df["PoleToP2Gap"].clip(lower=0, upper=2.0)
+
+    return df
+
+def add_race_vs_quali_pace(df: pd.DataFrame, window: int = 5) -> pd.DataFrame:
+    """Add the difference between rolling avg finish position and qualifying position.
+
+    Positive value = driver typically loses places in races (poor race pace).
+    Negative value = driver typically gains places in races (strong race pace).
+    Captures execution gap between Saturday qualifying speed and Sunday racecraft.
+    """
+    df = df.sort_values(["Abbreviation", "EventDate"]).reset_index(drop=True)
+
+    # Per-race "places gained/lost" = Position - QualifyingPosition
+    df["PlacesDelta"] = df["Position"] - df["QualifyingPosition"]
+
+    # Rolling average over last N races, .shift(1) to avoid current race leakage
+    df["RaceVsQualiPace"] = (
+        df.groupby("Abbreviation")["PlacesDelta"]
+          .transform(lambda x: x.shift(1).rolling(window, min_periods=2).mean())
+    )
+
+    df = df.drop(columns=["PlacesDelta"])
+    return df
+
+def add_grid_penalty_indicator(df: pd.DataFrame) -> pd.DataFrame:
+    """Flag drivers with grid penalties (Grid >> Quali position by 3+ places).
+
+    Captures drivers who have to start from a worse spot than they qualified
+    — a signal that changes their entire race strategy (overtaking required,
+    different tyre choices, different fuel load).
+    """
+    df["HasGridPenalty"] = (
+        (df["GridPosition"] - df["QualifyingPosition"]) >= 3
+    ).astype(int)
+    return df
+
 
 def add_dnf_rate(df: pd.DataFrame, window: int = 5) -> pd.DataFrame:
     """Add rolling DNF rate over last N races per driver."""
@@ -266,6 +323,15 @@ def build_feature_dataset() -> pd.DataFrame:
     print("Computing standardised qualifying gap...")
     df = add_quali_gap_zscore(df)
 
+    print("Computing pole-to-P2 gap...")
+    df = add_pole_to_p2_gap(df)
+
+    print("Computing race vs quali pace...")
+    df = add_race_vs_quali_pace(df)
+
+    print("Computing grid penalty indicator...")
+    df = add_grid_penalty_indicator(df)
+
     print("Computing DNF rates...")
     df = add_dnf_rate(df)
 
@@ -279,6 +345,7 @@ def build_feature_dataset() -> pd.DataFrame:
         "BestQualiTime", "PoleTime", "QualifyingGapToPole", "QualiGapZScore",
         "DriverFormLast3", "TeamFormLast3", "DriverDNFRateLast5",
         "DriverCircuitAvg", "TeamMomentum",
+        "PoleToP2Gap", "RaceVsQualiPace", "HasGridPenalty",
         "IsStreetCircuit",
     ]
     df = df[feature_cols].copy()
