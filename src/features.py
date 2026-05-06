@@ -71,7 +71,7 @@ def load_combined_data() -> pd.DataFrame:
     race_frames = []
     qual_frames = []
 
-    for year in [2022, 2023, 2024]:
+    for year in [2022, 2023, 2024, 2025]:
         race_df = pd.read_csv(DATA_RAW / f"season_{year}_results.csv")
         qual_df = pd.read_csv(DATA_RAW / f"season_{year}_qualifying.csv")
         race_frames.append(race_df)
@@ -356,7 +356,7 @@ def build_feature_dataset() -> pd.DataFrame:
 if __name__ == "__main__":
     df = build_feature_dataset()
 
-    output_path = DATA_PROCESSED / "features_2022_2024.csv"
+    output_path = DATA_PROCESSED / "features_2022_2025.csv"
     df.to_csv(output_path, index=False)
 
     print(f"\nSaved {len(df)} rows to {output_path}")

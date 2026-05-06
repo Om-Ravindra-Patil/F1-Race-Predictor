@@ -230,7 +230,7 @@ if __name__ == "__main__":
     years = [int(a) for a in args if a.isdigit()]
 
     if not years:
-        years = [2024]
+        years = [2022, 2023, 2024, 2025]
 
     for year in years:
         if not qualifying_only:
