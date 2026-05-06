@@ -154,6 +154,70 @@ def add_rolling_form(df: pd.DataFrame, window: int = 3) -> pd.DataFrame:
 
     return df
 
+def add_driver_circuit_history(df: pd.DataFrame) -> pd.DataFrame:
+    """Add driver's historical average finish position at this specific circuit.
+
+    For each (driver, circuit) pair, computes the mean of all PRIOR finishes
+    at that circuit. Uses .shift(1) and expanding mean to avoid leakage.
+
+    Captures circuit-specialist effects that aren't visible in general form
+    features (e.g., VER at Suzuka, ALO at Monaco, HAM at Silverstone).
+    """
+    df = df.sort_values(["Abbreviation", "Circuit", "EventDate"]).reset_index(drop=True)
+
+    df["DriverCircuitAvg"] = (
+        df.groupby(["Abbreviation", "Circuit"])["Position"]
+          .transform(lambda x: x.shift(1).expanding().mean())
+    )
+
+    return df
+
+def add_team_momentum(df: pd.DataFrame, window: int = 5) -> pd.DataFrame:
+    """Add team's recent performance trend (slope of last N race finishes).
+
+    A negative slope = team is improving (finishing positions getting lower).
+    Positive slope = team is declining.
+
+    Captures things like McLaren's 2024 rise or Williams' 2023 fall — which
+    rolling averages would miss because they only show the level, not direction.
+    """
+    df = df.sort_values(["TeamName", "EventDate"]).reset_index(drop=True)
+
+    def slope_of_window(series):
+        """Simple linear regression slope. Returns NaN if too few points."""
+        if len(series) < 2:
+            return np.nan
+        x = np.arange(len(series))
+        y = series.values
+        # Standard least-squares slope formula
+        x_mean = x.mean()
+        y_mean = y.mean()
+        denom = ((x - x_mean) ** 2).sum()
+        if denom == 0:
+            return 0.0
+        return ((x - x_mean) * (y - y_mean)).sum() / denom
+
+    df["TeamMomentum"] = (
+        df.groupby("TeamName")["Position"]
+          .transform(lambda x: x.shift(1).rolling(window, min_periods=2).apply(slope_of_window, raw=False))
+    )
+
+    return df
+
+def add_quali_gap_zscore(df: pd.DataFrame) -> pd.DataFrame:
+    """Add the driver's qualifying gap to pole, standardised within their race.
+
+    A 0.3s gap is huge at Monaco (tight quali) but small at Spa (long lap).
+    Z-scoring within race makes "1.0 = one std-dev slower than average for this race"
+    — which is more meaningful than raw seconds.
+    """
+    grouped = df.groupby(["Year", "Round"])["QualifyingGapToPole"]
+    df["QualiGapZScore"] = (
+        df["QualifyingGapToPole"] - grouped.transform("mean")
+    ) / grouped.transform("std").replace(0, np.nan)
+
+    return df
+
 
 def add_dnf_rate(df: pd.DataFrame, window: int = 5) -> pd.DataFrame:
     """Add rolling DNF rate over last N races per driver."""
@@ -193,19 +257,28 @@ def build_feature_dataset() -> pd.DataFrame:
     print("Computing rolling driver and team form...")
     df = add_rolling_form(df)
 
+    print("Computing driver-circuit history...")
+    df = add_driver_circuit_history(df)
+
+    print("Computing team momentum...")
+    df = add_team_momentum(df)
+
+    print("Computing standardised qualifying gap...")
+    df = add_quali_gap_zscore(df)
+
     print("Computing DNF rates...")
     df = add_dnf_rate(df)
 
     print("Tagging circuit features...")
     df = add_circuit_features(df)
 
-    # Final column selection — keep everything potentially useful for modelling
     feature_cols = [
         "Year", "Round", "EventName", "EventDate", "Circuit",
         "Abbreviation", "FullName", "TeamName",
         "GridPosition", "QualifyingPosition", "Position", "Points", "Status",
-        "BestQualiTime", "PoleTime", "QualifyingGapToPole",
+        "BestQualiTime", "PoleTime", "QualifyingGapToPole", "QualiGapZScore",
         "DriverFormLast3", "TeamFormLast3", "DriverDNFRateLast5",
+        "DriverCircuitAvg", "TeamMomentum",
         "IsStreetCircuit",
     ]
     df = df[feature_cols].copy()
