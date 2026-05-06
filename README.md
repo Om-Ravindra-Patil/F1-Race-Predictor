@@ -1,30 +1,39 @@
 # F1 Race Winner Predictor
 
-A machine learning project to predict Formula 1 race winners using race results, qualifying performance, and historical patterns. Built as a portfolio project for the 2024 season, with a planned Streamlit dashboard for live predictions.
+A machine learning project predicting Formula 1 race outcomes from qualifying performance, recent form, and circuit characteristics. Trained on 2022-2024 seasons, validated on the 2025 season as a true holdout, and deployed as an interactive dashboard.
 
-## Project Status
+> **Status: validated model with 100% top-3 accuracy on the 2025 holdout.** Streamlit dashboard in development.
 
-**In active development** — currently in the data exploration phase.
+## Headline result
 
-- Data pipeline: 2024 season race results loaded via `fastf1` (479 rows, 24 races, 24 drivers)
-- Exploratory data analysis on driver, constructor, and grid position patterns
-- Feature engineering (qualifying, recent form, circuit characteristics)
-- Model training (logistic regression baseline → XGBoost)
-- Streamlit dashboard for race-by-race predictions
+The final 6-feature linear regression was trained on 2022-2024 and tested on 24 races of 2025 — a season the model never saw during development.
 
-## Key Findings (2022–2024 EDA)
+| Metric | Pole baseline | Linear Regression (final) |
+|---|---|---|
+| RMSE | 4.69 | **4.22** |
+| Top-1 accuracy | 66.7% | 58.3% |
+| Top-3 accuracy | 95.8% | **100%** (24/24 races) |
 
-### Driver dominance shifts dramatically between seasons
-![Top drivers by season](notebooks/chart_champions_by_season.png)
+The model produces calibrated finish-position estimates for every driver, with 100% top-3 accuracy on the holdout — every 2025 race winner appeared in our top-3 predictions. The pole baseline beats us on top-1 prediction (a season-specific quirk: 2025 had unusually high pole-to-win conversion), but we provide ranked predictions for the entire field, not just the winner.
 
-Verstappen led every season but the gap to second varied enormously: 142 points (2022) → **270 points (2023, the largest in F1 history)** → just 55 points (2024). The 2024 grid is the closest at the top in three seasons.
+![2025 race-by-race accuracy](notebooks/chart_2025_race_accuracy.png)
+
+## Key findings from multi-season EDA (2022-2024)
+
+### Verstappen dominated all three seasons; margins varied wildly
+
+![Champions by season](notebooks/chart_champions_by_season.png)
+
+Verstappen won every championship in the dataset, but the margin to second place collapsed from 270 points (2023) to 55 points (2024) — the largest year-on-year compression in modern F1.
 
 ### Constructor balance reset between 2023 and 2024
+
 ![Constructor dominance](notebooks/chart_constructor_dominance.png)
 
-Red Bull's win rate collapsed from **95.5% in 2023 to 37.5% in 2024**, while McLaren went from zero wins to a 25% win rate — the steepest single-season swing in modern F1.
+Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024 — a ~60 percentage point swing. McLaren went from zero wins to 25%, the steepest single-season rise in the dataset.
 
-### Grid position became more predictive each year
+### Qualifying became more predictive every season
+
 ![Grid correlation by season](notebooks/chart_grid_correlation_by_season.png)
 
 | Season | Grid → Finish Correlation |
@@ -32,20 +41,56 @@ Red Bull's win rate collapsed from **95.5% in 2023 to 37.5% in 2024**, while McL
 | 2022   | 0.525 |
 | 2023   | 0.581 |
 | 2024   | 0.732 |
+| 2025   | 0.832 (estimated from holdout pole-to-win conversion) |
 
-This monotonic increase suggests qualifying performance has become a stronger predictor of race outcomes as cars converged after the 2022 regulation reset.
+This monotonic increase reflects car convergence after the 2022 regulation reset. **Implication for modelling**: a model trained only on highly-predictable seasons would overestimate its accuracy on chaotic regulation eras. Cross-validation strategy must account for season-level shifts in baseline predictability.
 
-**Implication for modelling**: this non-stationarity matters. A model trained only on the most predictable season (2024) would overestimate its accuracy when applied to more chaotic regulation eras. Cross-validation strategy needs to account for season-level shifts in baseline predictability.
+## Modelling approach
 
-## Tech Stack
+### Problem framing
 
-- **Python 3.9+**
-- **Data:** `fastf1` (primary), Jolpica API (historical fallback), OpenF1 (live data)
-- **Analysis:** `pandas`, `numpy`, `matplotlib`, `seaborn`
-- **Modelling:** `scikit-learn`, `XGBoost` (planned)
-- **Deployment:** Streamlit (planned)
+Reformulated "predict the winner" as **regression on finish position**. For each driver-race row, predict the finish position; pick the lowest predicted as winner. Advantages over binary classification: every row carries a label, no class imbalance issues, and the same model gives podium predictions for free.
 
-## Project Structure
+### Feature engineering
+
+Six features, each leak-free (rolling features use `.shift(1)` to prevent target leakage):
+
+| Feature | Description |
+|---|---|
+| `GridPosition` | Starting position (post-penalty) |
+| `QualifyingPosition` | Qualifying result |
+| `QualifyingGapToPole` | Time gap to pole-sitter (capped at 10s) |
+| `DriverFormLast3` | Rolling average finish position over driver's last 3 races |
+| `TeamFormLast3` | Rolling average finish position for team over last 3 races |
+| `IsStreetCircuit` | Binary flag for street circuits |
+
+Three additional feature iterations (driver-circuit history, team momentum slope, qualifying gap z-score, pole-to-P2 gap, race-vs-quali pace, grid penalty indicator) were tested and dropped after diagnostics showed redundancy with the core feature set.
+
+### Train/test methodology
+
+Strict temporal splits — never random:
+
+- **Initial selection**: train 2022-2023, test 2024
+- **Final validation**: train 2022-2024, test 2025 (true holdout, never used during model selection)
+- **Hyperparameter tuning**: TimeSeriesSplit cross-validation within training data
+
+### Models compared
+
+Pole baseline, form baseline, linear regression, XGBoost (default), XGBoost (tuned via 81-combination GridSearchCV).
+
+![Feature importance](notebooks/chart_feature_importance.png)
+
+The 6-feature linear regression was selected as the final model — best generalisation, fewest hyperparameters to defend, most interpretable coefficients. XGBoost showed mild overfitting that tuning didn't fully resolve.
+
+## Tech stack
+
+- **Python 3.9**
+- **Data**: `fastf1` (primary), Jolpica API (Ergast replacement fallback)
+- **Analysis**: `pandas`, `numpy`, `matplotlib`, `seaborn`
+- **Modelling**: `scikit-learn 1.6`, `xgboost 2.1`
+- **Deployment**: Streamlit (in progress)
+
+## Project structure
 
 ```
 f1-race-predictor/
@@ -66,8 +111,8 @@ f1-race-predictor/
 ## Setup
 
 ```bash
-git clone https://github.com/Om-Ravindra-Patil/f1-race-predictor.git
-cd f1-race-predictor
+git clone https://github.com/Om-Ravindra-Patil/F1-Race-Predictor.git
+cd F1-Race-Predictor
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -75,28 +120,46 @@ pip install -r requirements.txt
 
 ## Usage
 
-Load race results for one or more seasons:
+Load race + qualifying data for one or more seasons:
 
 ```bash
-# Single season (default: 2024)
+# Default: loads 2022-2025
 python3 src/load_season.py
 
-# Multiple seasons
-python3 src/load_season.py 2022 2023 2024
+# Specific seasons
+python3 src/load_season.py 2022 2023
 ```
 
-Run the EDA notebooks:
+Build feature dataset:
 
 ```bash
-# 2024 season analysis
-jupyter notebook notebooks/01_eda_2024_season.ipynb
-
-# 2022–2024 multi-season comparative analysis
-jupyter notebook notebooks/02_multi_season_eda.ipynb
+python3 src/features.py
+# Saves to data/processed/features_2022_2025.csv
 ```
+
+Run notebooks in order (`01` → `05`) to reproduce the full analysis.
+
+## What this project demonstrates
+
+- **End-to-end ML pipeline**: raw data → cleaning → feature engineering → temporal validation → deployment
+- **Honest negative results**: documented two failed feature engineering iterations alongside the successful approach
+- **True holdout validation**: model selected on 2024 was tested on 2025 (genuinely unseen) — the strongest possible generalisation test
+- **Production-quality engineering**: defensive data loading with API fallback, leak-free rolling features, reusable evaluation framework, time-series-aware cross-validation
+- **Clear analytical writing**: every modelling decision documented with reasoning, including non-obvious findings (e.g. season-level non-stationarity affecting cross-validation strategy)
+
+## Roadmap
+
+- ~~Multi-season data pipeline~~ ✓
+- ~~Feature engineering with leak prevention~~ ✓
+- ~~Baseline + tuned ML models~~ ✓
+- ~~True holdout validation on 2025~~ ✓
+- Streamlit dashboard with race-by-race predictions (in progress)
+- Live deployment to Streamlit Community Cloud
+- Race telemetry features via fastf1 lap data (future)
+- Weather-adjusted predictions (future)
 
 ## Author
 
-**Om Patil** — MSc Data Science, Newcastle University (graduating Sep 2026)
+**Om Patil** — MSc Data Science, Newcastle University (graduating September 2026). Open to UK Data Science / Data Analyst roles. Holds Graduate Visa (no sponsorship required).
 
-[LinkedIn](#) · [GitHub](https://github.com/Om-Ravindra-Patil)
+[LinkedIn](https://www.linkedin.com/in/om-patil-nu) · [GitHub](https://github.com/Om-Ravindra-Patil)
