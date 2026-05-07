@@ -102,11 +102,33 @@ def predict_race(year: int, round_number: int) -> pd.DataFrame:
     # Rank predictions (lowest predicted = predicted P1)
     race_df["PredictedRank"] = race_df["PredictedPosition"].rank(method="min").astype(int)
 
+    # Compute prediction confidence per driver
+    # Confidence is based on the gap between this driver's prediction and the
+    # nearest neighbours' predictions. Larger gap = more isolated = more confident.
+    sorted_preds = race_df["PredictedPosition"].sort_values().values
+    pred_to_confidence = {}
+    for i, pred_value in enumerate(sorted_preds):
+        # Gap to the prediction immediately above (lower position)
+        gap_above = pred_value - sorted_preds[i - 1] if i > 0 else float("inf")
+        # Gap to the prediction immediately below (higher position)
+        gap_below = sorted_preds[i + 1] - pred_value if i < len(sorted_preds) - 1 else float("inf")
+        # Use the smaller of the two gaps — that's the closest competitor
+        nearest_gap = min(gap_above, gap_below)
+        pred_to_confidence[pred_value] = nearest_gap
+
+    race_df["NearestGap"] = race_df["PredictedPosition"].map(pred_to_confidence)
+
+    # Normalise to 0-1 confidence score, capped at gap of 2.0 (meaning 2 places clear)
+    # Then bucket into 1-5 stars for visualisation
+    race_df["ConfidenceScore"] = (race_df["NearestGap"] / 2.0).clip(0, 1)
+    race_df["ConfidenceLevel"] = (race_df["ConfidenceScore"] * 5).round().astype(int).clip(1, 5)
+
     # Build output frame
     output_cols = [
         "Abbreviation", "FullName", "TeamName",
         "QualifyingPosition", "GridPosition",
         "Position", "PredictedPosition", "PredictedRank",
+        "ConfidenceScore", "ConfidenceLevel",
     ]
     output = race_df[output_cols].copy()
     output = output.rename(columns={"Position": "ActualPosition"})

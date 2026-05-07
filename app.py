@@ -423,8 +423,9 @@ def render_prediction_row(row) -> str:
     quali = int(row["QualifyingPosition"]) if not pd.isna(row["QualifyingPosition"]) else "—"
     actual = int(row["ActualPosition"]) if not pd.isna(row["ActualPosition"]) else "DNF"
     delta = row["PositionDelta"]
+    confidence_level = int(row["ConfidenceLevel"])
 
-    # Delta styling — green when model was correct/optimistic, red when too pessimistic
+    # Delta styling
     if pd.isna(delta):
         delta_text = "—"
         delta_color = F1_GREY
@@ -440,6 +441,24 @@ def render_prediction_row(row) -> str:
             delta_text = f"+{delta_int}"
             delta_color = F1_RED
 
+    # Confidence indicator — 5 segments, filled based on confidence_level
+    confidence_segments = ""
+    for i in range(1, 6):
+        if i <= confidence_level:
+            # Filled segment — colour intensity based on confidence
+            if confidence_level >= 4:
+                seg_color = "#00D26A"  # green = high confidence
+            elif confidence_level == 3:
+                seg_color = "#FFC107"  # amber = medium
+            else:
+                seg_color = F1_RED  # red = low confidence
+            confidence_segments += f'<div style="width:6px;height:14px;background:{seg_color};margin-right:2px;border-radius:1px;"></div>'
+        else:
+            # Empty segment
+            confidence_segments += '<div style="width:6px;height:14px;background:#2A2A38;margin-right:2px;border-radius:1px;"></div>'
+
+    confidence_html = f'<div style="display:flex;align-items:center;">{confidence_segments}</div>'
+
     return (
         f'<div class="f1-pred-row" style="border-left:4px solid {team_color};">'
         f'<div class="f1-pred-cell f1-pred-rank">{pred_rank}</div>'
@@ -448,11 +467,12 @@ def render_prediction_row(row) -> str:
         f'<div class="f1-pred-name">{full_name}</div>'
         f'</div>'
         f'<div class="f1-pred-cell f1-pred-team" style="color:{team_color};">{team}</div>'
+        f'<div class="f1-pred-cell">{confidence_html}</div>'
         f'<div class="f1-pred-cell f1-pred-num">{quali}</div>'
         f'<div class="f1-pred-cell f1-pred-num">{actual}</div>'
         f'<div class="f1-pred-cell f1-pred-num" style="color:{delta_color};">{delta_text}</div>'
         f'</div>'
-    )
+    )   
 
 
 # Inject the table-specific CSS once
@@ -467,7 +487,7 @@ st.markdown(f"""
 }}
 .f1-pred-header {{
     display: grid;
-    grid-template-columns: 60px 2fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 60px 2fr 2fr 80px 1fr 1fr 1fr;
     align-items: center;
     padding: 0.85rem 1rem 0.85rem 0.85rem;
     background: #0E0E16;
@@ -480,7 +500,7 @@ st.markdown(f"""
 }}
 .f1-pred-row {{
     display: grid;
-    grid-template-columns: 60px 2fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 60px 2fr 2fr 80px 1fr 1fr 1fr;
     align-items: center;
     padding: 0.7rem 1rem 0.7rem 0.85rem;
     border-bottom: 1px solid #2A2A38;
@@ -533,6 +553,7 @@ header_html = (
     '<div>Pred</div>'
     '<div>Driver</div>'
     '<div>Team</div>'
+    '<div>Confidence</div>'
     '<div style="text-align:center;">Quali</div>'
     '<div style="text-align:center;">Actual</div>'
     '<div style="text-align:center;">Δ</div>'
