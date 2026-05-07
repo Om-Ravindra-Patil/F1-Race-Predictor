@@ -253,23 +253,46 @@ with st.sidebar:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# Main panel — fetch data
+# Main panel — fetch data (with safety net)
 # ──────────────────────────────────────────────────────────────────────
-metadata = get_race_metadata(year, selected_round)
-predictions = predict_race(year, selected_round)
+try:
+    metadata = get_race_metadata(year, selected_round)
+    predictions = predict_race(year, selected_round)
 
+    # Sanity check: do we have actual results?
+    has_actual_results = predictions["ActualPosition"].notna().any()
+    has_winner = (predictions["ActualPosition"] == 1).any()
 
-# Identify winners and compute metrics
-actual_winner = predictions[predictions["ActualPosition"] == 1].iloc[0]
-predicted_winner = predictions[predictions["PredictedRank"] == 1].iloc[0]
-winner_correct = actual_winner["Abbreviation"] == predicted_winner["Abbreviation"]
+    if not has_winner:
+        # Race exists but no winner recorded — could be future race or data issue
+        st.warning(
+            f"No race results available for {metadata['event_name']} ({year}). "
+            "This race may not have happened yet, or its results are still pending."
+        )
+        st.stop()
 
-predicted_top3 = predictions[predictions["PredictedRank"] <= 3]["Abbreviation"].tolist()
-actual_top3 = predictions[predictions["ActualPosition"] <= 3]["Abbreviation"].tolist()
-top3_overlap = len(set(predicted_top3) & set(actual_top3))
+    # Identify winners and compute metrics
+    actual_winner = predictions[predictions["ActualPosition"] == 1].iloc[0]
+    predicted_winner = predictions[predictions["PredictedRank"] == 1].iloc[0]
+    winner_correct = actual_winner["Abbreviation"] == predicted_winner["Abbreviation"]
 
-valid = predictions.dropna(subset=["ActualPosition"])
-race_mae = (valid["ActualPosition"] - valid["PredictedRank"]).abs().mean()
+    predicted_top3 = predictions[predictions["PredictedRank"] <= 3]["Abbreviation"].tolist()
+    actual_top3 = predictions[predictions["ActualPosition"] <= 3]["Abbreviation"].tolist()
+    top3_overlap = len(set(predicted_top3) & set(actual_top3))
+
+    valid = predictions.dropna(subset=["ActualPosition"])
+    race_mae = (valid["ActualPosition"] - valid["PredictedRank"]).abs().mean()
+
+except Exception as e:
+    st.error(
+        f"Unable to load predictions for this race. "
+        f"This usually means the race data is incomplete or has a known issue. "
+        f"Error details: `{type(e).__name__}: {str(e)[:200]}`"
+    )
+    st.info(
+        "Try selecting a different race, or check the GitHub repository for known data issues."
+    )
+    st.stop()
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -312,7 +335,7 @@ st.markdown(f"""
         <div class="f1-metric-label">Race MAE</div>
         <div class="f1-metric-value">{race_mae:.2f}</div>
         <div class="f1-metric-context">Mean prediction error (positions)</div>
-    </div>
+    </div>  
 </div>
 """, unsafe_allow_html=True)
 
