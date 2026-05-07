@@ -475,6 +475,7 @@ def render_prediction_row(row) -> str:
     )   
 
 
+
 # Inject the table-specific CSS once
 st.markdown(f"""
 <style>
@@ -547,6 +548,7 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
+
 # Build the header
 header_html = (
     '<div class="f1-pred-header">'
@@ -568,3 +570,77 @@ st.markdown(
     f'<div class="f1-pred-table">{header_html}{rows_html}</div>',
     unsafe_allow_html=True,
 )
+
+# ──────────────────────────────────────────────────────────────────────
+# Footer — context for first-time visitors
+# ──────────────────────────────────────────────────────────────────────
+st.markdown('<div class="f1-section-title">ABOUT</div>', unsafe_allow_html=True)
+
+footer_html = f"""
+<div style="
+    background: {F1_DARK_2};
+    border: 1px solid #2A2A38;
+    border-radius: 4px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    line-height: 1.65;
+">
+    <div style="
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    ">
+        <div>
+            <div style="
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: {F1_RED};
+                margin-bottom: 0.75rem;
+            ">How it works</div>
+            <div style="color: {F1_LIGHT}; font-size: 0.9rem;">
+                A 6-feature linear regression predicts each driver's finish position from
+                qualifying performance, recent form, and circuit type. The model trains on
+                every season except the one shown, so 2025 races are predicted by a model
+                that has never seen 2025 data.
+            </div>
+        </div>
+        <div>
+            <div style="
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: {F1_RED};
+                margin-bottom: 0.75rem;
+            ">What it captures · what it misses</div>
+            <div style="color: {F1_LIGHT}; font-size: 0.9rem;">
+                <strong>Captures:</strong> qualifying-driven race outcomes, team-level pace,
+                driver form trajectories.<br>
+                <strong>Misses:</strong> in-race chaos — wet weather, safety cars, mechanical
+                DNFs, strategic upsets.
+            </div>
+        </div>
+    </div>
+    <div style="
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid #2A2A38;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75rem;
+        color: {F1_GREY};
+    ">
+        <div>
+            Trained on 2022–2024 · Validated on 2025 (true holdout · 100% top-3 accuracy)
+        </div>
+        <div>
+            <a href="https://github.com/Om-Ravindra-Patil/F1-Race-Predictor" style="color: {F1_RED}; text-decoration: none; font-weight: 600;">View source on GitHub →</a>
+        </div>
+    </div>
+</div>
+"""
+
+st.markdown(footer_html, unsafe_allow_html=True)
