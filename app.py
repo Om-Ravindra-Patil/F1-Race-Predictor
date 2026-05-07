@@ -8,6 +8,7 @@ Run with: streamlit run app.py
 """
 
 import streamlit as st
+import pandas as pd
 from src.predict import predict_race, get_race_metadata, get_available_races
 from src.team_colors import get_team_color
 
@@ -405,8 +406,144 @@ with col_actual:
         unsafe_allow_html=True,
     )
 
+
 st.markdown('<div class="f1-section-title">PREDICTIONS</div>', unsafe_allow_html=True)
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Custom team-coloured predictions table
+# ──────────────────────────────────────────────────────────────────────
+def render_prediction_row(row) -> str:
+    """Render one driver's row in the predictions table."""
+    team = row["TeamName"]
+    team_color = get_team_color(team)
+    driver_code = row["Abbreviation"]
+    full_name = row["FullName"]
+    pred_rank = int(row["PredictedRank"])
+    quali = int(row["QualifyingPosition"]) if not pd.isna(row["QualifyingPosition"]) else "—"
+    actual = int(row["ActualPosition"]) if not pd.isna(row["ActualPosition"]) else "DNF"
+    delta = row["PositionDelta"]
+
+    # Delta styling — green when model was correct/optimistic, red when too pessimistic
+    if pd.isna(delta):
+        delta_text = "—"
+        delta_color = F1_GREY
+    else:
+        delta_int = int(delta)
+        if delta_int == 0:
+            delta_text = "—"
+            delta_color = F1_GREY
+        elif delta_int < 0:
+            delta_text = f"{delta_int}"
+            delta_color = "#00D26A"
+        else:
+            delta_text = f"+{delta_int}"
+            delta_color = F1_RED
+
+    return (
+        f'<div class="f1-pred-row" style="border-left:4px solid {team_color};">'
+        f'<div class="f1-pred-cell f1-pred-rank">{pred_rank}</div>'
+        f'<div class="f1-pred-cell f1-pred-driver">'
+        f'<div class="f1-pred-code">{driver_code}</div>'
+        f'<div class="f1-pred-name">{full_name}</div>'
+        f'</div>'
+        f'<div class="f1-pred-cell f1-pred-team" style="color:{team_color};">{team}</div>'
+        f'<div class="f1-pred-cell f1-pred-num">{quali}</div>'
+        f'<div class="f1-pred-cell f1-pred-num">{actual}</div>'
+        f'<div class="f1-pred-cell f1-pred-num" style="color:{delta_color};">{delta_text}</div>'
+        f'</div>'
+    )
+
+
+# Inject the table-specific CSS once
+st.markdown(f"""
+<style>
+.f1-pred-table {{
+    background: {F1_DARK_2};
+    border: 1px solid #2A2A38;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0;
+}}
+.f1-pred-header {{
+    display: grid;
+    grid-template-columns: 60px 2fr 2fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 0.85rem 1rem 0.85rem 0.85rem;
+    background: #0E0E16;
+    border-bottom: 1px solid #2A2A38;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: {F1_GREY};
+}}
+.f1-pred-row {{
+    display: grid;
+    grid-template-columns: 60px 2fr 2fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 0.7rem 1rem 0.7rem 0.85rem;
+    border-bottom: 1px solid #2A2A38;
+    transition: background 0.15s ease;
+}}
+.f1-pred-row:hover {{
+    background: rgba(225, 6, 0, 0.04);
+}}
+.f1-pred-row:last-child {{
+    border-bottom: none;
+}}
+.f1-pred-cell {{
+    font-size: 0.9rem;
+    color: {F1_LIGHT};
+}}
+.f1-pred-rank {{
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: {F1_LIGHT};
+    font-variant-numeric: tabular-nums;
+}}
+.f1-pred-code {{
+    font-size: 1rem;
+    font-weight: 900;
+    color: {F1_LIGHT};
+    line-height: 1.1;
+}}
+.f1-pred-name {{
+    font-size: 0.75rem;
+    color: {F1_GREY};
+    margin-top: 0.15rem;
+}}
+.f1-pred-team {{
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}}
+.f1-pred-num {{
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    text-align: center;
+}}
+</style>
+""", unsafe_allow_html=True)
+
+# Build the header
+header_html = (
+    '<div class="f1-pred-header">'
+    '<div>Pred</div>'
+    '<div>Driver</div>'
+    '<div>Team</div>'
+    '<div style="text-align:center;">Quali</div>'
+    '<div style="text-align:center;">Actual</div>'
+    '<div style="text-align:center;">Δ</div>'
+    '</div>'
+)
+
+# Build all rows
+rows_html = "".join(render_prediction_row(row) for _, row in predictions.iterrows())
+
+# Render the complete table
 st.markdown(
-    f"<div style='color: {F1_GREY}; padding: 2rem 0; text-align: center;'>Layer C — team-coloured table coming next</div>",
+    f'<div class="f1-pred-table">{header_html}{rows_html}</div>',
     unsafe_allow_html=True,
 )
