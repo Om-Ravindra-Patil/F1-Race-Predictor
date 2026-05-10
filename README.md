@@ -2,7 +2,7 @@
 
 A machine learning project predicting Formula 1 race outcomes from qualifying performance, recent form, and circuit characteristics. Trained on 2022-2024 seasons, validated on the 2025 season as a true holdout, and deployed as an interactive dashboard.
 
-> **Status: validated model with 100% top-3 accuracy on the 2025 holdout.** Streamlit dashboard in development.
+> > **Status:** Phase 1 complete — validated model with 100% top-3 accuracy on the 2025 holdout. Phase 2 (Streamlit dashboard) in active development. See [Roadmap](#roadmap) for staged release plan.
 
 ## Headline result
 
@@ -32,18 +32,20 @@ Verstappen won every championship in the dataset, but the margin to second place
 
 Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024 — a ~60 percentage point swing. McLaren went from zero wins to 25%, the steepest single-season rise in the dataset.
 
-### Qualifying became more predictive every season
+### Qualifying predictiveness rose, then broke trend in 2025
 
 ![Grid correlation by season](notebooks/chart_grid_correlation_by_season.png)
 
-| Season | Grid → Finish Correlation |
-|--------|---------------------------|
-| 2022   | 0.525 |
-| 2023   | 0.581 |
-| 2024   | 0.732 |
-| 2025   | 0.832 (estimated from holdout pole-to-win conversion) |
+| Season | Grid → Finish Correlation | N |
+|--------|---------------------------|---|
+| 2022   | 0.525 | 429 |
+| 2023   | 0.581 | 437 |
+| 2024   | 0.736 | 458 |
+| 2025   | 0.651 | 479 |
 
-This monotonic increase reflects car convergence after the 2022 regulation reset. **Implication for modelling**: a model trained only on highly-predictable seasons would overestimate its accuracy on chaotic regulation eras. Cross-validation strategy must account for season-level shifts in baseline predictability.
+Grid → finish correlation rose steadily through the 2022 regulation cycle as cars converged, peaking in 2024. The 2025 figure broke the trend — qualifying became *less* predictive of race outcomes than in 2024. The likely driver is increased mid-season car development volatility ahead of the 2026 regulation reset, though small-sample noise can't be ruled out.
+
+**Implication for modelling**: a model cannot assume grid-to-finish stationarity across seasons. This is exactly why the 2025 holdout matters — it's the cleanest possible test of whether features generalise across regimes, not just within a single trend.
 
 ## Modelling approach
 
@@ -100,9 +102,13 @@ f1-race-predictor/
 │   └── processed/                        # feature-engineered datasets
 ├── notebooks/
 │   ├── 01_eda_2024_season.ipynb          # single-season exploration
-│   └── 02_multi_season_eda.ipynb         # 2022–2024 comparative analysis
+│   ├── 02_multi_season_eda.ipynb         # 2022–2024 comparative analysis
+│   ├── 03_feature_analysis.ipynb         # feature engineering + diagnostics
+│   ├── 04_baseline_models.ipynb          # baselines + initial model selection
+│   └── 05_validation_2025.ipynb          # final holdout validation
 ├── src/
-│   └── load_season.py                    # season data loader (fastf1 + Jolpica)
+│   ├── load_season.py                    # season data loader (fastf1 + Jolpica)
+│   └── features.py                       # feature engineering module
 ├── requirements.txt
 └── README.md
 ```
@@ -149,14 +155,27 @@ Run notebooks in order (`01` → `05`) to reproduce the full analysis.
 
 ## Roadmap
 
-- ~~Multi-season data pipeline~~ ✓
-- ~~Feature engineering with leak prevention~~ ✓
-- ~~Baseline + tuned ML models~~ ✓
-- ~~True holdout validation on 2025~~ ✓
-- Streamlit dashboard with race-by-race predictions (in progress)
+This project is being shipped in phases. Phase 1 (validated model) is complete; subsequent phases are in active development.
+
+### Phase 1: Validated model (complete)
+- Multi-season data pipeline (2022–2025)
+- Feature engineering with leak prevention
+- Baseline + tuned ML models (Linear Regression, XGBoost)
+- True holdout validation on 2025 — 100% top-3 accuracy
+
+### Phase 2: Interactive dashboard (in progress)
+- Streamlit dashboard with race-by-race predictions
 - Live deployment to Streamlit Community Cloud
-- Race telemetry features via fastf1 lap data (future)
-- Weather-adjusted predictions (future)
+- User input: qualifying results → predicted finish positions
+
+### Phase 3: Model expansion (planned)
+- Random Forest and tuned XGBoost benchmarks against linear baseline
+- Unit test coverage for feature engineering pipeline
+
+### Future
+- Race telemetry features via fastf1 lap data
+- Weather-adjusted predictions
+- Live predictions for upcoming 2026 race weekends
 
 ## Author
 
