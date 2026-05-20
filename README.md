@@ -2,7 +2,7 @@
 
 A machine learning project predicting Formula 1 race outcomes from qualifying performance, recent form, and circuit characteristics. Trained on 2022-2024 seasons, validated on the 2025 season as a true holdout, and deployed as an interactive dashboard.
 
-> > **Status:** Phase 1 complete — validated model with 100% top-3 accuracy on the 2025 holdout. Phase 2 (Streamlit dashboard) in active development. See [Roadmap](#roadmap) for staged release plan.
+> **Status:** Phase 1 complete — validated model with 100% top-3 accuracy on the 2025 holdout. Phase 2 (Streamlit dashboard) in active development. See [Roadmap](#roadmap) for staged release plan.
 
 ## Headline result
 
@@ -17,6 +17,10 @@ The final 6-feature linear regression was trained on 2022-2024 and tested on 24 
 The model produces calibrated finish-position estimates for every driver, with 100% top-3 accuracy on the holdout — every 2025 race winner appeared in our top-3 predictions. The pole baseline beats us on top-1 prediction (a season-specific quirk: 2025 had unusually high pole-to-win conversion), but we provide ranked predictions for the entire field, not just the winner.
 
 ![2025 race-by-race accuracy](notebooks/chart_2025_race_accuracy.png)
+
+## Live demo
+
+**[▶ Try the dashboard](https://f1-race-predictor-orp.streamlit.app/)** — select any race from 2022–2025 and see predicted vs actual podiums, full-grid predictions with confidence indicators, and biggest-climber callouts, rendered in F1 broadcast styling with team colours.
 
 ## Key findings from multi-season EDA (2022-2024)
 
@@ -90,16 +94,18 @@ The 6-feature linear regression was selected as the final model — best general
 - **Data**: `fastf1` (primary), Jolpica API (Ergast replacement fallback)
 - **Analysis**: `pandas`, `numpy`, `matplotlib`, `seaborn`
 - **Modelling**: `scikit-learn 1.6`, `xgboost 2.1`
-- **Deployment**: Streamlit (in progress)
+- **Deployment**: - Streamlit Community Cloud — [live dashboard](https://f1-race-predictor-orp.streamlit.app/)
 
 ## Project structure
 
 ```
 f1-race-predictor/
+├── app.py                                # Streamlit dashboard (entry point)
 ├── cache/                                # fastf1 local cache (gitignored)
 ├── data/
-│   ├── raw/                              # raw season results
-│   └── processed/                        # feature-engineered datasets
+│   ├── raw/                              # raw season results (gitignored)
+│   └── processed/
+│       └── features_2022_2025.csv        # engineered feature dataset
 ├── notebooks/
 │   ├── 01_eda_2024_season.ipynb          # single-season exploration
 │   ├── 02_multi_season_eda.ipynb         # 2022–2024 comparative analysis
@@ -108,7 +114,9 @@ f1-race-predictor/
 │   └── 05_validation_2025.ipynb          # final holdout validation
 ├── src/
 │   ├── load_season.py                    # season data loader (fastf1 + Jolpica)
-│   └── features.py                       # feature engineering module
+│   ├── features.py                       # feature engineering module
+│   ├── predict.py                        # training + per-race prediction logic
+│   └── team_colors.py                    # F1 team colour mapping for the UI
 ├── requirements.txt
 └── README.md
 ```
@@ -163,10 +171,10 @@ This project is being shipped in phases. Phase 1 (validated model) is complete; 
 - Baseline + tuned ML models (Linear Regression, XGBoost)
 - True holdout validation on 2025 — 100% top-3 accuracy
 
-### Phase 2: Interactive dashboard (in progress)
-- Streamlit dashboard with race-by-race predictions
-- Live deployment to Streamlit Community Cloud
-- User input: qualifying results → predicted finish positions
+### Phase 2: Interactive dashboard (complete)
+- Streamlit dashboard with race-by-race predictions and team-coloured visualisations
+- Live deployment → [f1-race-predictor-orp.streamlit.app](https://f1-race-predictor-orp.streamlit.app/)
+- Per-race view: predicted vs actual podium, full-grid predictions with confidence indicators, biggest-climber callouts
 
 ### Phase 3: Model expansion (planned)
 - Random Forest and tuned XGBoost benchmarks against linear baseline
