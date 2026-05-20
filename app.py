@@ -246,6 +246,12 @@ st.markdown(f"""
         display: none !important;
     }}
 
+    /* Make selectboxes non-typeable — click to open, select only (no search box confusion) */
+    .stSelectbox [data-baseweb="select"] input {{
+        caret-color: transparent !important;
+        pointer-events: none !important;
+    }}
+
     /* Section headers */
     .f1-section-title {{
         font-size: 1.1rem;
