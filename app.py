@@ -43,6 +43,8 @@ st.markdown(f"""
         background-color: {F1_DARK};
         color: {F1_LIGHT};
         font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
     }}
 
     /* Top accent bar — broadcast convention */
@@ -52,7 +54,8 @@ st.markdown(f"""
         margin: -1rem -1rem 0 -1rem;
         position: sticky;
         top: 0;
-        z-index: 100;
+        z-index: 50;
+        pointer-events: none;
     }}
 
     /* Validation banner — chyron-style */
@@ -69,15 +72,8 @@ st.markdown(f"""
         letter-spacing: 0.12em;
         text-transform: uppercase;
     }}
-
-    .f1-validation-banner-left {{
-        color: {F1_LIGHT};
-    }}
-
-    .f1-validation-banner-right {{
-        color: #00D26A;
-    }}
-
+    .f1-validation-banner-left {{ color: {F1_LIGHT}; }}
+    .f1-validation-banner-right {{ color: #00D26A; }}
     .f1-validation-banner .pulse {{
         display: inline-block;
         width: 8px;
@@ -89,7 +85,6 @@ st.markdown(f"""
         box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.7);
         animation: pulse-glow 2s infinite;
     }}
-
     @keyframes pulse-glow {{
         0% {{ box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.6); }}
         70% {{ box-shadow: 0 0 0 6px rgba(0, 210, 106, 0); }}
@@ -102,7 +97,6 @@ st.markdown(f"""
         border-bottom: 1px solid #2A2A38;
         margin-bottom: 2rem;
     }}
-
     .f1-hero-eyebrow {{
         font-size: 0.75rem;
         font-weight: 700;
@@ -111,7 +105,6 @@ st.markdown(f"""
         color: {F1_RED};
         margin-bottom: 0.5rem;
     }}
-
     .f1-hero-title {{
         font-size: 2.75rem;
         font-weight: 900;
@@ -120,7 +113,6 @@ st.markdown(f"""
         margin: 0 0 0.5rem 0;
         letter-spacing: -0.01em;
     }}
-
     .f1-hero-subtitle {{
         font-size: 1rem;
         color: {F1_GREY};
@@ -134,7 +126,6 @@ st.markdown(f"""
         gap: 1rem;
         margin: 2rem 0;
     }}
-
     .f1-metric-card {{
         background: {F1_DARK_2};
         border: 1px solid #2A2A38;
@@ -142,7 +133,6 @@ st.markdown(f"""
         padding: 1.25rem 1.5rem;
         border-radius: 4px;
     }}
-
     .f1-metric-label {{
         font-size: 0.7rem;
         font-weight: 700;
@@ -151,7 +141,6 @@ st.markdown(f"""
         color: {F1_GREY};
         margin-bottom: 0.5rem;
     }}
-
     .f1-metric-value {{
         font-size: 2rem;
         font-weight: 900;
@@ -159,15 +148,8 @@ st.markdown(f"""
         line-height: 1;
         font-variant-numeric: tabular-nums;
     }}
-
-    .f1-metric-value-correct {{
-        color: #00D26A;
-    }}
-
-    .f1-metric-value-missed {{
-        color: {F1_RED};
-    }}
-
+    .f1-metric-value-correct {{ color: #00D26A; }}
+    .f1-metric-value-missed {{ color: {F1_RED}; }}
     .f1-metric-context {{
         font-size: 0.85rem;
         color: {F1_GREY};
@@ -179,7 +161,6 @@ st.markdown(f"""
         background-color: {F1_DARK_2};
         border-right: 1px solid #2A2A38;
     }}
-
     section[data-testid="stSidebar"] h1 {{
         font-weight: 900;
         font-size: 1.5rem;
@@ -188,7 +169,6 @@ st.markdown(f"""
         opacity: 1 !important;
     }}
 
-    /* Force caption visibility — Streamlit's dark theme dims this by default */
     section[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
     section[data-testid="stSidebar"] .stCaption,
     section[data-testid="stSidebar"] p {{
@@ -199,8 +179,6 @@ st.markdown(f"""
         text-transform: uppercase;
         font-weight: 700;
     }}
-
-    /* Sidebar bold markdown text (like "Model performance") */
     section[data-testid="stSidebar"] strong,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p strong {{
         color: {F1_LIGHT} !important;
@@ -210,13 +188,9 @@ st.markdown(f"""
         font-size: 0.8rem;
         font-weight: 700;
     }}
-
-    /* Plain markdown text in sidebar (for the metric panel) */
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {{
         opacity: 1 !important;
     }}
-
-    /* Sidebar selectbox styling */
     .stSelectbox label {{
         font-size: 0.75rem !important;
         font-weight: 700 !important;
@@ -225,10 +199,52 @@ st.markdown(f"""
         color: {F1_GREY} !important;
     }}
 
-    /* Hide Streamlit branding */
-    #MainMenu {{visibility: hidden;}}
-    footer {{visibility: hidden;}}
-    header {{visibility: hidden;}}
+    /* Hide Streamlit branding — but PRESERVE the header so the sidebar toggle works */
+    #MainMenu {{ visibility: hidden; }}
+    footer {{ visibility: hidden; }}
+
+    /* Keep the header bar present and ABOVE content, just transparent */
+    header[data-testid="stHeader"] {{
+        background: transparent !important;
+        z-index: 999990 !important;
+    }}
+    /* Hide only the toolbar (Deploy/Share), NOT the whole header */
+    header[data-testid="stHeader"] [data-testid="stToolbar"] {{
+        display: none !important;
+    }}
+
+
+    header[data-testid="stHeader"] {{
+        background: transparent !important;
+        z-index: 999990 !important;
+    }}
+
+    header[data-testid="stHeader"] {{
+        background: transparent !important;
+    }}
+
+    /* Force sidebar to always show, even after a collapse attempt */
+    section[data-testid="stSidebar"] {{
+        background-color: {F1_DARK_2};
+        border-right: 1px solid #2A2A38;
+        min-width: 244px !important;
+        max-width: 244px !important;
+        transform: none !important;
+        visibility: visible !important;
+        margin-left: 0px !important;
+    }}
+
+    section[data-testid="stSidebar"][aria-expanded="false"] {{
+        transform: none !important;
+        margin-left: 0px !important;
+        visibility: visible !important;
+    }}
+
+    /* Hide the collapse button so it can't be triggered */
+    [data-testid="stSidebarCollapseButton"],
+    button[data-testid="stBaseButton-headerNoPadding"] {{
+        display: none !important;
+    }}
 
     /* Section headers */
     .f1-section-title {{
@@ -241,7 +257,6 @@ st.markdown(f"""
         padding-bottom: 0.5rem;
         border-bottom: 1px solid #2A2A38;
     }}
-
     .f1-section-title::before {{
         content: '';
         display: inline-block;
@@ -307,7 +322,7 @@ with st.sidebar:
         f"""
         <div style='font-size: 0.8rem; color: {F1_GREY};'>
         Built by <a href='https://www.linkedin.com/in/om-patil-nu' style='color: {F1_RED}; text-decoration: none;'>Om Patil</a><br>
-        <a href='https://github.com/Om-Ravindra-Patil/F1-Race-Predictor' style='color: {F1_RED}; text-decoration: none;'>GitHub repo</a>
+        <a href='https://github.com/Om-Ravindra-Patil/F1-Race-Predictor' style='color: {F1_RED}; text-decoration: none;'>GitHub</a>
         </div>
         """,
         unsafe_allow_html=True,
