@@ -226,3 +226,4 @@ venv/
 .DS_Store
 .vscode/
 .idea/
+!data/processed/features_2022_2025.csv

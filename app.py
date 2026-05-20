@@ -55,6 +55,47 @@ st.markdown(f"""
         z-index: 100;
     }}
 
+    /* Validation banner — chyron-style */
+    .f1-validation-banner {{
+        background: linear-gradient(90deg, rgba(225, 6, 0, 0.12) 0%, rgba(225, 6, 0, 0.02) 100%);
+        border-left: 3px solid {F1_RED};
+        padding: 0.65rem 1.25rem;
+        margin: 0.5rem 0 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }}
+
+    .f1-validation-banner-left {{
+        color: {F1_LIGHT};
+    }}
+
+    .f1-validation-banner-right {{
+        color: #00D26A;
+    }}
+
+    .f1-validation-banner .pulse {{
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #00D26A;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.7);
+        animation: pulse-glow 2s infinite;
+    }}
+
+    @keyframes pulse-glow {{
+        0% {{ box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.6); }}
+        70% {{ box-shadow: 0 0 0 6px rgba(0, 210, 106, 0); }}
+        100% {{ box-shadow: 0 0 0 0 rgba(0, 210, 106, 0); }}
+    }}
+
     /* Hero header */
     .f1-hero {{
         padding: 2rem 0 1.5rem 0;
@@ -144,14 +185,35 @@ st.markdown(f"""
         font-size: 1.5rem;
         color: {F1_LIGHT};
         margin-bottom: 0.25rem;
+        opacity: 1 !important;
     }}
 
-    section[data-testid="stSidebar"] .stCaption {{
-        color: {F1_GREY};
+    /* Force caption visibility — Streamlit's dark theme dims this by default */
+    section[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+    section[data-testid="stSidebar"] .stCaption,
+    section[data-testid="stSidebar"] p {{
+        color: {F1_GREY} !important;
+        opacity: 1 !important;
         font-size: 0.75rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         font-weight: 700;
+    }}
+
+    /* Sidebar bold markdown text (like "Model performance") */
+    section[data-testid="stSidebar"] strong,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p strong {{
+        color: {F1_LIGHT} !important;
+        opacity: 1 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.8rem;
+        font-weight: 700;
+    }}
+
+    /* Plain markdown text in sidebar (for the metric panel) */
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {{
+        opacity: 1 !important;
     }}
 
     /* Sidebar selectbox styling */
@@ -200,7 +262,7 @@ st.markdown(f"""
 # ──────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("# F1 PREDICTOR")
-    st.caption("ML race forecasting · 2022-2025")
+    st.caption("ML race forecasting")
 
     st.markdown("---")
 
@@ -283,6 +345,23 @@ try:
     valid = predictions.dropna(subset=["ActualPosition"])
     race_mae = (valid["ActualPosition"] - valid["PredictedRank"]).abs().mean()
 
+    # Biggest climber: driver who gained the most positions from quali to finish
+    climbers = valid.dropna(subset=["QualifyingPosition"]).copy()
+    climbers["PositionsGained"] = climbers["QualifyingPosition"] - climbers["ActualPosition"]
+    if len(climbers) > 0 and climbers["PositionsGained"].max() > 0:
+        top_climber = climbers.loc[climbers["PositionsGained"].idxmax()]
+        climber_code = top_climber["Abbreviation"]
+        climber_team = top_climber["TeamName"]
+        climber_gain = int(top_climber["PositionsGained"])
+        climber_from = int(top_climber["QualifyingPosition"])
+        climber_to = int(top_climber["ActualPosition"])
+    else:
+        climber_code = "—"
+        climber_team = "No gains"
+        climber_gain = 0
+        climber_from = None
+        climber_to = None
+
 except Exception as e:
     st.error(
         f"Unable to load predictions for this race. "
@@ -314,6 +393,14 @@ winner_color_class = "f1-metric-value-correct" if winner_correct else "f1-metric
 winner_status = "PREDICTED" if winner_correct else "MISSED"
 top3_color_class = "f1-metric-value-correct" if top3_overlap == 3 else ""
 
+# Climber card content
+if climber_gain > 0:
+    climber_value_html = f'<span style="color: #00D26A;">+{climber_gain}</span> <span style="font-size: 1.3rem; color: {F1_LIGHT};">{climber_code}</span>'
+    climber_context = f"P{climber_from} → P{climber_to} · {climber_team}"
+else:
+    climber_value_html = '<span style="color: #949498;">—</span>'
+    climber_context = "No driver gained positions"
+
 st.markdown(f"""
 <div class="f1-metrics-grid">
     <div class="f1-metric-card">
@@ -332,10 +419,10 @@ st.markdown(f"""
         <div class="f1-metric-context">Drivers in correct podium zone</div>
     </div>
     <div class="f1-metric-card">
-        <div class="f1-metric-label">Race MAE</div>
-        <div class="f1-metric-value">{race_mae:.2f}</div>
-        <div class="f1-metric-context">Mean prediction error (positions)</div>
-    </div>  
+        <div class="f1-metric-label">Biggest Climber</div>
+        <div class="f1-metric-value">{climber_value_html}</div>
+        <div class="f1-metric-context">{climber_context}</div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
