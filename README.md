@@ -2,7 +2,7 @@
 
 A machine learning project predicting Formula 1 race outcomes from qualifying performance, recent form, and circuit characteristics. Trained on 2022-2024 seasons, validated on the 2025 season as a true holdout, and deployed as an interactive dashboard.
 
-> **Status:** Phase 1 complete — validated model with 100% top-3 accuracy on the 2025 holdout. Phase 2 (Streamlit dashboard) in active development. See [Roadmap](#roadmap) for staged release plan.
+> **Status:** Phases 1, 2 & 3 complete — validated model, live interactive dashboard, and head-to-head model benchmarks. **[▶ Try the live dashboard](https://f1-race-predictor-orp.streamlit.app/)**. See [Roadmap](#roadmap) for the full picture.
 
 ## Headline result
 
@@ -111,7 +111,8 @@ f1-race-predictor/
 │   ├── 02_multi_season_eda.ipynb         # 2022–2024 comparative analysis
 │   ├── 03_feature_analysis.ipynb         # feature engineering + diagnostics
 │   ├── 04_baseline_models.ipynb          # baselines + initial model selection
-│   └── 05_validation_2025.ipynb          # final holdout validation
+│   ├── 05_validation_2025.ipynb          # final holdout validation (linear regression)
+│   └── 06_model_comparison.ipynb         # head-to-head: LR vs RF vs XGBoost on 2025
 ├── src/
 │   ├── load_season.py                    # season data loader (fastf1 + Jolpica)
 │   ├── features.py                       # feature engineering module
@@ -161,9 +162,6 @@ Run notebooks in order (`01` → `05`) to reproduce the full analysis.
 - **Production-quality engineering**: defensive data loading with API fallback, leak-free rolling features, reusable evaluation framework, time-series-aware cross-validation
 - **Clear analytical writing**: every modelling decision documented with reasoning, including non-obvious findings (e.g. season-level non-stationarity affecting cross-validation strategy)
 
-## Roadmap
-
-This project is being shipped in phases. Phase 1 (validated model) is complete; subsequent phases are in active development.
 
 ### Phase 1: Validated model (complete)
 - Multi-season data pipeline (2022–2025)
@@ -176,14 +174,15 @@ This project is being shipped in phases. Phase 1 (validated model) is complete; 
 - Live deployment → [f1-race-predictor-orp.streamlit.app](https://f1-race-predictor-orp.streamlit.app/)
 - Per-race view: predicted vs actual podium, full-grid predictions with confidence indicators, biggest-climber callouts
 
-### Phase 3: Model expansion (planned)
-- Random Forest and tuned XGBoost benchmarks against linear baseline
-- Unit test coverage for feature engineering pipeline
+### Phase 3: Model expansion (complete)
+- Random Forest and tuned XGBoost benchmarked head-to-head against linear regression on the 2025 holdout
+- Train-test gap diagnostic confirms tree-based ensembles overfit (gaps of +0.247 and +0.270) while linear regression generalises (gap of +0.014)
+- 6-feature linear regression confirmed as the right production choice
 
-### Future
-- Race telemetry features via fastf1 lap data
-- Weather-adjusted predictions
-- Live predictions for upcoming 2026 race weekends
+### Phase 4: Engineering polish (planned)
+- Unit test coverage for feature engineering pipeline
+- Race telemetry features via fastf1 lap data (future)
+- Live predictions for upcoming 2026 race weekends (future)
 
 ## Author
 
