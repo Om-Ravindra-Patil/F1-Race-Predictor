@@ -272,6 +272,29 @@ st.markdown(f"""
         margin-right: 0.75rem;
         vertical-align: middle;
     }}
+
+    /* Basic mobile responsiveness — stack grids on narrow screens */
+    @media (max-width: 640px) {{
+        .f1-metrics-grid {{
+            grid-template-columns: 1fr !important;
+        }}
+        .f1-hero-title {{
+            font-size: 1.8rem !important;
+        }}
+        .f1-pred-header, .f1-pred-row {{
+            grid-template-columns: 40px 1.5fr 1fr 50px !important;
+            font-size: 0.7rem !important;
+        }}
+        /* Hide less-critical columns on mobile to prevent squishing */
+        .f1-pred-header > div:nth-child(5),
+        .f1-pred-header > div:nth-child(6),
+        .f1-pred-header > div:nth-child(7),
+        .f1-pred-row > .f1-pred-cell:nth-child(5),
+        .f1-pred-row > .f1-pred-cell:nth-child(6),
+        .f1-pred-row > .f1-pred-cell:nth-child(7) {{
+            display: none !important;
+        }}
+    }}
 </style>
 
 <div class="f1-top-bar"></div>
