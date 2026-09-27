@@ -42,9 +42,9 @@ Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024 — a ~60 percentag
 
 | Season | Grid → Finish Correlation | N |
 |--------|---------------------------|---|
-| 2022   | 0.525 | 429 |
-| 2023   | 0.581 | 437 |
-| 2024   | 0.736 | 458 |
+| 2022   | 0.523 | 439 |
+| 2023   | 0.584 | 439 |
+| 2024   | 0.736 | 459 |
 | 2025   | 0.651 | 479 |
 
 Grid → finish correlation rose steadily through the 2022 regulation cycle as cars converged, peaking in 2024. The 2025 figure broke the trend — qualifying became *less* predictive of race outcomes than in 2024. The likely driver is increased mid-season car development volatility ahead of the 2026 regulation reset, though small-sample noise can't be ruled out.
