@@ -11,7 +11,7 @@ The final 6-feature linear regression was trained on 2022-2024 and tested on 24 
 | Metric | Pole baseline | Linear Regression (final) |
 |---|---|---|
 | RMSE | 4.69 | **4.22** |
-| Top-1 accuracy | 66.7% | 58.3% |
+| Top-1 accuracy | 66.7% | 54.2% |
 | Top-3 accuracy | 95.8% | **100%** (24/24 races) |
 
 The model produces calibrated finish-position estimates for every driver, with 100% top-3 accuracy on the holdout — every 2025 race winner appeared in our top-3 predictions. The pole baseline beats us on top-1 prediction (a season-specific quirk: 2025 had unusually high pole-to-win conversion), but we provide ranked predictions for the entire field, not just the winner.
@@ -176,7 +176,7 @@ Run notebooks in order (`01` → `05`) to reproduce the full analysis.
 
 ### Phase 3: Model expansion (complete)
 - Random Forest and tuned XGBoost benchmarked head-to-head against linear regression on the 2025 holdout
-- Train-test gap diagnostic confirms tree-based ensembles overfit (gaps of +0.247 and +0.270) while linear regression generalises (gap of +0.014)
+- Train-test gap diagnostic confirms tree-based ensembles overfit (gaps of +0.261 and +0.272) while linear regression generalises (gap of +0.016)
 - 6-feature linear regression confirmed as the right production choice
 
 ### Phase 4: Engineering polish (planned)
