@@ -334,13 +334,13 @@ with st.sidebar:
         f"""
         <div style='font-size: 0.85rem; color: {F1_GREY}; line-height: 1.6;'>
         <strong style='color: {F1_LIGHT};'>2025 Holdout</strong><br>
-        Top-1: <strong style='color: {F1_LIGHT};'>58.3%</strong><br>
+        Top-1: <strong style='color: {F1_LIGHT};'>54.2%</strong><br>
         Top-3: <strong style='color: #00D26A;'>100%</strong><br>
         RMSE: <strong style='color: {F1_LIGHT};'>4.22</strong>
         <br><br>
         <strong style='color: {F1_LIGHT};'>2024 Test</strong><br>
         Top-3: <strong style='color: {F1_LIGHT};'>78.3%</strong><br>
-        RMSE: <strong style='color: {F1_LIGHT};'>3.74</strong>
+        RMSE: <strong style='color: {F1_LIGHT};'>3.73</strong>
         </div>
         """,
         unsafe_allow_html=True,
