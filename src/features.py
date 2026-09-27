@@ -18,6 +18,13 @@ DATA_RAW = PROJECT_ROOT / "data" / "raw"
 DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
 DATA_PROCESSED.mkdir(parents=True, exist_ok=True)
 
+# Rebranded teams mapped to their current name, so team form carries across seasons
+TEAM_LINEAGE = {
+    "AlphaTauri": "Racing Bulls",
+    "RB": "Racing Bulls",
+    "Alfa Romeo": "Kick Sauber",
+}
+
 
 def parse_qualifying_time(t) -> Optional[float]:
     """Convert qualifying time to seconds (float).
@@ -95,6 +102,13 @@ def load_combined_data() -> pd.DataFrame:
         merged[col] = pd.to_numeric(merged[col], errors="coerce")
     merged["Points"] = merged["Points"].fillna(0)
 
+    # Pit-lane starts are recorded as grid 0 — move them to the back of the field
+    field_size = merged.groupby(["Year", "Round"])["Abbreviation"].transform("size")
+    merged["GridPosition"] = merged["GridPosition"].mask(merged["GridPosition"] == 0, field_size)
+
+    # Same venue, renamed by the data source in 2025
+    merged["Circuit"] = merged["Circuit"].replace({"Miami Gardens": "Miami"})
+
     # Normalise team names (handles Jolpica vs fastf1 inconsistencies)
     team_name_map = {
         "Red Bull": "Red Bull Racing",
@@ -145,10 +159,11 @@ def add_rolling_form(df: pd.DataFrame, window: int = 3) -> pd.DataFrame:
           .transform(lambda x: x.shift(1).rolling(window, min_periods=1).mean())
     )
 
-    # Team form: same logic but at constructor level
-    df = df.sort_values(["TeamName", "EventDate"]).reset_index(drop=True)
+    # Team form: same logic but at constructor level, following teams through rebrands
+    df["TeamLineage"] = df["TeamName"].replace(TEAM_LINEAGE)
+    df = df.sort_values(["TeamLineage", "EventDate"]).reset_index(drop=True)
     df["TeamFormLast3"] = (
-        df.groupby("TeamName")["Position"]
+        df.groupby("TeamLineage")["Position"]
           .transform(lambda x: x.shift(1).rolling(window, min_periods=1).mean())
     )
 
@@ -291,8 +306,8 @@ def add_dnf_rate(df: pd.DataFrame, window: int = 5) -> pd.DataFrame:
 def add_circuit_features(df: pd.DataFrame) -> pd.DataFrame:
     """Tag street circuits — they have very different race dynamics (low overtaking, safety cars)."""
     street_circuits = {
-        "Monte Carlo", "Monaco",
-        "Singapore",
+        "Monaco",
+        "Marina Bay",  # Singapore
         "Baku",
         "Las Vegas",
         "Jeddah",
