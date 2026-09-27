@@ -27,6 +27,7 @@ TEAM_COLORS = {
     "Williams": "#64C4FF",              # Williams light blue
     "Kick Sauber": "#52E252",           # Sauber green (2024-25)
     "Racing Bulls": "#6692FF",          # RB / VCARB blue
+    "RB": "#6692FF",                    # 2024 name for Racing Bulls
     "Haas": "#B6BABD",                  # Haas grey
 
     # Historical 2022-2023 names (same teams, prior naming)
@@ -45,6 +46,7 @@ TEAM_COLORS_DARK = {
     "Williams": "#4A8FBE",
     "Kick Sauber": "#388E3C",
     "Racing Bulls": "#4768B8",
+    "RB": "#4768B8",
     "Haas": "#7E8084",
     "Alfa Romeo": "#660000",
     "AlphaTauri": "#3F6680",

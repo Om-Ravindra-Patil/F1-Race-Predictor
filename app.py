@@ -312,7 +312,7 @@ with st.sidebar:
 
     year = st.selectbox(
         "Season",
-        options=[2025, 2024, 2023, 2022],
+        options=[2025, 2024, 2023],  # 2022 has no earlier season to train on
         index=0,
     )
 
@@ -756,8 +756,8 @@ footer_html = f"""
             <div style="color: {F1_LIGHT}; font-size: 0.9rem;">
                 A 6-feature linear regression predicts each driver's finish position from
                 qualifying performance, recent form, and circuit type. The model trains on
-                every season except the one shown, so 2025 races are predicted by a model
-                that has never seen 2025 data.
+                every season before the one shown, so each race is predicted by a model
+                that has never seen that season or any later one.
             </div>
         </div>
         <div>

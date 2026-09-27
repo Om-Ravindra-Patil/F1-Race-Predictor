@@ -115,6 +115,25 @@ def test_predict_race_output():
     assert out["Abbreviation"].is_unique
 
 
+def test_predict_race_trains_only_on_earlier_seasons(monkeypatch):
+    import src.predict as predict
+    seen = []
+    real_train = predict.train_model
+
+    def spy(years):
+        seen.extend(years)
+        return real_train(years)
+
+    monkeypatch.setattr(predict, "train_model", spy)
+    predict.predict_race(2023, 1)
+    assert seen == [2022]
+
+
+def test_predict_race_first_season_has_no_training_data():
+    with pytest.raises(ValueError):
+        predict_race(2022, 5)
+
+
 def test_predict_race_unknown_round():
     with pytest.raises(ValueError):
         predict_race(2025, 99)

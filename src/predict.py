@@ -75,17 +75,19 @@ def train_model(
 def predict_race(year: int, round_number: int) -> pd.DataFrame:
     """Predict finish positions for every driver in a specific race.
 
-    The model is trained on all seasons EXCEPT the season being predicted.
-    For example, predicting 2025 races trains on 2022-2024.
+    The model is trained only on seasons BEFORE the one being predicted, so it
+    never sees that season or any later one. For example, predicting 2024 races
+    trains on 2022-2023. The earliest season has no training data and raises.
 
     Returns a DataFrame sorted by predicted position with columns:
       Abbreviation, FullName, TeamName, QualifyingPosition, GridPosition,
       ActualPosition, PredictedPosition, PositionDelta
     """
-    # Train on all years except the one being predicted (true holdout style)
+    # Train only on earlier seasons (true holdout: no future data)
     df = load_features()
-    available_years = sorted(df["Year"].unique())
-    train_years = [y for y in available_years if y != year]
+    train_years = [y for y in df["Year"].unique() if y < year]
+    if not train_years:
+        raise ValueError(f"No seasons before {year} to train on")
 
     model, scaler = train_model(train_years)
 
