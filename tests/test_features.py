@@ -3,6 +3,7 @@ import pandas as pd
 import pytest
 
 from src.features import (
+    CIRCUIT_ALIASES,
     add_circuit_features,
     add_qualifying_gap,
     add_rolling_form,
@@ -66,6 +67,18 @@ def test_driver_form_uses_only_past_races():
     assert out["DriverFormLast3"].tolist() == pytest.approx([np.nan, 1, 2, 3, 4], nan_ok=True)
 
 
+def test_team_form_excludes_teammate_same_race():
+    df = pd.DataFrame({
+        "Abbreviation": ["AAA", "BBB", "AAA", "BBB"],
+        "TeamName": ["Ferrari"] * 4,
+        "EventDate": pd.to_datetime(["2025-03-01", "2025-03-01", "2025-03-08", "2025-03-08"]),
+        "Position": [1, 20, 3, 4],
+    })
+    out = add_rolling_form(df).sort_values(["EventDate", "Abbreviation"])
+    # Race 1: no history for either driver; race 2: both see race 1's team mean (1+20)/2
+    assert out["TeamFormLast3"].tolist() == pytest.approx([np.nan, np.nan, 10.5, 10.5], nan_ok=True)
+
+
 def test_team_form_carries_across_rebrand():
     df = pd.DataFrame({
         "Abbreviation": ["AAA", "AAA"],
@@ -97,14 +110,19 @@ def test_dataset_has_no_pit_lane_grid_zero(features):
 
 def test_dataset_street_circuits(features):
     street = set(features.loc[features["IsStreetCircuit"] == 1, "Circuit"])
-    assert street == {"Monaco", "Marina Bay", "Baku", "Las Vegas", "Jeddah", "Miami"}
-    assert "Miami Gardens" not in set(features["Circuit"])
+    assert street == {"Monaco", "Marina Bay", "Baku", "Las Vegas", "Jeddah", "Miami", "Madrid"}
+    assert not set(CIRCUIT_ALIASES) & set(features["Circuit"])  # every alias normalised
 
 
 def test_dataset_every_race_has_grid_positions(features):
     # A whole race with no grid data means a partial fastf1 load slipped through
     missing = features["GridPosition"].isna().groupby([features["Year"], features["Round"]]).mean()
     assert (missing < 0.5).all(), missing[missing >= 0.5]
+
+
+def test_dataset_teammates_share_team_form(features):
+    per_team_race = features.groupby(["Year", "Round", "TeamName"])["TeamFormLast3"].nunique()
+    assert (per_team_race <= 1).all()
 
 
 def test_dataset_one_row_per_driver_per_race(features):
@@ -138,6 +156,28 @@ def test_predict_race_trains_only_on_earlier_seasons(monkeypatch):
 def test_predict_race_first_season_has_no_training_data():
     with pytest.raises(ValueError):
         predict_race(2022, 5)
+
+
+def test_predict_upcoming_race(monkeypatch):
+    # Simulate a race that has qualified but not run: no finish positions yet
+    import src.predict as predict
+    df = pd.read_csv(FEATURES_FILE)
+    upcoming = (df["Year"] == 2025) & (df["Round"] == 24)
+    df.loc[upcoming, "Position"] = np.nan
+    monkeypatch.setattr(predict, "load_features", lambda: df.copy())
+
+    out = predict.predict_race(2025, 24)
+    assert len(out) == upcoming.sum()  # whole grid predicted
+    assert out["ActualPosition"].isna().all()
+    assert sorted(out["PredictedRank"]) == list(range(1, len(out) + 1))
+
+
+def test_predict_race_includes_drivers_without_form_history():
+    # 2026 R1: Cadillac's debut and a rookie have no form yet but must still be predicted
+    out = predict_race(2026, 1)
+    assert len(out) == 22
+    assert out[["PredictedPosition"]].notna().all().all()
+    assert {"BOT", "PER", "LIN"} <= set(out.loc[out["FormEstimated"], "Abbreviation"])
 
 
 def test_predict_race_unknown_round():

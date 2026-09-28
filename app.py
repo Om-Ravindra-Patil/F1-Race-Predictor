@@ -2,7 +2,7 @@
 F1 Race Winner Predictor — Streamlit Dashboard
 
 F1 broadcast-style interactive dashboard showcasing the validated prediction model.
-Trained on 2022-2024, achieves 100% top-3 accuracy on 2025 holdout.
+Trained on earlier seasons only; beats the pole baseline on RMSE on the 2025 holdout.
 
 Run with: streamlit run app.py
 """
@@ -312,7 +312,7 @@ with st.sidebar:
 
     year = st.selectbox(
         "Season",
-        options=[2025, 2024, 2023],  # 2022 has no earlier season to train on
+        options=[2026, 2025, 2024, 2023],  # 2022 has no earlier season to train on
         index=0,
     )
 
@@ -324,7 +324,7 @@ with st.sidebar:
     selected_race_label = st.selectbox(
         "Race",
         options=list(race_options.keys()),
-        index=0,
+        index=len(race_options) - 1,  # latest race: the upcoming one when qualifying is in
     )
     selected_round = race_options[selected_race_label]
 
@@ -334,13 +334,13 @@ with st.sidebar:
         f"""
         <div style='font-size: 0.85rem; color: {F1_GREY}; line-height: 1.6;'>
         <strong style='color: {F1_LIGHT};'>2025 Holdout</strong><br>
-        Top-1: <strong style='color: {F1_LIGHT};'>58.3%</strong><br>
-        Top-3: <strong style='color: #00D26A;'>100%</strong><br>
-        RMSE: <strong style='color: {F1_LIGHT};'>4.22</strong>
+        Top-1: <strong style='color: {F1_LIGHT};'>50.0%</strong><br>
+        Top-3: <strong style='color: {F1_LIGHT};'>91.7%</strong><br>
+        RMSE: <strong style='color: {F1_LIGHT};'>4.25</strong>
         <br><br>
         <strong style='color: {F1_LIGHT};'>2024 Test</strong><br>
-        Top-3: <strong style='color: {F1_LIGHT};'>79.2%</strong><br>
-        RMSE: <strong style='color: {F1_LIGHT};'>3.77</strong>
+        Top-3: <strong style='color: {F1_LIGHT};'>83.3%</strong><br>
+        RMSE: <strong style='color: {F1_LIGHT};'>3.78</strong>
         </div>
         """,
         unsafe_allow_html=True,
@@ -365,21 +365,30 @@ try:
     metadata = get_race_metadata(year, selected_round)
     predictions = predict_race(year, selected_round)
 
-    # Sanity check: do we have actual results?
-    has_actual_results = predictions["ActualPosition"].notna().any()
-    has_winner = (predictions["ActualPosition"] == 1).any()
+    # Upcoming race: qualifying done, no results yet — predictions only
+    upcoming = predictions["ActualPosition"].isna().all()
+    predicted_winner = predictions[predictions["PredictedRank"] == 1].iloc[0]
 
-    if not has_winner:
-        # Race exists but no winner recorded — could be future race or data issue
+    if not upcoming and not (predictions["ActualPosition"] == 1).any():
         st.warning(
-            f"No race results available for {metadata['event_name']} ({year}). "
-            "This race may not have happened yet, or its results are still pending."
+            f"Results for {metadata['event_name']} ({year}) are incomplete — no race winner recorded."
         )
         st.stop()
 
-    # Identify winners and compute metrics
+except Exception as e:
+    st.error(
+        f"Unable to load predictions for this race. "
+        f"This usually means the race data is incomplete or has a known issue. "
+        f"Error details: `{type(e).__name__}: {str(e)[:200]}`"
+    )
+    st.info(
+        "Try selecting a different race, or check the GitHub repository for known data issues."
+    )
+    st.stop()
+
+
+if not upcoming:
     actual_winner = predictions[predictions["ActualPosition"] == 1].iloc[0]
-    predicted_winner = predictions[predictions["PredictedRank"] == 1].iloc[0]
     winner_correct = actual_winner["Abbreviation"] == predicted_winner["Abbreviation"]
 
     predicted_top3 = predictions[predictions["PredictedRank"] <= 3]["Abbreviation"].tolist()
@@ -406,17 +415,6 @@ try:
         climber_from = None
         climber_to = None
 
-except Exception as e:
-    st.error(
-        f"Unable to load predictions for this race. "
-        f"This usually means the race data is incomplete or has a known issue. "
-        f"Error details: `{type(e).__name__}: {str(e)[:200]}`"
-    )
-    st.info(
-        "Try selecting a different race, or check the GitHub repository for known data issues."
-    )
-    st.stop()
-
 
 # ──────────────────────────────────────────────────────────────────────
 # Hero header
@@ -433,42 +431,40 @@ st.markdown(f"""
 # ──────────────────────────────────────────────────────────────────────
 # Top metrics — custom cards (broadcast style)
 # ──────────────────────────────────────────────────────────────────────
-winner_color_class = "f1-metric-value-correct" if winner_correct else "f1-metric-value-missed"
-winner_status = "PREDICTED" if winner_correct else "MISSED"
-top3_color_class = "f1-metric-value-correct" if top3_overlap == 3 else ""
-
-# Climber card content
-if climber_gain > 0:
-    climber_value_html = f'<span style="color: #00D26A;">+{climber_gain}</span> <span style="font-size: 1.3rem; color: {F1_LIGHT};">{climber_code}</span>'
-    climber_context = f"P{climber_from} → P{climber_to} · {climber_team}"
+if upcoming:
+    pole = predictions.loc[predictions["QualifyingPosition"].idxmin()]
+    podium_codes = " · ".join(predictions.nsmallest(3, "PredictedRank")["Abbreviation"])
+    cards = [
+        ("Predicted Winner", f'<span class="f1-metric-value-correct">{predicted_winner["Abbreviation"]}</span>', predicted_winner["TeamName"]),
+        ("Pole Position", pole["Abbreviation"], pole["TeamName"]),
+        ("Predicted Podium", f'<span style="font-size: 1.3rem;">{podium_codes}</span>', "Top 3 by predicted finish"),
+        ("Race Status", '<span style="color: #FFC107;">UPCOMING</span>', "Grid = qualifying order (penalties not yet known)"),
+    ]
 else:
-    climber_value_html = '<span style="color: #949498;">—</span>'
-    climber_context = "No driver gained positions"
+    winner_color_class = "f1-metric-value-correct" if winner_correct else "f1-metric-value-missed"
+    winner_status = "PREDICTED" if winner_correct else "MISSED"
+    top3_color_class = "f1-metric-value-correct" if top3_overlap == 3 else ""
 
-st.markdown(f"""
-<div class="f1-metrics-grid">
-    <div class="f1-metric-card">
-        <div class="f1-metric-label">Actual Winner</div>
-        <div class="f1-metric-value">{actual_winner['Abbreviation']}</div>
-        <div class="f1-metric-context">{actual_winner['TeamName']}</div>
-    </div>
-    <div class="f1-metric-card">
-        <div class="f1-metric-label">Predicted Winner</div>
-        <div class="f1-metric-value {winner_color_class}">{predicted_winner['Abbreviation']}</div>
-        <div class="f1-metric-context">{winner_status} · {predicted_winner['TeamName']}</div>
-    </div>
-    <div class="f1-metric-card">
-        <div class="f1-metric-label">Top-3 Overlap</div>
-        <div class="f1-metric-value {top3_color_class}">{top3_overlap}/3</div>
-        <div class="f1-metric-context">Drivers in correct podium zone</div>
-    </div>
-    <div class="f1-metric-card">
-        <div class="f1-metric-label">Biggest Climber</div>
-        <div class="f1-metric-value">{climber_value_html}</div>
-        <div class="f1-metric-context">{climber_context}</div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+    if climber_gain > 0:
+        climber_value_html = f'<span style="color: #00D26A;">+{climber_gain}</span> <span style="font-size: 1.3rem; color: {F1_LIGHT};">{climber_code}</span>'
+        climber_context = f"P{climber_from} → P{climber_to} · {climber_team}"
+    else:
+        climber_value_html = '<span style="color: #949498;">—</span>'
+        climber_context = "No driver gained positions"
+
+    cards = [
+        ("Actual Winner", actual_winner["Abbreviation"], actual_winner["TeamName"]),
+        ("Predicted Winner", f'<span class="{winner_color_class}">{predicted_winner["Abbreviation"]}</span>', f'{winner_status} · {predicted_winner["TeamName"]}'),
+        ("Top-3 Overlap", f'<span class="{top3_color_class}">{top3_overlap}/3</span>', "Drivers in correct podium zone"),
+        ("Biggest Climber", climber_value_html, climber_context),
+    ]
+
+cards_html = "".join(
+    f'<div class="f1-metric-card"><div class="f1-metric-label">{label}</div>'
+    f'<div class="f1-metric-value">{value}</div><div class="f1-metric-context">{context}</div></div>'
+    for label, value, context in cards
+)
+st.markdown(f'<div class="f1-metrics-grid">{cards_html}</div>', unsafe_allow_html=True)
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -550,15 +546,25 @@ with col_pred:
     )
 
 with col_actual:
-    st.markdown(
-        render_podium(
-            actual_top3_df.iloc[0],
-            actual_top3_df.iloc[1],
-            actual_top3_df.iloc[2],
-            "Actual Podium",
-        ),
-        unsafe_allow_html=True,
-    )
+    if upcoming:
+        st.markdown(
+            f'<div style="background:{F1_DARK_2};border:1px solid #2A2A38;border-radius:4px;padding:1.5rem;'
+            f'min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">'
+            f'<div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:{F1_RED};margin-bottom:1rem;">Actual Podium</div>'
+            f'<div style="color:{F1_GREY};">Race on {metadata["event_date"]} — results appear here after the race.</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            render_podium(
+                actual_top3_df.iloc[0],
+                actual_top3_df.iloc[1],
+                actual_top3_df.iloc[2],
+                "Actual Podium",
+            ),
+            unsafe_allow_html=True,
+        )
 
 
 st.markdown('<div class="f1-section-title">PREDICTIONS</div>', unsafe_allow_html=True)
@@ -575,7 +581,7 @@ def render_prediction_row(row) -> str:
     full_name = row["FullName"]
     pred_rank = int(row["PredictedRank"])
     quali = int(row["QualifyingPosition"]) if not pd.isna(row["QualifyingPosition"]) else "—"
-    actual = int(row["ActualPosition"]) if not pd.isna(row["ActualPosition"]) else "DNF"
+    actual = int(row["ActualPosition"]) if not pd.isna(row["ActualPosition"]) else ("—" if upcoming else "DNF")
     delta = row["PositionDelta"]
     confidence_level = int(row["ConfidenceLevel"])
 
@@ -618,7 +624,7 @@ def render_prediction_row(row) -> str:
         f'<div class="f1-pred-cell f1-pred-rank">{pred_rank}</div>'
         f'<div class="f1-pred-cell f1-pred-driver">'
         f'<div class="f1-pred-code">{driver_code}</div>'
-        f'<div class="f1-pred-name">{full_name}</div>'
+        f'<div class="f1-pred-name">{full_name}{" · est. form" if row["FormEstimated"] else ""}</div>'
         f'</div>'
         f'<div class="f1-pred-cell f1-pred-team" style="color:{team_color};">{team}</div>'
         f'<div class="f1-pred-cell">{confidence_html}</div>'
@@ -788,7 +794,7 @@ footer_html = f"""
         color: {F1_GREY};
     ">
         <div>
-            Trained on 2022–2024 · Validated on 2025 (true holdout · 100% top-3 accuracy)
+            Trained on 2022–2024 · Validated on 2025 (true holdout · RMSE 4.25 vs 4.69 pole baseline)
         </div>
         <div>
             <a href="https://github.com/Om-Ravindra-Patil/F1-Race-Predictor" style="color: {F1_RED}; text-decoration: none; font-weight: 600;">View source on GitHub →</a>

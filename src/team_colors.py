@@ -29,6 +29,8 @@ TEAM_COLORS = {
     "Racing Bulls": "#6692FF",          # RB / VCARB blue
     "RB": "#6692FF",                    # 2024 name for Racing Bulls
     "Haas": "#B6BABD",                  # Haas grey
+    "Audi": "#F50537",                  # Audi red (2026+, formerly Sauber)
+    "Cadillac": "#909090",              # Cadillac silver (2026+)
 
     # Historical 2022-2023 names (same teams, prior naming)
     "Alfa Romeo": "#900000",            # Alfa dark red (became Sauber)
@@ -48,6 +50,8 @@ TEAM_COLORS_DARK = {
     "Racing Bulls": "#4768B8",
     "RB": "#4768B8",
     "Haas": "#7E8084",
+    "Audi": "#A8032A",
+    "Cadillac": "#5E5E5E",
     "Alfa Romeo": "#660000",
     "AlphaTauri": "#3F6680",
 }

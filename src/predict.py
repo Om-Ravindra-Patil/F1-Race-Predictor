@@ -24,7 +24,7 @@ from sklearn.preprocessing import StandardScaler
 # Project structure paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
-FEATURES_FILE = DATA_PROCESSED / "features_2022_2025.csv"
+FEATURES_FILE = DATA_PROCESSED / "features.csv"
 
 # The 6-feature set selected as the final model
 FEATURES = [
@@ -38,16 +38,18 @@ FEATURES = [
 
 
 def load_features() -> pd.DataFrame:
-    """Load and clean the engineered feature dataset.
+    """Load the engineered feature dataset — every row, including races not yet
+    run (no finish position) and drivers with missing features."""
+    return pd.read_csv(FEATURES_FILE)
 
-    Drops rows with no finish position (non-starters) and missing critical
-    features (early-season races without rolling form features). Retirements
+
+def training_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """Rows the model can learn from: a finish position and all features present.
+
+    Drops non-starters (no position) and rows without form history. Retirements
     keep their classified position, so the model treats them as back-of-field finishes.
     """
-    df = pd.read_csv(FEATURES_FILE)
-    df = df.dropna(subset=["Position"]).copy()
-    df = df.dropna(subset=FEATURES).copy()
-    return df
+    return df.dropna(subset=["Position", *FEATURES])
 
 
 def train_model(
@@ -58,8 +60,8 @@ def train_model(
     Returns the fitted model and scaler. Both are needed for prediction:
     the scaler standardises features so coefficients are interpretable.
     """
-    df = load_features()
-    train_df = df[df["Year"].isin(train_years)].copy()
+    df = training_rows(load_features())
+    train_df = df[df["Year"].isin(train_years)]
 
     X = train_df[FEATURES]
     y = train_df["Position"]
@@ -80,9 +82,12 @@ def predict_race(year: int, round_number: int) -> pd.DataFrame:
     never sees that season or any later one. For example, predicting 2024 races
     trains on 2022-2023. The earliest season has no training data and raises.
 
+    Works for races not yet run (qualifying done): ActualPosition is then NaN
+    for every driver.
+
     Returns a DataFrame sorted by predicted position with columns:
       Abbreviation, FullName, TeamName, QualifyingPosition, GridPosition,
-      ActualPosition, PredictedPosition, PositionDelta
+      ActualPosition, PredictedPosition, PositionDelta, FormEstimated
     """
     # Train only on earlier seasons (true holdout: no future data)
     df = load_features()
@@ -96,6 +101,18 @@ def predict_race(year: int, round_number: int) -> pd.DataFrame:
     race_df = df[(df["Year"] == year) & (df["Round"] == round_number)].copy()
     if race_df.empty:
         raise ValueError(f"No data found for {year} Round {round_number}")
+
+    # Completed race: leave out non-starters. Upcoming race: every row has no result yet.
+    if race_df["Position"].notna().any():
+        race_df = race_df.dropna(subset=["Position"])
+
+    # Every driver gets a prediction, even with missing features (debuts, new teams,
+    # no qualifying time): driver form falls back to team form, anything else to the
+    # race median.
+    # ponytail: median is a neutral guess — a missing qualifying position lands mid-grid
+    race_df["FormEstimated"] = race_df[["DriverFormLast3", "TeamFormLast3"]].isna().any(axis=1)
+    race_df["DriverFormLast3"] = race_df["DriverFormLast3"].fillna(race_df["TeamFormLast3"])
+    race_df[FEATURES] = race_df[FEATURES].fillna(race_df[FEATURES].median())
 
     # Predict
     X_race = race_df[FEATURES]
@@ -131,7 +148,7 @@ def predict_race(year: int, round_number: int) -> pd.DataFrame:
         "Abbreviation", "FullName", "TeamName",
         "QualifyingPosition", "GridPosition",
         "Position", "PredictedPosition", "PredictedRank",
-        "ConfidenceScore", "ConfidenceLevel",
+        "ConfidenceScore", "ConfidenceLevel", "FormEstimated",
     ]
     output = race_df[output_cols].copy()
     output = output.rename(columns={"Position": "ActualPosition"})

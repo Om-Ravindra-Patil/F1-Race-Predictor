@@ -22,7 +22,15 @@ DATA_PROCESSED.mkdir(parents=True, exist_ok=True)
 TEAM_LINEAGE = {
     "AlphaTauri": "Racing Bulls",
     "RB": "Racing Bulls",
-    "Alfa Romeo": "Kick Sauber",
+    "Alfa Romeo": "Audi",
+    "Kick Sauber": "Audi",
+}
+
+# Circuit names that changed between seasons, mapped to one canonical name
+CIRCUIT_ALIASES = {
+    "Miami Gardens": "Miami",
+    "Monte Carlo": "Monaco",
+    "Yas Marina": "Yas Island",
 }
 
 
@@ -78,7 +86,7 @@ def load_combined_data() -> pd.DataFrame:
     race_frames = []
     qual_frames = []
 
-    for year in [2022, 2023, 2024, 2025]:
+    for year in [2022, 2023, 2024, 2025, 2026]:
         race_df = pd.read_csv(DATA_RAW / f"season_{year}_results.csv")
         qual_df = pd.read_csv(DATA_RAW / f"season_{year}_qualifying.csv")
         race_frames.append(race_df)
@@ -86,6 +94,15 @@ def load_combined_data() -> pd.DataFrame:
 
     races = pd.concat(race_frames, ignore_index=True)
     quals = pd.concat(qual_frames, ignore_index=True)
+
+    # Races not yet run (qualifying done, no result): build rows from qualifying so
+    # they can be predicted. Grid = qualifying order, since penalties aren't known yet.
+    raced = races.set_index(["Year", "Round"]).index
+    upcoming = quals[~quals.set_index(["Year", "Round"]).index.isin(raced)]
+    upcoming = upcoming[
+        ["Year", "Round", "Abbreviation", "FullName", "TeamName", "EventName", "EventDate", "Circuit"]
+    ].assign(GridPosition=upcoming["Position"])
+    races = pd.concat([races, upcoming], ignore_index=True)
 
     # Compute best qualifying time per driver per round
     quals["BestQualiTime"] = quals.apply(best_qualifying_time, axis=1)
@@ -106,8 +123,8 @@ def load_combined_data() -> pd.DataFrame:
     field_size = merged.groupby(["Year", "Round"])["Abbreviation"].transform("size")
     merged["GridPosition"] = merged["GridPosition"].mask(merged["GridPosition"] == 0, field_size)
 
-    # Same venue, renamed by the data source in 2025
-    merged["Circuit"] = merged["Circuit"].replace({"Miami Gardens": "Miami"})
+    # Same venues, renamed by the data source between seasons
+    merged["Circuit"] = merged["Circuit"].replace(CIRCUIT_ALIASES)
 
     # Normalise team names (handles Jolpica vs fastf1 inconsistencies)
     team_name_map = {
@@ -159,13 +176,17 @@ def add_rolling_form(df: pd.DataFrame, window: int = 3) -> pd.DataFrame:
           .transform(lambda x: x.shift(1).rolling(window, min_periods=1).mean())
     )
 
-    # Team form: same logic but at constructor level, following teams through rebrands
+    # Team form: average of the team's per-race mean finish over its last N races,
+    # following teams through rebrands. Aggregated per race first so a teammate's
+    # result in the current race can't leak in (a team has two rows per race).
     df["TeamLineage"] = df["TeamName"].replace(TEAM_LINEAGE)
-    df = df.sort_values(["TeamLineage", "EventDate"]).reset_index(drop=True)
-    df["TeamFormLast3"] = (
-        df.groupby("TeamLineage")["Position"]
+    team_form = (
+        df.groupby(["TeamLineage", "EventDate"])["Position"].mean()
+          .groupby(level="TeamLineage")
           .transform(lambda x: x.shift(1).rolling(window, min_periods=1).mean())
+          .rename("TeamFormLast3")
     )
+    df = df.merge(team_form.reset_index(), on=["TeamLineage", "EventDate"], how="left")
 
     return df
 
@@ -312,6 +333,7 @@ def add_circuit_features(df: pd.DataFrame) -> pd.DataFrame:
         "Las Vegas",
         "Jeddah",
         "Miami",
+        "Madrid",  # Madring, semi-street layout (2026+)
     }
     df["IsStreetCircuit"] = df["Circuit"].isin(street_circuits).astype(int)
     return df
@@ -371,7 +393,7 @@ def build_feature_dataset() -> pd.DataFrame:
 if __name__ == "__main__":
     df = build_feature_dataset()
 
-    output_path = DATA_PROCESSED / "features_2022_2025.csv"
+    output_path = DATA_PROCESSED / "features.csv"
     df.to_csv(output_path, index=False)
 
     print(f"\nSaved {len(df)} rows to {output_path}")

@@ -99,6 +99,7 @@ def load_qualifying_results_jolpica(year: int, round_num: int) -> Optional[pd.Da
                 "DriverNumber": r.get("number"),
                 "Abbreviation": r["Driver"].get("code"),
                 "DriverId": r["Driver"].get("driverId"),
+                "FullName": f"{r['Driver'].get('givenName', '')} {r['Driver'].get('familyName', '')}".strip(),
                 "TeamName": r["Constructor"].get("name"),
                 "Position": r.get("position"),  # qualifying position
                 "Q1": r.get("Q1"),
@@ -108,6 +109,7 @@ def load_qualifying_results_jolpica(year: int, round_num: int) -> Optional[pd.Da
                 "Round": round_num,
                 "EventName": race.get("raceName"),
                 "EventDate": race.get("date"),
+                "Circuit": race.get("Circuit", {}).get("Location", {}).get("locality"),
             })
 
         return pd.DataFrame(rows)
@@ -129,6 +131,7 @@ def load_qualifying_results(year: int, round_num: int) -> Optional[pd.DataFrame]
         results["Round"] = round_num
         results["EventName"] = session.event["EventName"]
         results["EventDate"] = session.event["EventDate"]
+        results["Circuit"] = session.event["Location"]  # needed for races not yet run
 
         return results
 
@@ -236,7 +239,7 @@ if __name__ == "__main__":
     years = [int(a) for a in args if a.isdigit()]
 
     if not years:
-        years = [2022, 2023, 2024, 2025]
+        years = [2022, 2023, 2024, 2025, 2026]
 
     for year in years:
         if not qualifying_only:
