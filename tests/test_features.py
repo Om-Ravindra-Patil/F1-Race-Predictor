@@ -101,6 +101,12 @@ def test_dataset_street_circuits(features):
     assert "Miami Gardens" not in set(features["Circuit"])
 
 
+def test_dataset_every_race_has_grid_positions(features):
+    # A whole race with no grid data means a partial fastf1 load slipped through
+    missing = features["GridPosition"].isna().groupby([features["Year"], features["Round"]]).mean()
+    assert (missing < 0.5).all(), missing[missing >= 0.5]
+
+
 def test_dataset_one_row_per_driver_per_race(features):
     assert not features.duplicated(["Year", "Round", "Abbreviation"]).any()
 

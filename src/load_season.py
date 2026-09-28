@@ -144,6 +144,12 @@ def load_race_results(year: int, round_num: int) -> Optional[pd.DataFrame]:
         session.load(telemetry=False, weather=False, messages=False)
 
         results = session.results.copy()
+        # fastf1 sometimes returns only the finishing order (no grid/status/points);
+        # treat that as a failure so the Jolpica fallback fills it in
+        if results["GridPosition"].isna().all():
+            print(f"Round {round_num}: fastf1 results incomplete (no grid positions)")
+            return None
+
         # Add metadata columns
         results["Year"] = year
         results["Round"] = round_num

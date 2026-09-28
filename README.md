@@ -11,7 +11,7 @@ The final 6-feature linear regression was trained on 2022-2024 and tested on 24 
 | Metric | Pole baseline | Linear Regression (final) |
 |---|---|---|
 | RMSE | 4.69 | **4.22** |
-| Top-1 accuracy | 66.7% | 54.2% |
+| Top-1 accuracy | 66.7% | 58.3% |
 | Top-3 accuracy | 95.8% | **100%** (24/24 races) |
 
 The model produces calibrated finish-position estimates for every driver, with 100% top-3 accuracy on the holdout — every 2025 race winner appeared in our top-3 predictions. The pole baseline beats us on top-1 prediction (a season-specific quirk: 2025 had unusually high pole-to-win conversion), but we provide ranked predictions for the entire field, not just the winner.
@@ -44,7 +44,7 @@ Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024 — a ~60 percentag
 |--------|---------------------------|---|
 | 2022   | 0.523 | 439 |
 | 2023   | 0.584 | 439 |
-| 2024   | 0.736 | 459 |
+| 2024   | 0.732 | 479 |
 | 2025   | 0.651 | 479 |
 
 Grid → finish correlation rose steadily through the 2022 regulation cycle as cars converged, peaking in 2024. The 2025 figure broke the trend — qualifying became *less* predictive of race outcomes than in 2024. The likely driver is increased mid-season car development volatility ahead of the 2026 regulation reset, though small-sample noise can't be ruled out.
@@ -176,7 +176,7 @@ Run notebooks in order (`01` → `05`) to reproduce the full analysis.
 
 ### Phase 3: Model expansion (complete)
 - Random Forest and tuned XGBoost benchmarked head-to-head against linear regression on the 2025 holdout
-- Train-test gap diagnostic confirms tree-based ensembles overfit (gaps of +0.261 and +0.272) while linear regression generalises (gap of +0.016)
+- Train-test gap diagnostic confirms tree-based ensembles overfit (gaps of +0.246 and +0.257) while linear regression generalises (gap of +0.009)
 - 6-feature linear regression confirmed as the right production choice
 
 ### Phase 4: Engineering polish (planned)
