@@ -40,8 +40,9 @@ FEATURES = [
 def load_features() -> pd.DataFrame:
     """Load and clean the engineered feature dataset.
 
-    Drops rows with missing target (DNFs/withdrawals) and missing critical
-    features (early-season races without rolling form features).
+    Drops rows with no finish position (non-starters) and missing critical
+    features (early-season races without rolling form features). Retirements
+    keep their classified position, so the model treats them as back-of-field finishes.
     """
     df = pd.read_csv(FEATURES_FILE)
     df = df.dropna(subset=["Position"]).copy()

@@ -57,6 +57,8 @@ Grid → finish correlation rose steadily through the 2022 regulation cycle as c
 
 Reformulated "predict the winner" as **regression on finish position**. For each driver-race row, predict the finish position; pick the lowest predicted as winner. Advantages over binary classification: every row carries a label, no class imbalance issues, and the same model gives podium predictions for free.
 
+**Retirements are kept, not dropped.** A driver who retires keeps their official classified position (usually at the back of the field), so the model learns that a DNF is a bad result — which is how it should read for anyone using the predictions. Only non-starters, who have no finish position, are excluded.
+
 ### Feature engineering
 
 Six features, each leak-free (rolling features use `.shift(1)` to prevent target leakage):
