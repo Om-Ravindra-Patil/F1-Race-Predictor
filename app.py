@@ -605,6 +605,93 @@ with col_actual:
         )
 
 
+# ──────────────────────────────────────────────────────────────────────
+# Why this prediction — exact per-factor breakdown of the linear model
+# ──────────────────────────────────────────────────────────────────────
+WHY_GAIN = "#3B82F6"  # pushes towards P1 (diverging pair validated on F1_DARK_2)
+WHY_LOSE = F1_RED     # pushes towards the back
+
+st.markdown('<div class="f1-section-title">WHY THIS PREDICTION</div>', unsafe_allow_html=True)
+st.markdown(f"""
+<style>
+.why-card {{ background:{F1_DARK_2}; border:1px solid #2A2A38; border-radius:4px; padding:1.25rem 1.5rem; }}
+.why-head {{ color:{F1_LIGHT}; font-size:1.05rem; font-weight:700; }}
+.why-sub {{ color:{F1_GREY}; font-size:0.8rem; margin:0.25rem 0 1.25rem 0; }}
+.why-row {{ display:grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) 5.5rem; gap:1rem; align-items:center; padding:0.55rem 0; }}
+.why-label {{ color:{F1_LIGHT}; font-size:0.85rem; font-weight:600; }}
+.why-context {{ color:{F1_GREY}; font-size:0.75rem; margin-top:0.15rem; }}
+.why-track {{ position:relative; height:14px; }}
+.why-zero {{ position:absolute; left:50%; top:-4px; bottom:-4px; width:1px; background:#4A4A58; }}
+.why-bar {{ position:absolute; top:0; height:14px; }}
+.why-value {{ color:{F1_LIGHT}; font-size:0.85rem; font-variant-numeric:tabular-nums; text-align:right; }}
+.why-legend {{ display:flex; justify-content:space-between; color:{F1_GREY}; font-size:0.72rem; margin-top:0.75rem; }}
+.why-swatch {{ display:inline-block; width:10px; height:10px; border-radius:2px; margin:0 0.35rem; vertical-align:-1px; }}
+@media (max-width: 640px) {{
+    .why-row {{ grid-template-columns: 1fr 4.5rem; }}
+    .why-track {{ grid-column: 1 / -1; grid-row: 2; }}
+}}
+</style>
+""", unsafe_allow_html=True)
+
+WHY_FACTORS = [("WhyQualifying", "Qualifying"), ("WhyDriverForm", "Driver form"), ("WhyTeamForm", "Team form")]
+# One scale for the whole race, so bars are comparable when switching drivers
+why_scale = max(predictions[[col for col, _ in WHY_FACTORS]].abs().max().max(), 1e-9)
+
+driver_labels = [f"P{int(r['PredictedRank'])} · {r['Abbreviation']} — {r['FullName']}" for _, r in predictions.iterrows()]
+why_label = st.selectbox("Driver", driver_labels, key=f"why_{year}_{selected_round}")
+why = predictions.iloc[driver_labels.index(why_label)]
+
+
+def signed(value: float) -> str:
+    return f"{value:+.1f}".replace("-", "−")  # typographic minus
+
+
+def why_context(col: str) -> str:
+    if col == "WhyQualifying":
+        text = "On pole" if why["QualifyingPosition"] == 1 else (
+            f"Qualified P{int(why['QualifyingPosition'])}, {why['QualifyingGapToPole']:.2f}s off pole")
+        if why["GridPosition"] != why["QualifyingPosition"]:
+            text += f" · starts P{int(why['GridPosition'])}"
+        return text
+    if why["FormEstimated"]:
+        return "No recent results — estimated"
+    if col == "WhyDriverForm":
+        return f"Averaged P{why['DriverFormLast3']:.1f} over the last 3 races"
+    return f"Team averaged P{why['TeamFormLast3']:.1f} over the last 3 races"
+
+
+def why_row(col: str, label: str) -> str:
+    value = why[col]
+    width = abs(value) / why_scale * 50  # % of the track; each side of zero is half
+    # Bars grow from the zero line; the 4px rounded end is the data end
+    if value < 0:
+        bar = f"right:50%;width:{width:.2f}%;background:{WHY_GAIN};border-radius:4px 0 0 4px;"
+        verdict = f"gains {abs(value):.1f} places"
+    else:
+        bar = f"left:50%;width:{width:.2f}%;background:{WHY_LOSE};border-radius:0 4px 4px 0;"
+        verdict = f"loses {abs(value):.1f} places"
+    return (
+        f'<div class="why-row" title="{label}: {verdict} vs the field average">'
+        f'<div><div class="why-label">{label}</div><div class="why-context">{why_context(col)}</div></div>'
+        f'<div class="why-track"><div class="why-zero"></div><div class="why-bar" style="{bar}"></div></div>'
+        f'<div class="why-value">{signed(value)}</div>'
+        f'</div>'
+    )
+
+
+st.markdown(
+    f'<div class="why-card">'
+    f'<div class="why-head">{why["Abbreviation"]} is predicted P{int(why["PredictedRank"])}</div>'
+    f'<div class="why-sub">Predicted finish {why["PredictedPosition"]:.1f} vs a field average of {why["FieldAverage"]:.1f}. '
+    f'The factors below add up exactly to the difference ({signed(why["PredictedPosition"] - why["FieldAverage"])} places).</div>'
+    + "".join(why_row(col, label) for col, label in WHY_FACTORS)
+    + f'<div class="why-legend"><span><span class="why-swatch" style="background:{WHY_GAIN};"></span>Gains places (towards P1)</span>'
+    f'<span>Loses places (towards the back)<span class="why-swatch" style="background:{WHY_LOSE};"></span></span></div>'
+    f'</div>',
+    unsafe_allow_html=True,
+)
+
+
 st.markdown('<div class="f1-section-title">PREDICTIONS</div>', unsafe_allow_html=True)
 
 

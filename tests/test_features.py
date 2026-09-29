@@ -202,6 +202,13 @@ def test_season_metrics_match_published_2025_holdout():
     assert (m["winner_top1"], m["winner_top3"]) == (12, 22)
 
 
+def test_prediction_breakdown_adds_up():
+    # The "why" pushes must explain each prediction exactly
+    out = predict_race(2026, 15)
+    pushes = out[["WhyQualifying", "WhyDriverForm", "WhyTeamForm"]].sum(axis=1)
+    assert (out["FieldAverage"] + pushes).tolist() == pytest.approx(out["PredictedPosition"].tolist())
+
+
 def test_predict_race_unknown_round():
     with pytest.raises(ValueError):
         predict_race(2025, 99)

@@ -119,6 +119,22 @@ def predict_race(year: int, round_number: int) -> pd.DataFrame:
     X_race_scaled = scaler.transform(X_race)
     race_df["PredictedPosition"] = model.predict(X_race_scaled)
 
+    # Why: how far each feature pushes this driver's prediction away from the field
+    # average, in places (negative = towards P1). Exact for a linear model: the pushes
+    # add up to PredictedPosition - FieldAverage.
+    push = pd.DataFrame(
+        (X_race_scaled - X_race_scaled.mean(axis=0)) * model.coef_,
+        columns=FEATURES, index=race_df.index,
+    )
+    race_df["FieldAverage"] = race_df["PredictedPosition"].mean()
+    # Grid slot, qualifying position and gap to pole all measure one thing and move
+    # together, so the model's split of credit between them is arbitrary (gap to pole
+    # alone even gets a counter-intuitive sign): shown as one qualifying push
+    race_df["WhyQualifying"] = push[["GridPosition", "QualifyingPosition", "QualifyingGapToPole"]].sum(axis=1)
+    race_df["WhyDriverForm"] = push["DriverFormLast3"]
+    race_df["WhyTeamForm"] = push["TeamFormLast3"]
+    # IsStreetCircuit is the same for the whole field, so its push is always 0
+
     # Rank predictions (lowest predicted = predicted P1)
     race_df["PredictedRank"] = race_df["PredictedPosition"].rank(method="min").astype(int)
 
@@ -149,6 +165,8 @@ def predict_race(year: int, round_number: int) -> pd.DataFrame:
         "QualifyingPosition", "GridPosition",
         "Position", "PredictedPosition", "PredictedRank",
         "ConfidenceScore", "ConfidenceLevel", "FormEstimated",
+        "QualifyingGapToPole", "DriverFormLast3", "TeamFormLast3",
+        "FieldAverage", "WhyQualifying", "WhyDriverForm", "WhyTeamForm",
     ]
     output = race_df[output_cols].copy()
     output = output.rename(columns={"Position": "ActualPosition"})
