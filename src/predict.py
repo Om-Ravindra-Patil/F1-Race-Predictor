@@ -180,3 +180,33 @@ def get_available_races(year: int) -> pd.DataFrame:
         ["Round", "EventName", "Circuit", "EventDate"]
     ].drop_duplicates().sort_values("Round").reset_index(drop=True)
     return races
+
+def season_metrics(year: int) -> dict:
+    """Model vs pole baseline over a season's completed races.
+
+    Uses the same setup as the dashboard: trained only on earlier seasons.
+    Returns races, rmse, pole_rmse, winner_top1 and winner_top3 (race counts).
+    """
+    df = training_rows(load_features())
+    test = df[df["Year"] == year]
+    if test.empty:
+        return {"races": 0}
+
+    model, scaler = train_model([y for y in df["Year"].unique() if y < year])
+    test = test.assign(Predicted=model.predict(scaler.transform(test[FEATURES])))
+
+    def rmse(pred):
+        return float(np.sqrt(((pred - test["Position"]) ** 2).mean()))
+
+    # Where did each race's actual winner sit in the predicted order?
+    predicted_rank = test.groupby("Round")["Predicted"].rank(method="min")
+    winner_rank = predicted_rank[test["Position"] == test.groupby("Round")["Position"].transform("min")]
+    winner_rank = winner_rank.groupby(test["Round"]).min()
+
+    return {
+        "races": int(test["Round"].nunique()),
+        "rmse": rmse(test["Predicted"]),
+        "pole_rmse": rmse(test["QualifyingPosition"]),
+        "winner_top1": int((winner_rank == 1).sum()),
+        "winner_top3": int((winner_rank <= 3).sum()),
+    }

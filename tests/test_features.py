@@ -11,7 +11,7 @@ from src.features import (
     best_qualifying_time,
     parse_qualifying_time,
 )
-from src.predict import FEATURES_FILE, predict_race
+from src.predict import FEATURES_FILE, predict_race, season_metrics
 
 
 # --- Qualifying time parsing ---
@@ -191,6 +191,15 @@ def test_predict_race_includes_drivers_without_form_history():
     assert len(out) == 22
     assert out[["PredictedPosition"]].notna().all().all()
     assert {"BOT", "PER", "LIN"} <= set(out.loc[out["FormEstimated"], "Abbreviation"])
+
+
+def test_season_metrics_match_published_2025_holdout():
+    # The README headline: RMSE 4.25 vs 4.69 pole, winner in top 3 in 22/24, exact in 12/24
+    m = season_metrics(2025)
+    assert m["races"] == 24
+    assert m["rmse"] == pytest.approx(4.248, abs=1e-3)
+    assert m["pole_rmse"] == pytest.approx(4.686, abs=1e-3)
+    assert (m["winner_top1"], m["winner_top3"]) == (12, 22)
 
 
 def test_predict_race_unknown_round():

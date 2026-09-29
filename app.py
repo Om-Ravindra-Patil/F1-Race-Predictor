@@ -9,8 +9,22 @@ Run with: streamlit run app.py
 
 import streamlit as st
 import pandas as pd
-from src.predict import predict_race, get_race_metadata, get_available_races
+from src import predict
 from src.team_colors import get_team_color
+
+# Data only changes on redeploy (a new push restarts the app), so results can be
+# cached for the life of the process: switching races doesn't retrain the model.
+predict_race = st.cache_data(show_spinner=False)(predict.predict_race)
+get_race_metadata = st.cache_data(show_spinner=False)(predict.get_race_metadata)
+get_available_races = st.cache_data(show_spinner=False)(predict.get_available_races)
+season_metrics = st.cache_data(show_spinner=False)(predict.season_metrics)
+
+
+@st.cache_data(show_spinner=False)
+def get_seasons() -> list:
+    """Seasons the dashboard can show, newest first. The first season in the
+    data has no earlier season to train on, so it's left out."""
+    return sorted(predict.load_features()["Year"].unique().tolist(), reverse=True)[:-1]
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -310,39 +324,63 @@ with st.sidebar:
 
     st.markdown("---")
 
-    year = st.selectbox(
-        "Season",
-        options=[2026, 2025, 2024, 2023],  # 2022 has no earlier season to train on
-        index=0,
-    )
+    # Shareable links: ?season=2026&round=16 opens that race. The dropdowns own the
+    # values and write them to the URL; the URL is applied on first load, or when it
+    # no longer matches what we last wrote (a new link opened in an existing tab,
+    # since Streamlit keeps the session across reloads).
+    params = st.query_params
+    seasons = get_seasons()
+    url_season = int(params["season"]) if params.get("season", "").isdigit() else None
+    url_round = int(params["round"]) if params.get("round", "").isdigit() else None
+    apply_url = st.session_state.get("url_written") != (url_season, url_round)
+
+    if apply_url and url_season in seasons:
+        st.session_state.season = url_season
+    elif "season" not in st.session_state:
+        st.session_state.season = seasons[0]
+    year = st.selectbox("Season", options=seasons, key="season")
 
     races = get_available_races(year)
     race_options = {
         f"R{row['Round']:02d} — {row['EventName']}": row["Round"]
         for _, row in races.iterrows()
     }
-    selected_race_label = st.selectbox(
-        "Race",
-        options=list(race_options.keys()),
-        index=len(race_options) - 1,  # latest race: the upcoming one when qualifying is in
-    )
+    labels = list(race_options)
+    race_key = f"race_{year}"  # one per season, so each season remembers its race
+    from_url = [label for label, rnd in race_options.items() if url_season == year and rnd == url_round]
+    if apply_url and from_url:
+        st.session_state[race_key] = from_url[0]
+    elif race_key not in st.session_state:
+        st.session_state[race_key] = labels[-1]  # latest race: the upcoming one once qualifying is in
+    selected_race_label = st.selectbox("Race", options=labels, key=race_key)
     selected_round = race_options[selected_race_label]
+
+    st.query_params.update(season=str(year), round=str(selected_round))
+    st.session_state.url_written = (year, int(selected_round))
 
     st.markdown("---")
     st.markdown("**Model performance**")
+    st.caption("Trained only on earlier seasons · vs predicting the qualifying order")
+
+    # The two most recent seasons with completed races, computed from the data
+    metric_blocks = []
+    for season in seasons:
+        m = season_metrics(season)
+        if m["races"] == 0:
+            continue
+        metric_blocks.append(
+            f"<strong style='color: {F1_LIGHT};'>{season} · {m['races']} races</strong><br>"
+            f"Winner in top 3: <strong style='color: {F1_LIGHT};'>{m['winner_top3']}/{m['races']}</strong><br>"
+            f"Exact winner: <strong style='color: {F1_LIGHT};'>{m['winner_top1']}/{m['races']}</strong><br>"
+            f"RMSE: <strong style='color: {F1_LIGHT};'>{m['rmse']:.2f}</strong> "
+            f"<span style='color: {F1_GREY};'>(pole {m['pole_rmse']:.2f})</span>"
+        )
+        if len(metric_blocks) == 2:
+            break
     st.markdown(
-        f"""
-        <div style='font-size: 0.85rem; color: {F1_GREY}; line-height: 1.6;'>
-        <strong style='color: {F1_LIGHT};'>2025 Holdout</strong><br>
-        Top-1: <strong style='color: {F1_LIGHT};'>50.0%</strong><br>
-        Top-3: <strong style='color: {F1_LIGHT};'>91.7%</strong><br>
-        RMSE: <strong style='color: {F1_LIGHT};'>4.25</strong>
-        <br><br>
-        <strong style='color: {F1_LIGHT};'>2024 Test</strong><br>
-        Top-3: <strong style='color: {F1_LIGHT};'>83.3%</strong><br>
-        RMSE: <strong style='color: {F1_LIGHT};'>3.78</strong>
-        </div>
-        """,
+        f"<div style='font-size: 0.85rem; color: {F1_GREY}; line-height: 1.6;'>"
+        + "<br><br>".join(metric_blocks)
+        + "</div>",
         unsafe_allow_html=True,
     )
 

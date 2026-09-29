@@ -34,7 +34,7 @@ The RMSE advantage over the pole baseline (+0.38 positions) is almost unchanged 
 
 ## Live demo
 
-**[▶ Try the dashboard](https://f1-race-predictor-orp.streamlit.app/)** — select any race from 2023–2026 and see predicted vs actual podiums, or the live prediction for the next 2026 race once qualifying is done, full-grid predictions with confidence indicators, and biggest-climber callouts, rendered in F1 broadcast styling with team colours.
+**[▶ Try the dashboard](https://f1-race-predictor-orp.streamlit.app/)** — select any race from 2023–2026 and see predicted vs actual podiums, or the live prediction for the next 2026 race once qualifying is done, full-grid predictions with confidence indicators, and biggest-climber callouts, rendered in F1 broadcast styling with team colours. Every race has a shareable link, e.g. [`?season=2026&round=15`](https://f1-race-predictor-orp.streamlit.app/?season=2026&round=15).
 
 ## Key findings from multi-season EDA (2022-2024)
 

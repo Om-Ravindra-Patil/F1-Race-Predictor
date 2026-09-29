@@ -404,7 +404,9 @@ if __name__ == "__main__":
     df = build_feature_dataset()
 
     output_path = DATA_PROCESSED / "features.csv"
-    df.to_csv(output_path, index=False)
+    # Rounded so the file is identical whichever machine builds it (last-digit float
+    # noise differs between macOS and Linux, which would trigger needless commits)
+    df.to_csv(output_path, index=False, float_format="%.10g")
 
     print(f"\nSaved {len(df)} rows to {output_path}")
     print(f"   Seasons: {sorted(df['Year'].unique())}")
