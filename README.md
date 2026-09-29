@@ -169,6 +169,8 @@ python3 src/load_season.py
 python3 src/load_season.py 2022 2023
 ```
 
+The loader only fetches rounds that aren't already saved, so finished rounds never change. Delete a season's CSV in `data/raw/` to re-fetch it from scratch.
+
 Build feature dataset:
 
 ```bash

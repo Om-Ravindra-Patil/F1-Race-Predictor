@@ -196,3 +196,33 @@ def test_predict_race_includes_drivers_without_form_history():
 def test_predict_race_unknown_round():
     with pytest.raises(ValueError):
         predict_race(2025, 99)
+
+
+# --- Incremental data loading ---
+
+def test_save_new_rounds_appends_without_touching_saved_rows(tmp_path):
+    from src.load_season import save_new_rounds
+    path = tmp_path / "season.csv"
+    saved = "Round,Abbreviation,HeadshotUrl\n" + "".join(f"{r},AAA,None\n" for r in range(1, 11))
+    path.write_text(saved)
+
+    calls = []
+    def fake_load(year, start_round):
+        calls.append(start_round)
+        return pd.DataFrame({"Round": [start_round], "Abbreviation": ["AAA"], "HeadshotUrl": ["x"]})
+
+    save_new_rounds(2026, fake_load, path)
+    assert calls == [11]  # numeric max, not text ("9" > "10")
+    assert path.read_text() == saved + "11,AAA,x\n"  # saved rows byte-identical
+
+
+def test_save_new_rounds_nothing_new(tmp_path):
+    from src.load_season import save_new_rounds
+    path = tmp_path / "season.csv"
+    path.write_text("Round,Abbreviation\n1,AAA\n")
+
+    def no_data(year, start_round):
+        raise RuntimeError("No race data loaded")
+
+    save_new_rounds(2026, no_data, path)
+    assert path.read_text() == "Round,Abbreviation\n1,AAA\n"

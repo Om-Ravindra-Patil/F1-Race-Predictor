@@ -130,7 +130,7 @@ def load_qualifying_results(year: int, round_num: int) -> Optional[pd.DataFrame]
         results["Year"] = year
         results["Round"] = round_num
         results["EventName"] = session.event["EventName"]
-        results["EventDate"] = session.event["EventDate"]
+        results["EventDate"] = session.event["EventDate"].strftime("%Y-%m-%d")
         results["Circuit"] = session.event["Location"]  # needed for races not yet run
 
         return results
@@ -157,7 +157,7 @@ def load_race_results(year: int, round_num: int) -> Optional[pd.DataFrame]:
         results["Year"] = year
         results["Round"] = round_num
         results["EventName"] = session.event["EventName"]
-        results["EventDate"] = session.event["EventDate"]
+        results["EventDate"] = session.event["EventDate"].strftime("%Y-%m-%d")
         results["Circuit"] = session.event["Location"]
 
         return results
@@ -167,11 +167,11 @@ def load_race_results(year: int, round_num: int) -> Optional[pd.DataFrame]:
         return None
 
 
-def load_season(year: int, max_rounds: int = 24) -> pd.DataFrame:
-    """Load all available race results for a season."""
+def load_season(year: int, max_rounds: int = 24, start_round: int = 1) -> pd.DataFrame:
+    """Load available race results for a season, from start_round onwards."""
     all_results = []
 
-    for round_num in range(1, max_rounds + 1):
+    for round_num in range(start_round, max_rounds + 1):
         print(f"Loading {year} Round {round_num}...")
         df = load_race_results(year, round_num)
 
@@ -200,11 +200,11 @@ def load_season(year: int, max_rounds: int = 24) -> pd.DataFrame:
     print(f"  DEBUG: combined DataFrame shape = {combined.shape}")
     return combined
 
-def load_qualifying_season(year: int, max_rounds: int = 24) -> pd.DataFrame:
-    """Load all available qualifying results for a season."""
+def load_qualifying_season(year: int, max_rounds: int = 24, start_round: int = 1) -> pd.DataFrame:
+    """Load available qualifying results for a season, from start_round onwards."""
     all_results = []
 
-    for round_num in range(1, max_rounds + 1):
+    for round_num in range(start_round, max_rounds + 1):
         print(f"Loading {year} Round {round_num} qualifying...")
         df = load_qualifying_results(year, round_num)
 
@@ -229,6 +229,26 @@ def load_qualifying_season(year: int, max_rounds: int = 24) -> pd.DataFrame:
     combined = pd.concat(all_results, ignore_index=True)
     return combined
 
+def save_new_rounds(year: int, load_fn, path: Path) -> None:
+    """Fetch only rounds not already saved in path and append them.
+
+    Saved rounds are never re-fetched, so their data stays stable even when a
+    later fetch comes from a different source (e.g. GitHub runners can't reach
+    F1 live timing and fastf1 falls back to Ergast). Delete the CSV to force a full reload.
+    """
+    # Read saved rows as exact text so they are written back byte-for-byte
+    existing = pd.read_csv(path, dtype=str, keep_default_na=False) if path.exists() else None
+    start = existing["Round"].astype(int).max() + 1 if existing is not None else 1
+    try:
+        new = load_fn(year, start_round=start)
+    except RuntimeError:
+        print(f"\nNo new rounds for {path.name} (have up to round {start - 1})")
+        return
+    df = pd.concat([existing, new], ignore_index=True) if existing is not None else new
+    df.to_csv(path, index=False)
+    print(f"\nSaved {len(df)} rows to {path} (rounds {start}-{new['Round'].max()} new)")
+
+
 if __name__ == "__main__":
     import sys
 
@@ -244,17 +264,8 @@ if __name__ == "__main__":
     for year in years:
         if not qualifying_only:
             print(f"\n{'='*50}\nLoading {year} race results\n{'='*50}")
-            df = load_season(year)
-            output_path = DATA_RAW_DIR / f"season_{year}_results.csv"
-            df.to_csv(output_path, index=False)
-            print(f"\nSaved {len(df)} race rows to {output_path}")
-            print(f"   Rounds: {df['Round'].nunique()}, Drivers: {df['Abbreviation'].nunique()}")
+            save_new_rounds(year, load_season, DATA_RAW_DIR / f"season_{year}_results.csv")
 
         if not races_only:
             print(f"\n{'='*50}\nLoading {year} qualifying results\n{'='*50}")
-            df = load_qualifying_season(year)
-            output_path = DATA_RAW_DIR / f"season_{year}_qualifying.csv"
-            df.to_csv(output_path, index=False)
-            print(f"\nSaved {len(df)} qualifying rows to {output_path}")
-            print(f"   Rounds: {df['Round'].nunique()}, Drivers: {df['Abbreviation'].nunique()}")
-    
+            save_new_rounds(year, load_qualifying_season, DATA_RAW_DIR / f"season_{year}_qualifying.csv")

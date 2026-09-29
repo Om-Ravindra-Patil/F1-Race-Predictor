@@ -130,10 +130,14 @@ def load_combined_data() -> pd.DataFrame:
     team_name_map = {
         "Red Bull": "Red Bull Racing",
         "Alpine F1 Team": "Alpine",
-        "RB F1 Team": "RB",
+        "RB F1 Team": "Racing Bulls",  # Ergast's name; only appears in 2026 / upcoming rows
         "Haas F1 Team": "Haas",
+        "Cadillac F1 Team": "Cadillac",
     }
     merged["TeamName"] = merged["TeamName"].replace(team_name_map)
+
+    # One spelling per driver (sources differ, e.g. "Kimi Antonelli" vs "Andrea Kimi Antonelli")
+    merged["FullName"] = merged.groupby("Abbreviation")["FullName"].transform(lambda s: s.mode().iat[0])
 
     # Sort chronologically — critical for rolling features
     merged["EventDate"] = pd.to_datetime(merged["EventDate"])
