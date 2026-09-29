@@ -5,6 +5,7 @@ import pytest
 from src.features import (
     CIRCUIT_ALIASES,
     add_circuit_features,
+    add_dnf_rate,
     add_qualifying_gap,
     add_rolling_form,
     best_qualifying_time,
@@ -88,6 +89,18 @@ def test_team_form_carries_across_rebrand():
     })
     out = add_rolling_form(df).sort_values("EventDate")
     assert out["TeamFormLast3"].iloc[1] == 10
+
+
+# --- DNF rate ---
+
+def test_dnf_rate_counts_retirements_with_a_position():
+    df = pd.DataFrame({
+        "Abbreviation": ["AAA"] * 4,
+        "EventDate": pd.date_range("2025-03-01", periods=4, freq="7D"),
+        "ClassifiedPosition": ["1", "R", "W", np.nan],  # last race not yet run
+    })
+    out = add_dnf_rate(df).sort_values("EventDate")
+    assert out["DriverDNFRateLast5"].tolist() == pytest.approx([np.nan, 0, 0.5, 2 / 3], nan_ok=True)
 
 
 # --- Street circuits ---

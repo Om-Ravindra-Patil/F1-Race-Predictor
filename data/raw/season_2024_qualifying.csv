@@ -1,0 +1,480 @@
+DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,FirstName,LastName,FullName,HeadshotUrl,CountryCode,Position,ClassifiedPosition,GridPosition,Q1,Q2,Q3,Time,Status,Points,Laps,Year,Round,EventName,EventDate
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671c6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,1.0,,,0 days 00:01:30.031000,0 days 00:01:29.374000,0 days 00:01:29.179000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,e8002d,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,2.0,,,0 days 00:01:30.243000,0 days 00:01:29.165000,0 days 00:01:29.407000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27f4d2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,3.0,,,0 days 00:01:30.350000,0 days 00:01:29.922000,0 days 00:01:29.485000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,e8002d,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,4.0,,,0 days 00:01:29.909000,0 days 00:01:29.573000,0 days 00:01:29.507000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671c6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,5.0,,,0 days 00:01:30.221000,0 days 00:01:29.932000,0 days 00:01:29.537000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,6.0,,,0 days 00:01:30.179000,0 days 00:01:29.801000,0 days 00:01:29.542000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+4,L NORRIS,NOR,norris,McLaren,ff8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,7.0,,,0 days 00:01:30.143000,0 days 00:01:29.941000,0 days 00:01:29.614000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,ff8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,8.0,,,0 days 00:01:30.531000,0 days 00:01:30.122000,0 days 00:01:29.683000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27f4d2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,9.0,,,0 days 00:01:30.451000,0 days 00:01:29.718000,0 days 00:01:29.710000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,b6babd,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,10.0,,,0 days 00:01:30.566000,0 days 00:01:29.851000,0 days 00:01:30.502000,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692ff,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,11.0,,,0 days 00:01:30.481000,0 days 00:01:30.129000,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,12.0,,,0 days 00:01:29.965000,0 days 00:01:30.200000,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+23,A ALBON,ALB,albon,Williams,64c4ff,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,13.0,,,0 days 00:01:30.397000,0 days 00:01:30.221000,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692ff,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,14.0,,,0 days 00:01:30.562000,0 days 00:01:30.278000,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,b6babd,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,15.0,,,0 days 00:01:30.646000,0 days 00:01:30.529000,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,16.0,,,0 days 00:01:30.756000,,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,17.0,,,0 days 00:01:30.757000,,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64c4ff,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,18.0,,,0 days 00:01:30.770000,,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+31,E OCON,OCO,ocon,Alpine,ff87bc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,19.0,,,0 days 00:01:30.793000,,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+10,P GASLY,GAS,gasly,Alpine,ff87bc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,20.0,,,0 days 00:01:30.948000,,,,,,,2024,1,Bahrain Grand Prix,2024-03-02 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671c6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,1.0,,,0 days 00:01:28.171000,0 days 00:01:28.033000,0 days 00:01:27.472000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,e8002d,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,2.0,,,0 days 00:01:28.318000,0 days 00:01:28.112000,0 days 00:01:27.791000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671c6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,3.0,,,0 days 00:01:28.638000,0 days 00:01:28.467000,0 days 00:01:27.807000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,4.0,,,0 days 00:01:28.706000,0 days 00:01:28.122000,0 days 00:01:27.846000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,ff8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,5.0,,,0 days 00:01:28.755000,0 days 00:01:28.343000,0 days 00:01:28.089000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+4,L NORRIS,NOR,norris,McLaren,ff8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,6.0,,,0 days 00:01:28.805000,0 days 00:01:28.479000,0 days 00:01:28.132000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27f4d2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,7.0,,,0 days 00:01:28.749000,0 days 00:01:28.448000,0 days 00:01:28.316000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27f4d2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,8.0,,,0 days 00:01:28.994000,0 days 00:01:28.606000,0 days 00:01:28.460000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692ff,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,9.0,,,0 days 00:01:28.988000,0 days 00:01:28.564000,0 days 00:01:28.547000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,10.0,,,0 days 00:01:28.250000,0 days 00:01:28.578000,0 days 00:01:28.572000,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+38,O BEARMAN,BEA,bearman,Ferrari,e8002d,ferrari,Oliver,Bearman,Oliver Bearman,None,GBR,11.0,,,0 days 00:01:28.984000,0 days 00:01:28.642000,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+23,A ALBON,ALB,albon,Williams,64c4ff,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,12.0,,,0 days 00:01:29.107000,0 days 00:01:28.980000,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,b6babd,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,13.0,,,0 days 00:01:29.069000,0 days 00:01:29.020000,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692ff,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,14.0,,,0 days 00:01:29.065000,0 days 00:01:29.025000,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,b6babd,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,15.0,,,0 days 00:01:29.055000,,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,16.0,,,0 days 00:01:29.179000,,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+31,E OCON,OCO,ocon,Alpine,ff87bc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,17.0,,,0 days 00:01:29.475000,,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+10,P GASLY,GAS,gasly,Alpine,ff87bc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,18.0,,,0 days 00:01:29.479000,,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64c4ff,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,19.0,,,0 days 00:01:29.526000,,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,20.0,,,,,,,,,,2024,2,Saudi Arabian Grand Prix,2024-03-09 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671C6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,1.0,,,0 days 00:01:16.819000,0 days 00:01:16.387000,0 days 00:01:15.915000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,E80020,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,2.0,,,0 days 00:01:16.731000,0 days 00:01:16.189000,0 days 00:01:16.185000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671C6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,3.0,,,0 days 00:01:16.805000,0 days 00:01:16.631000,0 days 00:01:16.274000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+4,L NORRIS,NOR,norris,McLaren,FF8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,4.0,,,0 days 00:01:17.430000,0 days 00:01:16.750000,0 days 00:01:16.315000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,E80020,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,5.0,,,0 days 00:01:16.984000,0 days 00:01:16.304000,0 days 00:01:16.435000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,FF8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,6.0,,,0 days 00:01:17.369000,0 days 00:01:16.601000,0 days 00:01:16.572000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27F4D2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,7.0,,,0 days 00:01:17.062000,0 days 00:01:16.901000,0 days 00:01:16.724000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692FF,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,8.0,,,0 days 00:01:17.356000,0 days 00:01:16.791000,0 days 00:01:16.788000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,9.0,,,0 days 00:01:17.376000,0 days 00:01:16.780000,0 days 00:01:17.072000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,10.0,,,0 days 00:01:16.991000,0 days 00:01:16.710000,0 days 00:01:17.552000,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27F4D2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,11.0,,,0 days 00:01:17.499000,0 days 00:01:16.960000,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+23,A ALBON,ALB,albon,Williams,64C4FF,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,12.0,,,0 days 00:01:17.130000,0 days 00:01:17.167000,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,13.0,,,0 days 00:01:17.543000,0 days 00:01:17.340000,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,B6BABD,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,14.0,,,0 days 00:01:17.709000,0 days 00:01:17.427000,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+31,E OCON,OCO,ocon,Alpine,0093cc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,15.0,,,0 days 00:01:17.617000,0 days 00:01:17.697000,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,B6BABD,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,16.0,,,0 days 00:01:17.976000,,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+10,P GASLY,GAS,gasly,Alpine,0093cc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,17.0,,,0 days 00:01:17.982000,,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692FF,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,18.0,,,0 days 00:01:18.085000,,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,19.0,,,0 days 00:01:18.188000,,,,,,,2024,3,Australian Grand Prix,2024-03-24 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671C6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,1.0,,,0 days 00:01:28.866000,0 days 00:01:28.740000,0 days 00:01:28.197000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671C6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,2.0,,,0 days 00:01:29.303000,0 days 00:01:28.752000,0 days 00:01:28.263000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+4,L NORRIS,NOR,norris,McLaren,FF8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,3.0,,,0 days 00:01:29.536000,0 days 00:01:28.940000,0 days 00:01:28.489000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,E80020,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,4.0,,,0 days 00:01:29.513000,0 days 00:01:29.099000,0 days 00:01:28.682000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,5.0,,,0 days 00:01:29.254000,0 days 00:01:29.082000,0 days 00:01:28.686000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,FF8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,6.0,,,0 days 00:01:29.425000,0 days 00:01:29.148000,0 days 00:01:28.760000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27F4D2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,7.0,,,0 days 00:01:29.661000,0 days 00:01:28.887000,0 days 00:01:28.766000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,E80020,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,8.0,,,0 days 00:01:29.338000,0 days 00:01:29.196000,0 days 00:01:28.786000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27F4D2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,9.0,,,0 days 00:01:29.799000,0 days 00:01:29.140000,0 days 00:01:29.008000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692FF,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,10.0,,,0 days 00:01:29.775000,0 days 00:01:29.417000,0 days 00:01:29.413000,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692FF,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,11.0,,,0 days 00:01:29.727000,0 days 00:01:29.472000,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,B6BABD,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,12.0,,,0 days 00:01:29.821000,0 days 00:01:29.494000,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,13.0,,,0 days 00:01:29.602000,0 days 00:01:29.593000,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+23,A ALBON,ALB,albon,Williams,64C4FF,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,14.0,,,0 days 00:01:29.963000,0 days 00:01:29.714000,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+31,E OCON,OCO,ocon,Alpine,0093cc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,15.0,,,0 days 00:01:29.811000,0 days 00:01:29.816000,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,16.0,,,0 days 00:01:30.024000,,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+10,P GASLY,GAS,gasly,Alpine,0093cc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,17.0,,,0 days 00:01:30.119000,,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,B6BABD,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,18.0,,,0 days 00:01:30.131000,,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64C4FF,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,19.0,,,0 days 00:01:30.139000,,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,20.0,,,0 days 00:01:30.143000,,,,,,,2024,4,Japanese Grand Prix,2024-04-07 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671C6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,1.0,,,0 days 00:01:34.742000,0 days 00:01:33.794000,0 days 00:01:33.660000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671C6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,2.0,,,0 days 00:01:35.457000,0 days 00:01:34.026000,0 days 00:01:33.982000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,3.0,,,0 days 00:01:35.116000,0 days 00:01:34.652000,0 days 00:01:34.148000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+4,L NORRIS,NOR,norris,McLaren,FF8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,4.0,,,0 days 00:01:34.842000,0 days 00:01:34.460000,0 days 00:01:34.165000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,FF8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,5.0,,,0 days 00:01:35.014000,0 days 00:01:34.659000,0 days 00:01:34.273000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,E80020,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,6.0,,,0 days 00:01:34.797000,0 days 00:01:34.399000,0 days 00:01:34.289000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,E80020,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,7.0,,,0 days 00:01:34.970000,0 days 00:01:34.368000,0 days 00:01:34.297000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27F4D2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,8.0,,,0 days 00:01:35.084000,0 days 00:01:34.609000,0 days 00:01:34.433000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,B6BABD,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,9.0,,,0 days 00:01:35.068000,0 days 00:01:34.667000,0 days 00:01:34.604000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,10.0,,,0 days 00:01:35.169000,0 days 00:01:34.769000,0 days 00:01:34.665000,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,11.0,,,0 days 00:01:35.334000,0 days 00:01:34.838000,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692FF,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,12.0,,,0 days 00:01:35.443000,0 days 00:01:34.934000,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+31,E OCON,OCO,ocon,Alpine,0093cc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,13.0,,,0 days 00:01:35.356000,0 days 00:01:35.223000,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+23,A ALBON,ALB,albon,Williams,64C4FF,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,14.0,,,0 days 00:01:35.384000,0 days 00:01:35.241000,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+10,P GASLY,GAS,gasly,Alpine,0093cc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,15.0,,,0 days 00:01:35.287000,0 days 00:01:35.463000,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,16.0,,,0 days 00:01:35.505000,,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,B6BABD,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,17.0,,,0 days 00:01:35.516000,,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27F4D2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,18.0,,,0 days 00:01:35.573000,,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692FF,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,19.0,,,0 days 00:01:35.746000,,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64C4FF,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,20.0,,,0 days 00:01:36.358000,,,,,,,2024,5,Chinese Grand Prix,2024-04-21 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671C6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,1.0,,,0 days 00:01:27.689000,0 days 00:01:27.566000,0 days 00:01:27.241000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,E80020,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,2.0,,,0 days 00:01:28.081000,0 days 00:01:27.533000,0 days 00:01:27.382000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,E80020,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,3.0,,,0 days 00:01:27.937000,0 days 00:01:27.941000,0 days 00:01:27.455000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671C6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,4.0,,,0 days 00:01:27.772000,0 days 00:01:27.839000,0 days 00:01:27.460000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+4,L NORRIS,NOR,norris,McLaren,FF8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,5.0,,,0 days 00:01:27.913000,0 days 00:01:27.871000,0 days 00:01:27.594000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,FF8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,6.0,,,0 days 00:01:28.032000,0 days 00:01:27.721000,0 days 00:01:27.675000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27F4D2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,7.0,,,0 days 00:01:28.159000,0 days 00:01:28.095000,0 days 00:01:28.067000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27F4D2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,8.0,,,0 days 00:01:28.167000,0 days 00:01:27.697000,0 days 00:01:28.107000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,B6BABD,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,9.0,,,0 days 00:01:28.383000,0 days 00:01:28.200000,0 days 00:01:28.146000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692FF,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,10.0,,,0 days 00:01:28.324000,0 days 00:01:28.167000,0 days 00:01:28.192000,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,11.0,,,0 days 00:01:28.177000,0 days 00:01:28.222000,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+10,P GASLY,GAS,gasly,Alpine,0093cc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,12.0,,,0 days 00:01:27.976000,0 days 00:01:28.324000,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+31,E OCON,OCO,ocon,Alpine,0093cc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,13.0,,,0 days 00:01:28.209000,0 days 00:01:28.371000,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+23,A ALBON,ALB,albon,Williams,64C4FF,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,14.0,,,0 days 00:01:28.343000,0 days 00:01:28.413000,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,15.0,,,0 days 00:01:28.453000,0 days 00:01:28.427000,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,16.0,,,0 days 00:01:28.463000,,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64C4FF,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,17.0,,,0 days 00:01:28.487000,,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692FF,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,18.0,,,0 days 00:01:28.617000,,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,B6BABD,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,19.0,,,0 days 00:01:28.619000,,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,20.0,,,0 days 00:01:28.824000,,,,,,,2024,6,Miami Grand Prix,2024-05-05 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671C6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,1.0,,,0 days 00:01:15.762000,0 days 00:01:15.176000,0 days 00:01:14.746000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,FF8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,2.0,,,0 days 00:01:15.940000,0 days 00:01:15.407000,0 days 00:01:14.820000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+4,L NORRIS,NOR,norris,McLaren,FF8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,3.0,,,0 days 00:01:15.915000,0 days 00:01:15.371000,0 days 00:01:14.837000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,E80020,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,4.0,,,0 days 00:01:15.823000,0 days 00:01:15.328000,0 days 00:01:14.970000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,E80020,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,5.0,,,0 days 00:01:16.015000,0 days 00:01:15.512000,0 days 00:01:15.233000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27F4D2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,6.0,,,0 days 00:01:16.107000,0 days 00:01:15.671000,0 days 00:01:15.234000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692FF,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,7.0,,,0 days 00:01:15.894000,0 days 00:01:15.358000,0 days 00:01:15.465000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27F4D2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,8.0,,,0 days 00:01:16.604000,0 days 00:01:15.677000,0 days 00:01:15.504000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692FF,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,9.0,,,0 days 00:01:16.060000,0 days 00:01:15.691000,0 days 00:01:15.674000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,B6BABD,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,10.0,,,0 days 00:01:15.841000,0 days 00:01:15.569000,0 days 00:01:15.980000,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671C6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,11.0,,,0 days 00:01:16.404000,0 days 00:01:15.706000,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+31,E OCON,OCO,ocon,Alpine,0093cc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,12.0,,,0 days 00:01:16.361000,0 days 00:01:15.906000,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,13.0,,,0 days 00:01:16.458000,0 days 00:01:15.992000,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+23,A ALBON,ALB,albon,Williams,64C4FF,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,14.0,,,0 days 00:01:16.524000,0 days 00:01:16.200000,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+10,P GASLY,GAS,gasly,Alpine,0093cc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,15.0,,,0 days 00:01:16.015000,0 days 00:01:16.381000,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,16.0,,,0 days 00:01:16.626000,,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,17.0,,,0 days 00:01:16.834000,,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,B6BABD,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,18.0,,,0 days 00:01:16.854000,,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,19.0,,,0 days 00:01:16.917000,,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64C4FF,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,20.0,,,,,,,,,,2024,7,Emilia Romagna Grand Prix,2024-05-19 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,E80020,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,1.0,,,0 days 00:01:11.584000,0 days 00:01:10.825000,0 days 00:01:10.270000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,FF8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,2.0,,,0 days 00:01:11.500000,0 days 00:01:10.756000,0 days 00:01:10.424000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,E80020,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,3.0,,,0 days 00:01:11.543000,0 days 00:01:11.075000,0 days 00:01:10.518000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+4,L NORRIS,NOR,norris,McLaren,FF8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,4.0,,,0 days 00:01:11.760000,0 days 00:01:10.732000,0 days 00:01:10.542000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27F4D2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,5.0,,,0 days 00:01:11.492000,0 days 00:01:10.929000,0 days 00:01:10.543000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671C6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,6.0,,,0 days 00:01:11.711000,0 days 00:01:10.745000,0 days 00:01:10.567000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27F4D2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,7.0,,,0 days 00:01:11.528000,0 days 00:01:11.056000,0 days 00:01:10.621000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692FF,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,8.0,,,0 days 00:01:11.852000,0 days 00:01:11.106000,0 days 00:01:10.858000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+23,A ALBON,ALB,albon,Williams,64C4FF,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,9.0,,,0 days 00:01:11.623000,0 days 00:01:11.216000,0 days 00:01:10.948000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+10,P GASLY,GAS,gasly,Alpine,0093cc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,10.0,,,0 days 00:01:11.714000,0 days 00:01:10.896000,0 days 00:01:11.311000,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+31,E OCON,OCO,ocon,Alpine,0093cc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,11.0,,,0 days 00:01:11.887000,0 days 00:01:11.285000,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692FF,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,12.0,,,0 days 00:01:11.785000,0 days 00:01:11.482000,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,13.0,,,0 days 00:01:11.728000,0 days 00:01:11.563000,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,B6BABD,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,14.0,,,0 days 00:01:11.876000,0 days 00:01:11.440000,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,14.0,,,0 days 00:01:12.019000,,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64C4FF,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,15.0,,,0 days 00:01:12.020000,,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,B6BABD,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,15.0,,,0 days 00:01:11.832000,0 days 00:01:11.725000,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671C6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,16.0,,,0 days 00:01:12.060000,,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,17.0,,,0 days 00:01:12.512000,,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,18.0,,,0 days 00:01:13.028000,,,,,,,2024,8,Monaco Grand Prix,2024-05-26 00:00:00
+63,G RUSSELL,RUS,russell,Mercedes,27F4D2,mercedes,George,Russell,George Russell,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/1col/image.png,GBR,1.0,,,0 days 00:01:13.013000,0 days 00:01:11.742000,0 days 00:01:12,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+1,M VERSTAPPEN,VER,max_verstappen,Red Bull Racing,3671C6,red_bull,Max,Verstappen,Max Verstappen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png,NED,2.0,,,0 days 00:01:12.360000,0 days 00:01:12.549000,0 days 00:01:12,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+4,L NORRIS,NOR,norris,McLaren,FF8000,mclaren,Lando,Norris,Lando Norris,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/1col/image.png,GBR,3.0,,,0 days 00:01:12.959000,0 days 00:01:12.201000,0 days 00:01:12.021000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+81,O PIASTRI,PIA,piastri,McLaren,FF8000,mclaren,Oscar,Piastri,Oscar Piastri,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png.transform/1col/image.png,AUS,4.0,,,0 days 00:01:12.907000,0 days 00:01:12.462000,0 days 00:01:12.103000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+3,D RICCIARDO,RIC,ricciardo,RB,6692FF,rb,Daniel,Ricciardo,Daniel Ricciardo,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/1col/image.png,AUS,5.0,,,0 days 00:01:13.240000,0 days 00:01:12.572000,0 days 00:01:12.178000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+14,F ALONSO,ALO,alonso,Aston Martin,229971,aston_martin,Fernando,Alonso,Fernando Alonso,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/1col/image.png,ESP,6.0,,,0 days 00:01:13.117000,0 days 00:01:12.635000,0 days 00:01:12.228000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+44,L HAMILTON,HAM,hamilton,Mercedes,27F4D2,mercedes,Lewis,Hamilton,Lewis Hamilton,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png,GBR,7.0,,,0 days 00:01:12.851000,0 days 00:01:11.979000,0 days 00:01:12.280000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+22,Y TSUNODA,TSU,tsunoda,RB,6692FF,rb,Yuki,Tsunoda,Yuki Tsunoda,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/1col/image.png,JPN,8.0,,,0 days 00:01:12.748000,0 days 00:01:12.303000,0 days 00:01:12.414000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+18,L STROLL,STR,stroll,Aston Martin,229971,aston_martin,Lance,Stroll,Lance Stroll,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/1col/image.png,CAN,9.0,,,0 days 00:01:13.088000,0 days 00:01:12.659000,0 days 00:01:12.701000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+23,A ALBON,ALB,albon,Williams,64C4FF,williams,Alexander,Albon,Alexander Albon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/1col/image.png,THA,10.0,,,0 days 00:01:12.896000,0 days 00:01:12.485000,0 days 00:01:12.796000,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+16,C LECLERC,LEC,leclerc,Ferrari,E80020,ferrari,Charles,Leclerc,Charles Leclerc,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/1col/image.png,MON,11.0,,,0 days 00:01:13.107000,0 days 00:01:12.691000,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+55,C SAINZ,SAI,sainz,Ferrari,E80020,ferrari,Carlos,Sainz,Carlos Sainz,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/1col/image.png,ESP,12.0,,,0 days 00:01:13.038000,0 days 00:01:12.728000,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+2,L SARGEANT,SAR,sargeant,Williams,64C4FF,williams,Logan,Sargeant,Logan Sargeant,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png.transform/1col/image.png,USA,13.0,,,0 days 00:01:13.063000,0 days 00:01:12.736000,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+20,K MAGNUSSEN,MAG,kevin_magnussen,Haas F1 Team,B6BABD,haas,Kevin,Magnussen,Kevin Magnussen,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/1col/image.png,DEN,14.0,,,0 days 00:01:13.217000,0 days 00:01:12.916000,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+10,P GASLY,GAS,gasly,Alpine,0093cc,alpine,Pierre,Gasly,Pierre Gasly,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/1col/image.png,FRA,15.0,,,0 days 00:01:13.289000,0 days 00:01:12.940000,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+11,S PEREZ,PER,perez,Red Bull Racing,3671C6,red_bull,Sergio,Perez,Sergio Perez,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/1col/image.png,MEX,16.0,,,0 days 00:01:13.326000,,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+77,V BOTTAS,BOT,bottas,Kick Sauber,52e252,sauber,Valtteri,Bottas,Valtteri Bottas,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/1col/image.png,FIN,17.0,,,0 days 00:01:13.366000,,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+31,E OCON,OCO,ocon,Alpine,0093cc,alpine,Esteban,Ocon,Esteban Ocon,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/1col/image.png,FRA,18.0,,,0 days 00:01:13.435000,,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+27,N HULKENBERG,HUL,hulkenberg,Haas F1 Team,B6BABD,haas,Nico,Hulkenberg,Nico Hulkenberg,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png.transform/1col/image.png,GER,19.0,,,0 days 00:01:13.978000,,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+24,G ZHOU,ZHO,zhou,Kick Sauber,52e252,sauber,Guanyu,Zhou,Guanyu Zhou,https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/1col/image.png,CHN,20.0,,,0 days 00:01:14.292000,,,,,,,2024,9,Canadian Grand Prix,2024-06-09 00:00:00
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:12.386,1:11.872,1:11.383,,,,,2024,10,Spanish Grand Prix,2024-06-23
+1,,VER,max_verstappen,Red Bull,,,,,,,,2,,,1:12.306,1:11.653,1:11.403,,,,,2024,10,Spanish Grand Prix,2024-06-23
+44,,HAM,hamilton,Mercedes,,,,,,,,3,,,1:12.143,1:11.792,1:11.701,,,,,2024,10,Spanish Grand Prix,2024-06-23
+63,,RUS,russell,Mercedes,,,,,,,,4,,,1:12.456,1:11.812,1:11.703,,,,,2024,10,Spanish Grand Prix,2024-06-23
+16,,LEC,leclerc,Ferrari,,,,,,,,5,,,1:12.257,1:12.038,1:11.731,,,,,2024,10,Spanish Grand Prix,2024-06-23
+55,,SAI,sainz,Ferrari,,,,,,,,6,,,1:12.403,1:11.874,1:11.736,,,,,2024,10,Spanish Grand Prix,2024-06-23
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,7,,,1:12.651,1:12.079,1:11.857,,,,,2024,10,Spanish Grand Prix,2024-06-23
+11,,PER,perez,Red Bull,,,,,,,,8,,,1:12.477,1:12.054,1:12.061,,,,,2024,10,Spanish Grand Prix,2024-06-23
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,9,,,1:12.691,1:12.109,1:12.125,,,,,2024,10,Spanish Grand Prix,2024-06-23
+81,,PIA,piastri,McLaren,,,,,,,,10,,,1:12.460,1:12.011,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+14,,ALO,alonso,Aston Martin,,,,,,,,11,,,1:12.505,1:12.128,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+77,,BOT,bottas,Sauber,,,,,,,,12,,,1:12.758,1:12.227,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,13,,,1:12.708,1:12.310,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+18,,STR,stroll,Aston Martin,,,,,,,,14,,,1:12.881,1:12.372,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+24,,ZHO,zhou,Sauber,,,,,,,,15,,,1:12.880,1:12.738,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,16,,,1:12.937,,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,17,,,1:12.985,,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,18,,,1:13.075,,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+23,,ALB,albon,Williams,,,,,,,,19,,,1:13.153,,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+2,,SAR,sargeant,Williams,,,,,,,,20,,,1:13.509,,,,,,,2024,10,Spanish Grand Prix,2024-06-23
+1,,VER,max_verstappen,Red Bull,,,,,,,,1,,,1:05.336,1:04.469,1:04.314,,,,,2024,11,Austrian Grand Prix,2024-06-30
+4,,NOR,norris,McLaren,,,,,,,,2,,,1:05.450,1:05.103,1:04.718,,,,,2024,11,Austrian Grand Prix,2024-06-30
+63,,RUS,russell,Mercedes,,,,,,,,3,,,1:05.585,1:05.016,1:04.840,,,,,2024,11,Austrian Grand Prix,2024-06-30
+55,,SAI,sainz,Ferrari,,,,,,,,4,,,1:05.263,1:05.016,1:04.851,,,,,2024,11,Austrian Grand Prix,2024-06-30
+44,,HAM,hamilton,Mercedes,,,,,,,,5,,,1:05.541,1:05.053,1:04.903,,,,,2024,11,Austrian Grand Prix,2024-06-30
+16,,LEC,leclerc,Ferrari,,,,,,,,6,,,1:05.509,1:05.104,1:05.044,,,,,2024,11,Austrian Grand Prix,2024-06-30
+81,,PIA,piastri,McLaren,,,,,,,,7,,,1:05.311,1:05.070,1:05.048,,,,,2024,11,Austrian Grand Prix,2024-06-30
+11,,PER,perez,Red Bull,,,,,,,,8,,,1:05.587,1:05.144,1:05.202,,,,,2024,11,Austrian Grand Prix,2024-06-30
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,9,,,1:05.596,1:05.262,1:05.385,,,,,2024,11,Austrian Grand Prix,2024-06-30
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,10,,,1:05.574,1:05.274,1:05.883,,,,,2024,11,Austrian Grand Prix,2024-06-30
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,11,,,1:05.569,1:05.289,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,12,,,1:05.508,1:05.347,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,13,,,1:05.598,1:05.359,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,14,,,1:05.563,1:05.412,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+14,,ALO,alonso,Aston Martin,,,,,,,,15,,,1:05.656,1:05.639,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+23,,ALB,albon,Williams,,,,,,,,16,,,1:05.736,,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+18,,STR,stroll,Aston Martin,,,,,,,,17,,,1:05.819,,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+77,,BOT,bottas,Sauber,,,,,,,,18,,,1:05.847,,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+2,,SAR,sargeant,Williams,,,,,,,,19,,,1:05.856,,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+24,,ZHO,zhou,Sauber,,,,,,,,20,,,1:06.061,,,,,,,2024,11,Austrian Grand Prix,2024-06-30
+63,,RUS,russell,Mercedes,,,,,,,,1,,,1:30.106,1:26.723,1:25.819,,,,,2024,12,British Grand Prix,2024-07-07
+44,,HAM,hamilton,Mercedes,,,,,,,,2,,,1:29.547,1:26.770,1:25.990,,,,,2024,12,British Grand Prix,2024-07-07
+4,,NOR,norris,McLaren,,,,,,,,3,,,1:31.596,1:26.559,1:26.030,,,,,2024,12,British Grand Prix,2024-07-07
+1,,VER,max_verstappen,Red Bull,,,,,,,,4,,,1:31.342,1:26.796,1:26.203,,,,,2024,12,British Grand Prix,2024-07-07
+81,,PIA,piastri,McLaren,,,,,,,,5,,,1:30.895,1:26.733,1:26.237,,,,,2024,12,British Grand Prix,2024-07-07
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,6,,,1:31.929,1:26.847,1:26.338,,,,,2024,12,British Grand Prix,2024-07-07
+55,,SAI,sainz,Ferrari,,,,,,,,7,,,1:30.557,1:26.843,1:26.509,,,,,2024,12,British Grand Prix,2024-07-07
+18,,STR,stroll,Aston Martin,,,,,,,,8,,,1:31.410,1:26.938,1:26.585,,,,,2024,12,British Grand Prix,2024-07-07
+23,,ALB,albon,Williams,,,,,,,,9,,,1:31.135,1:26.933,1:26.640,,,,,2024,12,British Grand Prix,2024-07-07
+14,,ALO,alonso,Aston Martin,,,,,,,,10,,,1:31.264,1:26.730,1:26.917,,,,,2024,12,British Grand Prix,2024-07-07
+16,,LEC,leclerc,Ferrari,,,,,,,,11,,,1:30.496,1:27.097,,,,,,2024,12,British Grand Prix,2024-07-07
+2,,SAR,sargeant,Williams,,,,,,,,12,,,1:31.608,1:27.175,,,,,,2024,12,British Grand Prix,2024-07-07
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,13,,,1:30.994,1:27.269,,,,,,2024,12,British Grand Prix,2024-07-07
+24,,ZHO,zhou,Sauber,,,,,,,,14,,,1:31.190,1:27.867,,,,,,2024,12,British Grand Prix,2024-07-07
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,15,,,1:31.291,1:27.949,,,,,,2024,12,British Grand Prix,2024-07-07
+77,,BOT,bottas,Sauber,,,,,,,,16,,,1:32.431,,,,,,,2024,12,British Grand Prix,2024-07-07
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,17,,,1:32.905,,,,,,,2024,12,British Grand Prix,2024-07-07
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,18,,,1:34.557,,,,,,,2024,12,British Grand Prix,2024-07-07
+11,,PER,perez,Red Bull,,,,,,,,19,,,1:38.348,,,,,,,2024,12,British Grand Prix,2024-07-07
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,20,,,1:39.804,,,,,,,2024,12,British Grand Prix,2024-07-07
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:17.755,1:15.540,1:15.227,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+81,,PIA,piastri,McLaren,,,,,,,,2,,,1:17.504,1:15.785,1:15.249,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+1,,VER,max_verstappen,Red Bull,,,,,,,,3,,,1:17.087,1:15.770,1:15.273,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+55,,SAI,sainz,Ferrari,,,,,,,,4,,,1:17.244,1:15.885,1:15.696,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+44,,HAM,hamilton,Mercedes,,,,,,,,5,,,1:17.087,1:16.307,1:15.854,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+16,,LEC,leclerc,Ferrari,,,,,,,,6,,,1:17.437,1:15.891,1:15.905,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+14,,ALO,alonso,Aston Martin,,,,,,,,7,,,1:17.624,1:16.117,1:16.043,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+18,,STR,stroll,Aston Martin,,,,,,,,8,,,1:17.405,1:16.075,1:16.244,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,9,,,1:17.050,1:16.202,1:16.447,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,10,,,1:17.436,1:16.121,1:16.477,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,11,,,1:17.362,1:16.317,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+77,,BOT,bottas,Sauber,,,,,,,,12,,,1:17.487,1:16.384,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+23,,ALB,albon,Williams,,,,,,,,13,,,1:17.280,1:16.429,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+2,,SAR,sargeant,Williams,,,,,,,,14,,,1:17.770,1:16.543,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,15,,,1:17.851,1:16.548,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+11,,PER,perez,Red Bull,,,,,,,,16,,,1:17.886,,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+63,,RUS,russell,Mercedes,,,,,,,,17,,,1:17.968,,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+24,,ZHO,zhou,Sauber,,,,,,,,18,,,1:18.037,,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,19,,,1:18.049,,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,20,,,1:18.166,,,,,,,2024,13,Hungarian Grand Prix,2024-07-21
+1,,VER,max_verstappen,Red Bull,,,,,,,,1,,,1:54.938,1:53.837,1:53.159,,,,,2024,14,Belgian Grand Prix,2024-07-28
+16,,LEC,leclerc,Ferrari,,,,,,,,2,,,1:55.349,1:54.193,1:53.754,,,,,2024,14,Belgian Grand Prix,2024-07-28
+11,,PER,perez,Red Bull,,,,,,,,3,,,1:55.139,1:54.470,1:53.765,,,,,2024,14,Belgian Grand Prix,2024-07-28
+44,,HAM,hamilton,Mercedes,,,,,,,,4,,,1:55.692,1:54.037,1:53.835,,,,,2024,14,Belgian Grand Prix,2024-07-28
+4,,NOR,norris,McLaren,,,,,,,,5,,,1:55.582,1:54.358,1:53.981,,,,,2024,14,Belgian Grand Prix,2024-07-28
+81,,PIA,piastri,McLaren,,,,,,,,6,,,1:54.835,1:54.136,1:54.027,,,,,2024,14,Belgian Grand Prix,2024-07-28
+63,,RUS,russell,Mercedes,,,,,,,,7,,,1:55.353,1:54.095,1:54.184,,,,,2024,14,Belgian Grand Prix,2024-07-28
+55,,SAI,sainz,Ferrari,,,,,,,,8,,,1:55.169,1:54.112,1:54.477,,,,,2024,14,Belgian Grand Prix,2024-07-28
+14,,ALO,alonso,Aston Martin,,,,,,,,9,,,1:55.489,1:54.258,1:54.765,,,,,2024,14,Belgian Grand Prix,2024-07-28
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,10,,,1:55.417,1:54.460,1:54.810,,,,,2024,14,Belgian Grand Prix,2024-07-28
+23,,ALB,albon,Williams,,,,,,,,11,,,1:55.722,1:54.473,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,12,,,1:54.911,1:54.635,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,13,,,1:55.451,1:54.682,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+77,,BOT,bottas,Sauber,,,,,,,,14,,,1:55.531,1:54.764,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+18,,STR,stroll,Aston Martin,,,,,,,,15,,,1:56.072,1:55.716,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,16,,,1:56.308,,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,17,,,1:56.500,,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,18,,,1:56.593,,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+2,,SAR,sargeant,Williams,,,,,,,,19,,,1:57.230,,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+24,,ZHO,zhou,Sauber,,,,,,,,20,,,1:57.775,,,,,,,2024,14,Belgian Grand Prix,2024-07-28
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:11.377,1:10.496,1:09.673,,,,,2024,15,Dutch Grand Prix,2024-08-25
+1,,VER,max_verstappen,Red Bull,,,,,,,,2,,,1:11.393,1:10.811,1:10.029,,,,,2024,15,Dutch Grand Prix,2024-08-25
+81,,PIA,piastri,McLaren,,,,,,,,3,,,1:11.541,1:10.505,1:10.172,,,,,2024,15,Dutch Grand Prix,2024-08-25
+63,,RUS,russell,Mercedes,,,,,,,,4,,,1:11.049,1:10.552,1:10.244,,,,,2024,15,Dutch Grand Prix,2024-08-25
+11,,PER,perez,Red Bull,,,,,,,,5,,,1:11.006,1:10.678,1:10.416,,,,,2024,15,Dutch Grand Prix,2024-08-25
+16,,LEC,leclerc,Ferrari,,,,,,,,6,,,1:11.370,1:10.689,1:10.582,,,,,2024,15,Dutch Grand Prix,2024-08-25
+14,,ALO,alonso,Aston Martin,,,,,,,,7,,,1:11.493,1:10.845,1:10.633,,,,,2024,15,Dutch Grand Prix,2024-08-25
+18,,STR,stroll,Aston Martin,,,,,,,,8,,,1:11.518,1:10.661,1:10.857,,,,,2024,15,Dutch Grand Prix,2024-08-25
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,9,,,1:11.718,1:10.815,1:10.977,,,,,2024,15,Dutch Grand Prix,2024-08-25
+55,,SAI,sainz,Ferrari,,,,,,,,10,,,1:11.327,1:10.914,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+23,,ALB,albon,Williams,,,,,,,,10,,,,1:10.768,1:10.653,,,,,2024,15,Dutch Grand Prix,2024-08-25
+44,,HAM,hamilton,Mercedes,,,,,,,,11,,,1:11.375,1:10.948,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,12,,,1:11.603,1:10.955,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,13,,,1:11.832,1:11.215,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,14,,,1:11.630,1:11.295,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,15,,,1:11.943,,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,16,,,1:11.995,,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+77,,BOT,bottas,Sauber,,,,,,,,17,,,1:12.168,,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+24,,ZHO,zhou,Sauber,,,,,,,,18,,,1:13.261,,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+2,,SAR,sargeant,Williams,,,,,,,,20,,,,,,,,,,2024,15,Dutch Grand Prix,2024-08-25
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:19.911,1:19.727,1:19.327,,,,,2024,16,Italian Grand Prix,2024-09-01
+81,,PIA,piastri,McLaren,,,,,,,,2,,,1:20.076,1:19.808,1:19.436,,,,,2024,16,Italian Grand Prix,2024-09-01
+63,,RUS,russell,Mercedes,,,,,,,,3,,,1:20.169,1:19.877,1:19.440,,,,,2024,16,Italian Grand Prix,2024-09-01
+16,,LEC,leclerc,Ferrari,,,,,,,,4,,,1:20.074,1:20.007,1:19.461,,,,,2024,16,Italian Grand Prix,2024-09-01
+55,,SAI,sainz,Ferrari,,,,,,,,5,,,1:20.149,1:19.799,1:19.467,,,,,2024,16,Italian Grand Prix,2024-09-01
+44,,HAM,hamilton,Mercedes,,,,,,,,6,,,1:20.477,1:19.641,1:19.513,,,,,2024,16,Italian Grand Prix,2024-09-01
+1,,VER,max_verstappen,Red Bull,,,,,,,,7,,,1:20.226,1:19.662,1:20.022,,,,,2024,16,Italian Grand Prix,2024-09-01
+11,,PER,perez,Red Bull,,,,,,,,8,,,1:20.598,1:20.216,1:20.062,,,,,2024,16,Italian Grand Prix,2024-09-01
+23,,ALB,albon,Williams,,,,,,,,9,,,1:20.542,1:20.314,1:20.299,,,,,2024,16,Italian Grand Prix,2024-09-01
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,10,,,1:20.781,1:20.411,1:20.339,,,,,2024,16,Italian Grand Prix,2024-09-01
+14,,ALO,alonso,Aston Martin,,,,,,,,11,,,1:20.617,1:20.421,,,,,,2024,16,Italian Grand Prix,2024-09-01
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,12,,,1:20.901,1:20.479,,,,,,2024,16,Italian Grand Prix,2024-09-01
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,13,,,1:20.856,1:20.698,,,,,,2024,16,Italian Grand Prix,2024-09-01
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,14,,,1:20.748,1:20.738,,,,,,2024,16,Italian Grand Prix,2024-09-01
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,15,,,1:20.764,1:20.766,,,,,,2024,16,Italian Grand Prix,2024-09-01
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,16,,,1:20.945,,,,,,,2024,16,Italian Grand Prix,2024-09-01
+18,,STR,stroll,Aston Martin,,,,,,,,17,,,1:21.013,,,,,,,2024,16,Italian Grand Prix,2024-09-01
+43,,COL,colapinto,Williams,,,,,,,,18,,,1:21.061,,,,,,,2024,16,Italian Grand Prix,2024-09-01
+77,,BOT,bottas,Sauber,,,,,,,,19,,,1:21.101,,,,,,,2024,16,Italian Grand Prix,2024-09-01
+24,,ZHO,zhou,Sauber,,,,,,,,20,,,1:21.445,,,,,,,2024,16,Italian Grand Prix,2024-09-01
+16,,LEC,leclerc,Ferrari,,,,,,,,1,,,1:42.775,1:42.056,1:41.365,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+81,,PIA,piastri,McLaren,,,,,,,,2,,,1:43.033,1:42.598,1:41.686,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+55,,SAI,sainz,Ferrari,,,,,,,,3,,,1:43.357,1:42.503,1:41.805,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+11,,PER,perez,Red Bull,,,,,,,,4,,,1:43.213,1:42.263,1:41.813,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+63,,RUS,russell,Mercedes,,,,,,,,5,,,1:43.139,1:42.329,1:41.874,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+1,,VER,max_verstappen,Red Bull,,,,,,,,6,,,1:43.097,1:42.042,1:42.023,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+44,,HAM,hamilton,Mercedes,,,,,,,,7,,,1:43.089,1:42.765,1:42.289,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+14,,ALO,alonso,Aston Martin,,,,,,,,8,,,1:43.472,1:42.426,1:42.369,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+43,,COL,colapinto,Williams,,,,,,,,9,,,1:43.138,1:42.473,1:42.530,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+23,,ALB,albon,Williams,,,,,,,,10,,,1:42.899,1:42.840,1:42.859,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+50,,BEA,bearman,Haas F1 Team,,,,,,,,11,,,1:43.471,1:42.968,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,12,,,1:43.337,1:43.035,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,13,,,1:43.101,1:43.191,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+18,,STR,stroll,Aston Martin,,,,,,,,14,,,1:43.370,1:43.404,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,15,,,,1:43.179,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,15,,,1:43.547,,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+4,,NOR,norris,McLaren,,,,,,,,16,,,1:43.609,,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+77,,BOT,bottas,Sauber,,,,,,,,17,,,1:43.618,,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+24,,ZHO,zhou,Sauber,,,,,,,,18,,,1:44.246,,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,19,,,1:44.504,,,,,,,2024,17,Azerbaijan Grand Prix,2024-09-15
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:30.002,1:30.007,1:29.525,,,,,2024,18,Singapore Grand Prix,2024-09-22
+1,,VER,max_verstappen,Red Bull,,,,,,,,2,,,1:30.157,1:29.680,1:29.728,,,,,2024,18,Singapore Grand Prix,2024-09-22
+44,,HAM,hamilton,Mercedes,,,,,,,,3,,,1:30.393,1:29.929,1:29.841,,,,,2024,18,Singapore Grand Prix,2024-09-22
+63,,RUS,russell,Mercedes,,,,,,,,4,,,1:30.811,1:30.153,1:29.867,,,,,2024,18,Singapore Grand Prix,2024-09-22
+81,,PIA,piastri,McLaren,,,,,,,,5,,,1:30.258,1:29.640,1:29.953,,,,,2024,18,Singapore Grand Prix,2024-09-22
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,6,,,1:30.724,1:30.150,1:30.115,,,,,2024,18,Singapore Grand Prix,2024-09-22
+14,,ALO,alonso,Aston Martin,,,,,,,,7,,,1:30.684,1:30.450,1:30.214,,,,,2024,18,Singapore Grand Prix,2024-09-22
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,8,,,1:30.716,1:30.289,1:30.354,,,,,2024,18,Singapore Grand Prix,2024-09-22
+16,,LEC,leclerc,Ferrari,,,,,,,,9,,,1:30.786,1:29.747,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+55,,SAI,sainz,Ferrari,,,,,,,,10,,,1:30.670,1:30.108,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+23,,ALB,albon,Williams,,,,,,,,11,,,1:30.679,1:30.474,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+43,,COL,colapinto,Williams,,,,,,,,12,,,1:30.704,1:30.481,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+11,,PER,perez,Red Bull,,,,,,,,13,,,1:30.624,1:30.579,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,14,,,1:30.829,1:30.653,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,15,,,1:30.958,1:30.769,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+3,,RIC,ricciardo,RB F1 Team,,,,,,,,16,,,1:31.085,,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+18,,STR,stroll,Aston Martin,,,,,,,,17,,,1:31.094,,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,18,,,1:31.312,,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+77,,BOT,bottas,Sauber,,,,,,,,19,,,1:31.572,,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+24,,ZHO,zhou,Sauber,,,,,,,,20,,,1:32.054,,,,,,,2024,18,Singapore Grand Prix,2024-09-22
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:33.616,1:32.851,1:32.330,,,,,2024,19,United States Grand Prix,2024-10-20
+1,,VER,max_verstappen,Red Bull,,,,,,,,2,,,1:33.046,1:32.584,1:32.361,,,,,2024,19,United States Grand Prix,2024-10-20
+55,,SAI,sainz,Ferrari,,,,,,,,3,,,1:33.556,1:32.836,1:32.652,,,,,2024,19,United States Grand Prix,2024-10-20
+16,,LEC,leclerc,Ferrari,,,,,,,,4,,,1:33.241,1:32.962,1:32.740,,,,,2024,19,United States Grand Prix,2024-10-20
+81,,PIA,piastri,McLaren,,,,,,,,5,,,1:33.864,1:33.057,1:32.950,,,,,2024,19,United States Grand Prix,2024-10-20
+63,,RUS,russell,Mercedes,,,,,,,,6,,,1:33.536,1:33.142,1:32.974,,,,,2024,19,United States Grand Prix,2024-10-20
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,7,,,1:33.550,1:33.162,1:33.018,,,,,2024,19,United States Grand Prix,2024-10-20
+14,,ALO,alonso,Aston Martin,,,,,,,,8,,,1:33.973,1:33.429,1:33.309,,,,,2024,19,United States Grand Prix,2024-10-20
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,9,,,1:33.564,1:33.474,1:33.481,,,,,2024,19,United States Grand Prix,2024-10-20
+11,,PER,perez,Red Bull,,,,,,,,10,,,1:33.611,1:33.020,,,,,,2024,19,United States Grand Prix,2024-10-20
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,11,,,1:33.795,1:33.506,,,,,,2024,19,United States Grand Prix,2024-10-20
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,12,,,1:33.601,1:33.544,,,,,,2024,19,United States Grand Prix,2024-10-20
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,13,,,1:33.986,1:33.597,,,,,,2024,19,United States Grand Prix,2024-10-20
+18,,STR,stroll,Aston Martin,,,,,,,,14,,,1:34.033,1:33.759,,,,,,2024,19,United States Grand Prix,2024-10-20
+30,,LAW,lawson,RB F1 Team,,,,,,,,15,,,1:33.339,,,,,,,2024,19,United States Grand Prix,2024-10-20
+23,,ALB,albon,Williams,,,,,,,,16,,,1:34.051,,,,,,,2024,19,United States Grand Prix,2024-10-20
+43,,COL,colapinto,Williams,,,,,,,,17,,,1:34.062,,,,,,,2024,19,United States Grand Prix,2024-10-20
+77,,BOT,bottas,Sauber,,,,,,,,18,,,1:34.152,,,,,,,2024,19,United States Grand Prix,2024-10-20
+44,,HAM,hamilton,Mercedes,,,,,,,,19,,,1:34.154,,,,,,,2024,19,United States Grand Prix,2024-10-20
+24,,ZHO,zhou,Sauber,,,,,,,,20,,,1:34.228,,,,,,,2024,19,United States Grand Prix,2024-10-20
+55,,SAI,sainz,Ferrari,,,,,,,,1,,,1:16.778,1:16.515,1:15.946,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+1,,VER,max_verstappen,Red Bull,,,,,,,,2,,,1:16.803,1:16.514,1:16.171,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+4,,NOR,norris,McLaren,,,,,,,,3,,,1:16.505,1:16.301,1:16.260,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+16,,LEC,leclerc,Ferrari,,,,,,,,4,,,1:16.972,1:16.641,1:16.265,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+63,,RUS,russell,Mercedes,,,,,,,,5,,,1:17.194,1:16.937,1:16.356,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+44,,HAM,hamilton,Mercedes,,,,,,,,6,,,1:17.306,1:16.973,1:16.651,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,7,,,1:17.125,1:17.003,1:16.886,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,8,,,1:17.149,1:17.048,1:16.892,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+23,,ALB,albon,Williams,,,,,,,,9,,,1:17.189,1:16.988,1:17.065,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,10,,,1:17.186,1:16.995,1:17.365,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,11,,,1:17.182,1:17.129,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+30,,LAW,lawson,RB F1 Team,,,,,,,,12,,,1:17.380,1:17.162,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+14,,ALO,alonso,Aston Martin,,,,,,,,13,,,1:17.307,1:17.168,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+18,,STR,stroll,Aston Martin,,,,,,,,14,,,1:17.407,1:17.294,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+77,,BOT,bottas,Sauber,,,,,,,,15,,,1:17.393,1:17.817,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+43,,COL,colapinto,Williams,,,,,,,,16,,,1:17.558,,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+81,,PIA,piastri,McLaren,,,,,,,,17,,,1:17.597,,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+11,,PER,perez,Red Bull,,,,,,,,18,,,1:17.611,,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,19,,,1:17.617,,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+24,,ZHO,zhou,Sauber,,,,,,,,20,,,1:18.072,,,,,,,2024,20,Mexico City Grand Prix,2024-10-27
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:30.944,1:24.844,1:23.405,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+63,,RUS,russell,Mercedes,,,,,,,,2,,,1:29.121,1:26.307,1:23.578,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,3,,,1:29.172,1:26.464,1:24.111,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,4,,,1:29.171,1:26.206,1:24.475,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+30,,LAW,lawson,RB F1 Team,,,,,,,,5,,,1:30.758,1:25.654,1:24.484,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+16,,LEC,leclerc,Ferrari,,,,,,,,6,,,1:29.839,1:26.097,1:24.525,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+23,,ALB,albon,Williams,,,,,,,,7,,,1:29.072,1:24.657,1:24.657,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+81,,PIA,piastri,McLaren,,,,,,,,8,,,1:30.114,1:24.686,1:24.686,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+14,,ALO,alonso,Aston Martin,,,,,,,,9,,,1:30.207,1:28.998,1:28.998,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+18,,STR,stroll,Aston Martin,,,,,,,,10,,,1:30.580,1:26.334,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+77,,BOT,bottas,Sauber,,,,,,,,11,,,1:30.633,1:26.472,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+1,,VER,max_verstappen,Red Bull,,,,,,,,12,,,1:28.522,1:27.771,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+11,,PER,perez,Red Bull,,,,,,,,13,,,1:30.035,1:28.158,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+55,,SAI,sainz,Ferrari,,,,,,,,14,,,1:30.303,1:29.406,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,15,,,1:29.420,1:29.614,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+44,,HAM,hamilton,Mercedes,,,,,,,,16,,,1:31.150,,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+50,,BEA,bearman,Haas F1 Team,,,,,,,,17,,,1:31.229,,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+43,,COL,colapinto,Williams,,,,,,,,18,,,1:31.270,,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,19,,,1:31.623,,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+24,,ZHO,zhou,Sauber,,,,,,,,20,,,1:32.263,,,,,,,2024,21,São Paulo Grand Prix,2024-11-03
+63,,RUS,russell,Mercedes,,,,,,,,1,,,1:33.186,1:32.779,1:32.312,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+55,,SAI,sainz,Ferrari,,,,,,,,2,,,1:33.484,1:32.711,1:32.410,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,3,,,1:33.691,1:32.879,1:32.664,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+16,,LEC,leclerc,Ferrari,,,,,,,,4,,,1:33.446,1:33.016,1:32.783,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+1,,VER,max_verstappen,Red Bull,,,,,,,,5,,,1:33.299,1:33.085,1:32.797,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+4,,NOR,norris,McLaren,,,,,,,,6,,,1:33.592,1:33.099,1:33.008,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,7,,,1:33.789,1:33.089,1:33.029,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+81,,PIA,piastri,McLaren,,,,,,,,8,,,1:33.450,1:33.024,1:33.033,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,9,,,1:33.920,1:33.114,1:33.062,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+44,,HAM,hamilton,Mercedes,,,,,,,,10,,,1:33.225,1:32.567,1:48.106,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,11,,,1:33.968,1:33.221,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,12,,,1:33.991,1:33.297,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+24,,ZHO,zhou,Sauber,,,,,,,,13,,,1:34.079,1:33.566,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+43,,COL,colapinto,Williams,,,,,,,,14,,,1:33.746,1:33.749,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+30,,LAW,lawson,RB F1 Team,,,,,,,,15,,,1:34.087,1:34.257,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+11,,PER,perez,Red Bull,,,,,,,,16,,,1:34.155,,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+14,,ALO,alonso,Aston Martin,,,,,,,,17,,,1:34.258,,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+23,,ALB,albon,Williams,,,,,,,,18,,,1:34.425,,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+77,,BOT,bottas,Sauber,,,,,,,,19,,,1:34.430,,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+18,,STR,stroll,Aston Martin,,,,,,,,20,,,1:34.484,,,,,,,2024,22,Las Vegas Grand Prix,2024-11-23
+1,,VER,max_verstappen,Red Bull,,,,,,,,1,,,1:21.579,1:20.687,1:20.520,,,,,2024,23,Qatar Grand Prix,2024-12-01
+63,,RUS,russell,Mercedes,,,,,,,,2,,,1:21.241,1:21.069,1:20.575,,,,,2024,23,Qatar Grand Prix,2024-12-01
+4,,NOR,norris,McLaren,,,,,,,,3,,,1:21.578,1:20.983,1:20.772,,,,,2024,23,Qatar Grand Prix,2024-12-01
+81,,PIA,piastri,McLaren,,,,,,,,4,,,1:21.821,1:21.121,1:20.829,,,,,2024,23,Qatar Grand Prix,2024-12-01
+16,,LEC,leclerc,Ferrari,,,,,,,,5,,,1:21.278,1:21.000,1:20.852,,,,,2024,23,Qatar Grand Prix,2024-12-01
+44,,HAM,hamilton,Mercedes,,,,,,,,6,,,1:21.637,1:21.095,1:21.011,,,,,2024,23,Qatar Grand Prix,2024-12-01
+55,,SAI,sainz,Ferrari,,,,,,,,7,,,1:21.447,1:21.199,1:21.041,,,,,2024,23,Qatar Grand Prix,2024-12-01
+14,,ALO,alonso,Aston Martin,,,,,,,,8,,,1:21.608,1:21.208,1:21.251,,,,,2024,23,Qatar Grand Prix,2024-12-01
+11,,PER,perez,Red Bull,,,,,,,,9,,,1:21.675,1:21.425,1:21.425,,,,,2024,23,Qatar Grand Prix,2024-12-01
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,10,,,1:21.891,1:21.387,1:21.500,,,,,2024,23,Qatar Grand Prix,2024-12-01
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,11,,,1:21.843,1:21.437,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+24,,ZHO,zhou,Sauber,,,,,,,,12,,,1:22.103,1:21.501,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+77,,BOT,bottas,Sauber,,,,,,,,13,,,1:21.927,1:21.731,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,14,,,1:22.364,1:21.771,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+18,,STR,stroll,Aston Martin,,,,,,,,15,,,1:22.011,1:21.911,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+23,,ALB,albon,Williams,,,,,,,,16,,,1:22.390,,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+30,,LAW,lawson,RB F1 Team,,,,,,,,17,,,1:22.411,,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,18,,,1:22.442,,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+43,,COL,colapinto,Williams,,,,,,,,19,,,1:22.594,,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+31,,OCO,ocon,Alpine F1 Team,,,,,,,,20,,,1:22.714,,,,,,,2024,23,Qatar Grand Prix,2024-12-01
+4,,NOR,norris,McLaren,,,,,,,,1,,,1:23.682,1:23.098,1:22.595,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+81,,PIA,piastri,McLaren,,,,,,,,2,,,1:23.640,1:23.199,1:22.804,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+55,,SAI,sainz,Ferrari,,,,,,,,3,,,1:23.487,1:22.985,1:22.824,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+27,,HUL,hulkenberg,Haas F1 Team,,,,,,,,4,,,1:23.722,1:23.040,1:22.886,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+1,,VER,max_verstappen,Red Bull,,,,,,,,5,,,1:23.516,1:22.998,1:22.945,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+10,,GAS,gasly,Alpine F1 Team,,,,,,,,6,,,1:23.548,1:23.086,1:22.984,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+63,,RUS,russell,Mercedes,,,,,,,,7,,,1:23.678,1:23.283,1:23.132,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+14,,ALO,alonso,Aston Martin,,,,,,,,8,,,1:23.794,1:23.268,1:23.196,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+77,,BOT,bottas,Sauber,,,,,,,,9,,,1:23.481,1:23.341,1:23.204,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+11,,PER,perez,Red Bull,,,,,,,,10,,,1:23.559,1:23.379,1:23.264,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+22,,TSU,tsunoda,RB F1 Team,,,,,,,,11,,,1:23.735,1:23.419,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+30,,LAW,lawson,RB F1 Team,,,,,,,,12,,,1:23.733,1:23.472,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+18,,STR,stroll,Aston Martin,,,,,,,,13,,,1:23.729,1:23.784,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+16,,LEC,leclerc,Ferrari,,,,,,,,14,,,1:23.302,1:23.833,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+20,,MAG,kevin_magnussen,Haas F1 Team,,,,,,,,15,,,1:23.632,1:23.877,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+23,,ALB,albon,Williams,,,,,,,,16,,,1:23.821,,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+24,,ZHO,zhou,Sauber,,,,,,,,17,,,1:23.880,,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+44,,HAM,hamilton,Mercedes,,,,,,,,18,,,1:23.887,,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+43,,COL,colapinto,Williams,,,,,,,,19,,,1:23.912,,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08
+61,,DOO,doohan,Alpine F1 Team,,,,,,,,20,,,1:24.105,,,,,,,2024,24,Abu Dhabi Grand Prix,2024-12-08

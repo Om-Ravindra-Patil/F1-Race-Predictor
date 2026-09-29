@@ -1,0 +1,47 @@
+name: Update 2026 data
+
+# Race weekends run Fri–Sun, in time zones from Las Vegas to Japan, so check every
+# 6 hours Fri–Mon (UTC). Picks up qualifying (-> live prediction) and race results.
+on:
+  schedule:
+    - cron: "0 */6 * * 5,6,0,1"
+  workflow_dispatch:  # "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: pip
+
+      - run: pip install -r requirements.txt pytest
+
+      # fastf1's download cache, carried between runs so finished rounds aren't re-fetched
+      - uses: actions/cache@v4
+        with:
+          path: cache
+          key: fastf1-${{ github.run_id }}
+          restore-keys: fastf1-
+
+      - run: python src/load_season.py 2026
+      - run: python src/features.py
+      - run: pytest
+
+      - name: Commit and push if the data changed
+        run: |
+          git add data/raw data/processed/features.csv
+          if git diff --cached --quiet; then
+            echo "No new data"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Automated 2026 data update"
+          git push

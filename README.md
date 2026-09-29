@@ -91,6 +91,8 @@ Six features, each leak-free (rolling features use `.shift(1)` to prevent target
 
 Three additional feature iterations (driver-circuit history, team momentum slope, qualifying gap z-score, pole-to-P2 gap, race-vs-quali pace, grid penalty indicator) were tested and dropped after diagnostics showed redundancy with the core feature set.
 
+A driver DNF-rate feature was originally dismissed as uninformative, but that was a bug: it counted rows with no finish position, and retirements keep their classified position, so the rate was almost always 0. Fixed (Sept 2026) to use the official classification and retested as a 7th feature: a small gain on 2024/2025 but worse on 2026 (top-1 66.7% → 46.7%), with a counter-intuitive sign — not adopted.
+
 ### Train/test methodology
 
 Strict temporal splits — never random:
@@ -119,10 +121,11 @@ The 6-feature linear regression was selected as the final model — best general
 
 ```
 f1-race-predictor/
+├── .github/workflows/update-data.yml     # scheduled 2026 data refresh
 ├── app.py                                # Streamlit dashboard (entry point)
 ├── cache/                                # fastf1 local cache (gitignored)
 ├── data/
-│   ├── raw/                              # raw season results (gitignored)
+│   ├── raw/                              # raw race + qualifying results per season
 │   └── processed/
 │       └── features.csv        # engineered feature dataset
 ├── notebooks/
@@ -181,9 +184,11 @@ Run the tests (install `pytest` in your venv first — it isn't in `requirements
 pytest
 ```
 
-### Weekly update for live predictions
+### Live data updates (automated)
 
-After qualifying on Saturday, pull the latest 2026 data and push — Streamlit Cloud redeploys and the dashboard shows the prediction for Sunday's race. Run it again after the race to add the result.
+A [GitHub Action](.github/workflows/update-data.yml) checks for new 2026 data every 6 hours from Friday to Monday. When qualifying or a race result lands, it rebuilds the features, runs the tests and pushes — Streamlit Cloud redeploys, so the dashboard shows the next race's prediction after qualifying and the result after the race. It can also be run by hand from the repo's **Actions** tab (**Run workflow**).
+
+Because the Action commits to `main`, run `git pull` before working locally. To update by hand instead:
 
 ```bash
 python3 src/load_season.py 2026 && python3 src/features.py && pytest && git add -A && git commit -m "2026 data update" && git push
@@ -219,8 +224,9 @@ python3 src/load_season.py 2026 && python3 src/features.py && pytest && git add 
 - Model tested on the 2026 season across the regulation reset — RMSE advantage over the pole baseline holds
 - Live predictions for upcoming 2026 races, built from qualifying before the race is run; debut drivers and new teams get estimated form (marked in the UI)
 
+- Scheduled GitHub Action keeps 2026 data and predictions current without manual steps
+
 ### Next
-- Automate the weekly data update (scheduled GitHub Action)
 - Race telemetry features via fastf1 lap data
 
 ## Author

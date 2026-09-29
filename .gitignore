@@ -219,7 +219,6 @@ __marimo__/
 
 # Project-specific
 cache/
-data/raw/*.csv
 data/processed/*.csv
 venv/
 .ipynb_checkpoints/

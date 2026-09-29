@@ -123,7 +123,7 @@ def load_qualifying_results(year: int, round_num: int) -> Optional[pd.DataFrame]
     """Load qualifying results for a single round. Returns None if unavailable."""
     try:
         session = fastf1.get_session(year, round_num, "Q")  # 'Q' = Qualifying
-        session.load(telemetry=False, weather=False, messages=False)
+        session.load(laps=False, telemetry=False, weather=False, messages=False)  # results only
 
         results = session.results.copy()
         # Add metadata columns
@@ -144,7 +144,7 @@ def load_race_results(year: int, round_num: int) -> Optional[pd.DataFrame]:
     """Load race results for a single round. Returns None if unavailable."""
     try:
         session = fastf1.get_session(year, round_num, "R")  # 'R' = Race
-        session.load(telemetry=False, weather=False, messages=False)
+        session.load(laps=False, telemetry=False, weather=False, messages=False)  # results only
 
         results = session.results.copy()
         # fastf1 sometimes returns only the finishing order (no grid/status/points);

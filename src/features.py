@@ -313,9 +313,15 @@ def add_grid_penalty_indicator(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def add_dnf_rate(df: pd.DataFrame, window: int = 5) -> pd.DataFrame:
-    """Add rolling DNF rate over last N races per driver."""
+    """Add rolling DNF rate over last N races per driver.
+
+    A DNF is any non-numeric classification (R = retired, W = withdrawn,
+    D = disqualified). Retirements still carry a finish position, so Position
+    can't be used for this. Races not yet run (no classification) are left out.
+    """
     df = df.sort_values(["Abbreviation", "EventDate"]).reset_index(drop=True)
-    df["IsDNF"] = df["Position"].isna().astype(int)
+    classified = df["ClassifiedPosition"]
+    df["IsDNF"] = (~classified.astype(str).str.isdigit()).astype(float).where(classified.notna())
 
     df["DriverDNFRateLast5"] = (
         df.groupby("Abbreviation")["IsDNF"]
