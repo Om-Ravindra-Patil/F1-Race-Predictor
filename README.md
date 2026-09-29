@@ -34,7 +34,7 @@ The RMSE advantage over the pole baseline (+0.38 positions) is almost unchanged 
 
 ## Live demo
 
-**[▶ Try the dashboard](https://f1-race-predictor-orp.streamlit.app/)** — select any race from 2023–2026 and see predicted vs actual podiums, or the live prediction for the next 2026 race once qualifying is done, full-grid predictions with confidence indicators, a per-driver breakdown of *why* the model predicts each position (exact for a linear model: qualifying, driver form and team form add up to the prediction), and biggest-climber callouts, rendered in F1 broadcast styling with team colours. Every race has a shareable link, e.g. [`?season=2026&round=15`](https://f1-race-predictor-orp.streamlit.app/?season=2026&round=15).
+**[▶ Try the dashboard](https://f1-race-predictor-orp.streamlit.app/)** — select any race from 2023–2026 and see predicted vs actual podiums, or the live prediction for the next 2026 race once qualifying is done, full-grid predictions with each driver's chance to win and reach the podium (from 10,000 simulated races, calibrated on past seasons — [notebook 08](notebooks/08_win_probability_calibration.ipynb)), a per-driver breakdown of *why* the model predicts each position (exact for a linear model: qualifying, driver form and team form add up to the prediction), and biggest-climber callouts, rendered in F1 broadcast styling with team colours. Every race has a shareable link, e.g. [`?season=2026&round=15`](https://f1-race-predictor-orp.streamlit.app/?season=2026&round=15).
 
 ## Key findings from multi-season EDA (2022-2024)
 
@@ -135,7 +135,8 @@ f1-race-predictor/
 │   ├── 04_baseline_models.ipynb          # baselines + initial model selection
 │   ├── 05_validation_2025.ipynb          # final holdout validation (linear regression)
 │   ├── 06_model_comparison.ipynb         # head-to-head: LR vs RF vs XGBoost on 2025
-│   └── 07_validation_2026.ipynb          # 2026 season test across the regulation reset
+│   ├── 07_validation_2026.ipynb          # 2026 season test across the regulation reset
+│   └── 08_win_probability_calibration.ipynb  # are the simulated win/podium chances honest?
 ├── src/
 │   ├── load_season.py                    # season data loader (fastf1 + Jolpica)
 │   ├── features.py                       # feature engineering module
@@ -214,7 +215,7 @@ python3 src/load_season.py 2026 && python3 src/features.py && pytest && git add 
 ### Phase 2: Interactive dashboard (complete)
 - Streamlit dashboard with race-by-race predictions and team-coloured visualisations
 - Live deployment → [f1-race-predictor-orp.streamlit.app](https://f1-race-predictor-orp.streamlit.app/)
-- Per-race view: predicted vs actual podium, full-grid predictions with confidence indicators, biggest-climber callouts
+- Per-race view: predicted vs actual podium, full-grid predictions with win/podium chances, biggest-climber callouts
 
 ### Phase 3: Model expansion (complete)
 - Random Forest and tuned XGBoost benchmarked head-to-head against linear regression on the 2025 holdout

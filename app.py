@@ -20,6 +20,11 @@ get_available_races = st.cache_data(show_spinner=False)(predict.get_available_ra
 season_metrics = st.cache_data(show_spinner=False)(predict.season_metrics)
 
 
+def chance(p: float) -> str:
+    """Simulated chance as a percentage; tiny non-zero chances show as <1%."""
+    return "<1%" if 0 < p < 0.005 else f"{p:.0%}"
+
+
 @st.cache_data(show_spinner=False)
 def get_seasons() -> list:
     """Seasons the dashboard can show, newest first. The first season in the
@@ -473,7 +478,7 @@ if upcoming:
     pole = predictions.loc[predictions["QualifyingPosition"].idxmin()]
     podium_codes = " · ".join(predictions.nsmallest(3, "PredictedRank")["Abbreviation"])
     cards = [
-        ("Predicted Winner", f'<span class="f1-metric-value-correct">{predicted_winner["Abbreviation"]}</span>', predicted_winner["TeamName"]),
+        ("Predicted Winner", f'<span class="f1-metric-value-correct">{predicted_winner["Abbreviation"]}</span>', f'{predicted_winner["TeamName"]} · {chance(predicted_winner["WinChance"])} to win'),
         ("Pole Position", pole["Abbreviation"], pole["TeamName"]),
         ("Predicted Podium", f'<span style="font-size: 1.3rem;">{podium_codes}</span>', "Top 3 by predicted finish"),
         ("Race Status", '<span style="color: #FFC107;">UPCOMING</span>', "Grid = qualifying order (penalties not yet known)"),
@@ -681,7 +686,7 @@ def why_row(col: str, label: str) -> str:
 
 st.markdown(
     f'<div class="why-card">'
-    f'<div class="why-head">{why["Abbreviation"]} is predicted P{int(why["PredictedRank"])}</div>'
+    f'<div class="why-head">{why["Abbreviation"]} is predicted P{int(why["PredictedRank"])} · {chance(why["WinChance"])} to win, {chance(why["PodiumChance"])} podium</div>'
     f'<div class="why-sub">Predicted finish {why["PredictedPosition"]:.1f} vs a field average of {why["FieldAverage"]:.1f}. '
     f'The factors below add up exactly to the difference ({signed(why["PredictedPosition"] - why["FieldAverage"])} places).</div>'
     + "".join(why_row(col, label) for col, label in WHY_FACTORS)
@@ -693,6 +698,11 @@ st.markdown(
 
 
 st.markdown('<div class="f1-section-title">PREDICTIONS</div>', unsafe_allow_html=True)
+st.caption(
+    "Win · Podium: how often each driver won or finished top 3 across 10,000 simulated "
+    "versions of this race, using the model's own past errors. Checked on 2025–26: "
+    "drivers given ~40% won 44% of the time."
+)
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -708,7 +718,6 @@ def render_prediction_row(row) -> str:
     quali = int(row["QualifyingPosition"]) if not pd.isna(row["QualifyingPosition"]) else "—"
     actual = int(row["ActualPosition"]) if not pd.isna(row["ActualPosition"]) else ("—" if upcoming else "DNF")
     delta = row["PositionDelta"]
-    confidence_level = int(row["ConfidenceLevel"])
 
     # Delta styling
     if pd.isna(delta):
@@ -726,23 +735,10 @@ def render_prediction_row(row) -> str:
             delta_text = f"+{delta_int}"
             delta_color = F1_RED
 
-    # Confidence indicator — 5 segments, filled based on confidence_level
-    confidence_segments = ""
-    for i in range(1, 6):
-        if i <= confidence_level:
-            # Filled segment — colour intensity based on confidence
-            if confidence_level >= 4:
-                seg_color = "#00D26A"  # green = high confidence
-            elif confidence_level == 3:
-                seg_color = "#FFC107"  # amber = medium
-            else:
-                seg_color = F1_RED  # red = low confidence
-            confidence_segments += f'<div style="width:6px;height:14px;background:{seg_color};margin-right:2px;border-radius:1px;"></div>'
-        else:
-            # Empty segment
-            confidence_segments += '<div style="width:6px;height:14px;background:#2A2A38;margin-right:2px;border-radius:1px;"></div>'
-
-    confidence_html = f'<div style="display:flex;align-items:center;">{confidence_segments}</div>'
+    chance_html = (
+        f'<span style="color:{F1_LIGHT};font-variant-numeric:tabular-nums;">{chance(row["WinChance"])}</span>'
+        f'<span style="color:{F1_GREY};font-variant-numeric:tabular-nums;"> · {chance(row["PodiumChance"])}</span>'
+    )
 
     return (
         f'<div class="f1-pred-row" style="border-left:4px solid {team_color};">'
@@ -752,7 +748,7 @@ def render_prediction_row(row) -> str:
         f'<div class="f1-pred-name">{full_name}{" · est. form" if row["FormEstimated"] else ""}</div>'
         f'</div>'
         f'<div class="f1-pred-cell f1-pred-team" style="color:{team_color};">{team}</div>'
-        f'<div class="f1-pred-cell">{confidence_html}</div>'
+        f'<div class="f1-pred-cell">{chance_html}</div>'
         f'<div class="f1-pred-cell f1-pred-num">{quali}</div>'
         f'<div class="f1-pred-cell f1-pred-num">{actual}</div>'
         f'<div class="f1-pred-cell f1-pred-num" style="color:{delta_color};">{delta_text}</div>'
@@ -840,7 +836,7 @@ header_html = (
     '<div>Pred</div>'
     '<div>Driver</div>'
     '<div>Team</div>'
-    '<div>Confidence</div>'
+    '<div title="From 10,000 simulated races">Win · Podium</div>'
     '<div style="text-align:center;">Quali</div>'
     '<div style="text-align:center;">Actual</div>'
     '<div style="text-align:center;">Δ</div>'

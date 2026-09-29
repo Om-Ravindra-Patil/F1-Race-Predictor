@@ -26,6 +26,14 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
 FEATURES_FILE = DATA_PROCESSED / "features.csv"
 
+# Win/podium chances: simulate each race this many times
+N_SIMULATIONS = 10_000
+# Resampled training errors are scaled by this before simulating. Unscaled, the chances
+# were too flat (favourites won more often than predicted). 0.5 was chosen on 2024
+# alone and checked on 2025-26: drivers given ~40% won 44% of the time, ~21% won 19%,
+# and win Brier improved from 0.032 to 0.029 (notebooks/08_win_probability_calibration).
+NOISE_SCALE = 0.5
+
 # The 6-feature set selected as the final model
 FEATURES = [
     "GridPosition",
@@ -71,6 +79,8 @@ def train_model(
 
     model = LinearRegression()
     model.fit(X_scaled, y)
+    # Kept for simulating races (see NOISE_SCALE)
+    model.residuals_ = (y - model.predict(X_scaled)).to_numpy()
 
     return model, scaler
 
@@ -138,33 +148,22 @@ def predict_race(year: int, round_number: int) -> pd.DataFrame:
     # Rank predictions (lowest predicted = predicted P1)
     race_df["PredictedRank"] = race_df["PredictedPosition"].rank(method="min").astype(int)
 
-    # Compute prediction confidence per driver
-    # Confidence is based on the gap between this driver's prediction and the
-    # nearest neighbours' predictions. Larger gap = more isolated = more confident.
-    sorted_preds = race_df["PredictedPosition"].sort_values().values
-    pred_to_confidence = {}
-    for i, pred_value in enumerate(sorted_preds):
-        # Gap to the prediction immediately above (lower position)
-        gap_above = pred_value - sorted_preds[i - 1] if i > 0 else float("inf")
-        # Gap to the prediction immediately below (higher position)
-        gap_below = sorted_preds[i + 1] - pred_value if i < len(sorted_preds) - 1 else float("inf")
-        # Use the smaller of the two gaps — that's the closest competitor
-        nearest_gap = min(gap_above, gap_below)
-        pred_to_confidence[pred_value] = nearest_gap
-
-    race_df["NearestGap"] = race_df["PredictedPosition"].map(pred_to_confidence)
-
-    # Normalise to 0-1 confidence score, capped at gap of 2.0 (meaning 2 places clear)
-    # Then bucket into 1-5 stars for visualisation
-    race_df["ConfidenceScore"] = (race_df["NearestGap"] / 2.0).clip(0, 1)
-    race_df["ConfidenceLevel"] = (race_df["ConfidenceScore"] * 5).round().astype(int).clip(1, 5)
+    # Win and podium chances: re-run the race N_SIMULATIONS times, each time adding
+    # errors resampled from the model's own training residuals (which keeps the long
+    # tail of retirements), and count how often each driver finishes 1st / top 3.
+    rng = np.random.default_rng(0)  # fixed seed: the same race always shows the same numbers
+    noise = NOISE_SCALE * rng.choice(model.residuals_, (N_SIMULATIONS, len(race_df)))
+    simulated = race_df["PredictedPosition"].to_numpy() + noise
+    finish = simulated.argsort(axis=1).argsort(axis=1) + 1  # finishing position in each run
+    race_df["WinChance"] = (finish == 1).mean(axis=0)
+    race_df["PodiumChance"] = (finish <= 3).mean(axis=0)
 
     # Build output frame
     output_cols = [
         "Abbreviation", "FullName", "TeamName",
         "QualifyingPosition", "GridPosition",
         "Position", "PredictedPosition", "PredictedRank",
-        "ConfidenceScore", "ConfidenceLevel", "FormEstimated",
+        "WinChance", "PodiumChance", "FormEstimated",
         "QualifyingGapToPole", "DriverFormLast3", "TeamFormLast3",
         "FieldAverage", "WhyQualifying", "WhyDriverForm", "WhyTeamForm",
     ]

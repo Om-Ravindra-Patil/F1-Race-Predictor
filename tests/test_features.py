@@ -148,7 +148,10 @@ def test_predict_race_output():
     out = predict_race(2025, 1)
     assert out["PredictedRank"].is_monotonic_increasing
     assert out["PredictedRank"].iloc[0] == 1
-    assert out["ConfidenceLevel"].between(1, 5).all()
+    assert out["WinChance"].sum() == pytest.approx(1)  # exactly one winner per simulated race
+    assert out["PodiumChance"].sum() == pytest.approx(3)
+    assert out["WinChance"].idxmax() == 0  # predicted P1 is the favourite
+    assert out["WinChance"].equals(predict_race(2025, 1)["WinChance"])  # deterministic
     assert out["Abbreviation"].is_unique
 
 
