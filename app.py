@@ -697,6 +697,77 @@ st.markdown(
 )
 
 
+# ──────────────────────────────────────────────────────────────────────
+# Race story — qualifying → predicted → result, one line per driver
+# ──────────────────────────────────────────────────────────────────────
+def race_story_svg(preds: pd.DataFrame, highlight: str) -> str:
+    """Bump chart: every driver a muted line, the highlighted one in team colour."""
+    stages = [("Qualifying", "QualifyingPosition"), ("Predicted", "PredictedRank")]
+    if not upcoming:
+        stages.append(("Result", "ActualPosition"))
+
+    width, label_w, top, row_h = 720, 64, 34, 18
+    max_pos = int(preds[[col for _, col in stages]].max().max())
+    height = top + max_pos * row_h + 6
+    xs = [label_w + i * (width - 2 * label_w) / (len(stages) - 1) for i in range(len(stages))]
+
+    def y(pos: float) -> float:
+        return top + (pos - 0.5) * row_h
+
+    parts = [
+        f'<text x="{x:.1f}" y="14" text-anchor="middle" fill="{F1_GREY}" font-size="11" '
+        f'font-weight="700" letter-spacing="0.08em">{name.upper()}</text>'
+        for x, (name, _) in zip(xs, stages)
+    ]
+    parts += [
+        f'<line x1="{x:.1f}" y1="{top - 6}" x2="{x:.1f}" y2="{height - 4}" stroke="#2A2A38" stroke-width="1"/>'
+        for x in xs
+    ]
+
+    # Highlighted driver drawn last so it sits on top
+    rows = sorted(preds.to_dict("records"), key=lambda r: r["Abbreviation"] == highlight)
+    for r in rows:
+        points = [(x, r[col]) for x, (_, col) in zip(xs, stages) if not pd.isna(r[col])]
+        if len(points) < 2:
+            continue
+        is_hl = r["Abbreviation"] == highlight
+        colour = get_team_color(r["TeamName"]) if is_hl else "#4A4A58"
+        path = " ".join(f"{x:.1f},{y(v):.1f}" for x, v in points)
+        tip = f"{r['Abbreviation']} · " + " → ".join(
+            f"{name} P{int(r[col])}" for name, col in stages if not pd.isna(r[col]))
+        parts.append(
+            f'<g><title>{tip}</title>'
+            f'<polyline points="{path}" fill="none" stroke="transparent" stroke-width="10"/>'  # hover target
+            f'<polyline points="{path}" fill="none" stroke="{colour}" stroke-width="{3 if is_hl else 1.5}" '
+            f'stroke-linejoin="round" stroke-linecap="round" opacity="{1 if is_hl else 0.9}"/>'
+            + ("".join(f'<circle cx="{x:.1f}" cy="{y(v):.1f}" r="4.5" fill="{colour}" stroke="{F1_DARK_2}" stroke-width="2"/>'
+                       for x, v in points) if is_hl else "")
+            + '</g>'
+        )
+        # Driver codes at both ends, in text colours (bold white for the highlight)
+        ink, weight = (F1_LIGHT, 700) if is_hl else (F1_GREY, 400)
+        (x0, v0), (x1, v1) = points[0], points[-1]
+        parts.append(f'<text x="{x0 - 10:.1f}" y="{y(v0) + 4:.1f}" text-anchor="end" fill="{ink}" font-size="11" font-weight="{weight}">{r["Abbreviation"]}</text>')
+        parts.append(f'<text x="{x1 + 10:.1f}" y="{y(v1) + 4:.1f}" text-anchor="start" fill="{ink}" font-size="11" font-weight="{weight}">{r["Abbreviation"]}</text>')
+
+    return (
+        f'<svg viewBox="0 0 {width} {height}" width="100%" role="img" '
+        f'aria-label="Qualifying, predicted and actual positions for every driver; {highlight} highlighted" '
+        f'style="display:block;font-family:inherit;">' + "".join(parts) + "</svg>"
+    )
+
+
+st.markdown('<div class="f1-section-title">RACE STORY</div>', unsafe_allow_html=True)
+st.caption(
+    f"Every driver from qualifying to {'the predicted finish' if upcoming else 'predicted finish to the actual result'}. "
+    f"{why['Abbreviation']} is highlighted — pick another driver above. Hover a line for exact positions."
+)
+st.markdown(
+    f'<div class="why-card">{race_story_svg(predictions, why["Abbreviation"])}</div>',
+    unsafe_allow_html=True,
+)
+
+
 st.markdown('<div class="f1-section-title">PREDICTIONS</div>', unsafe_allow_html=True)
 st.caption(
     "Win · Podium: how often each driver won or finished top 3 across 10,000 simulated "
