@@ -227,3 +227,14 @@ def season_metrics(year: int) -> dict:
         "winner_top1": int((winner_rank == 1).sum()),
         "winner_top3": int((winner_rank <= 3).sum()),
     }
+
+
+def get_calendar(year: int) -> pd.DataFrame:
+    """The season calendar saved by load_season.py, or an empty frame if there isn't one.
+
+    Columns: Round, EventName, Location, QualifyingUtc, RaceUtc (UTC timestamps).
+    """
+    path = PROJECT_ROOT / "data" / "raw" / f"calendar_{year}.csv"
+    if not path.exists():
+        return pd.DataFrame(columns=["Round", "EventName", "Location", "QualifyingUtc", "RaceUtc"])
+    return pd.read_csv(path, parse_dates=["QualifyingUtc", "RaceUtc"])

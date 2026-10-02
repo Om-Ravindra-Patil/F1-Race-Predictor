@@ -17,7 +17,21 @@ from src.team_colors import get_team_color
 predict_race = st.cache_data(show_spinner=False)(predict.predict_race)
 get_race_metadata = st.cache_data(show_spinner=False)(predict.get_race_metadata)
 get_available_races = st.cache_data(show_spinner=False)(predict.get_available_races)
+get_calendar = st.cache_data(show_spinner=False)(predict.get_calendar)
 season_metrics = st.cache_data(show_spinner=False)(predict.season_metrics)
+
+
+# F1 timing-screen language for prediction accuracy: purple = exactly right,
+# green = within 2 places, yellow = further off. Validated on the dark surface
+# (colour-blind separation 12.3); always shown with the number, never colour alone.
+TIMING_EXACT, TIMING_CLOSE, TIMING_OFF = "#A855F7", "#10B981", "#FBBF24"
+
+
+def timing_colour(delta: float) -> str:
+    """Colour for how far the actual finish was from the predicted rank."""
+    if abs(delta) == 0:
+        return TIMING_EXACT
+    return TIMING_CLOSE if abs(delta) <= 2 else TIMING_OFF
 
 
 def chance(p: float) -> str:
@@ -350,13 +364,20 @@ with st.sidebar:
         f"R{row['Round']:02d} — {row['EventName']}": row["Round"]
         for _, row in races.iterrows()
     }
+    latest_label = list(race_options)[-1]  # latest race with data: the upcoming one once qualifying is in
+    # Rounds on the calendar with no data yet (qualifying not run): listed with their date
+    calendar = get_calendar(year)
+    future = calendar[~calendar["Round"].isin(races["Round"])]
+    for _, row in future.iterrows():
+        race_options[f"R{row['Round']:02d} — {row['EventName']} · {row['RaceUtc']:%d %b}"] = row["Round"]
+    race_options = dict(sorted(race_options.items(), key=lambda item: item[1]))
     labels = list(race_options)
     race_key = f"race_{year}"  # one per season, so each season remembers its race
     from_url = [label for label, rnd in race_options.items() if url_season == year and rnd == url_round]
     if apply_url and from_url:
         st.session_state[race_key] = from_url[0]
     elif race_key not in st.session_state:
-        st.session_state[race_key] = labels[-1]  # latest race: the upcoming one once qualifying is in
+        st.session_state[race_key] = latest_label
     selected_race_label = st.selectbox("Race", options=labels, key=race_key)
     selected_round = race_options[selected_race_label]
 
@@ -394,11 +415,71 @@ with st.sidebar:
         f"""
         <div style='font-size: 0.8rem; color: {F1_GREY};'>
         Built by <a href='https://www.linkedin.com/in/om-patil-nu' style='color: {F1_RED}; text-decoration: none;'>Om Patil</a><br>
-        <a href='https://github.com/Om-Ravindra-Patil/F1-Race-Predictor' style='color: {F1_RED}; text-decoration: none;'>GitHub</a>
+        <a href='https://github.com/Om-Ravindra-Patil/F1-Race-Predictor' style='color: {F1_RED}; text-decoration: none;'>GitHub</a><br><br>
+        <span style='font-size: 0.7rem;'>Unofficial fan project. Not associated with Formula 1, the FIA or any team.</span>
         </div>
         """,
         unsafe_allow_html=True,
     )
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Next race banner — what's coming up in the newest season
+# ──────────────────────────────────────────────────────────────────────
+def countdown(when: pd.Timestamp, now: pd.Timestamp) -> str:
+    left = when - now
+    days, hours = left.days, left.seconds // 3600
+    return f"{days}d {hours:02d}h" if days else f"{hours}h {left.seconds % 3600 // 60:02d}m"
+
+
+now = pd.Timestamp.now(tz="UTC").tz_localize(None)
+season_calendar = get_calendar(seasons[0])
+upcoming_events = season_calendar[season_calendar["RaceUtc"] > now]
+if not upcoming_events.empty:
+    nxt = upcoming_events.iloc[0]
+    if nxt["QualifyingUtc"] > now:
+        status = (f"Qualifying in <strong style='color:{F1_LIGHT};'>{countdown(nxt['QualifyingUtc'], now)}</strong> "
+                  f"· {nxt['QualifyingUtc']:%a %d %b %H:%M} UTC · prediction appears after")
+    else:
+        status = (f"Race in <strong style='color:{F1_LIGHT};'>{countdown(nxt['RaceUtc'], now)}</strong> "
+                  f"· {nxt['RaceUtc']:%a %d %b %H:%M} UTC · "
+                  f"<a href='?season={seasons[0]}&round={nxt['Round']}' target='_self' "
+                  f"style='color:{F1_RED};text-decoration:none;font-weight:700;'>see the prediction →</a>")
+    st.markdown(
+        f"<div style='display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:baseline;"
+        f"background:{F1_DARK_2};border:1px solid #2A2A38;border-left:4px solid {F1_RED};"
+        f"border-radius:4px;padding:0.6rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:{F1_GREY};'>"
+        f"<span style='font-size:0.7rem;font-weight:700;letter-spacing:0.15em;color:{F1_RED};'>NEXT RACE</span>"
+        f"<span style='color:{F1_LIGHT};font-weight:700;'>R{nxt['Round']} · {nxt['EventName']}</span>"
+        f"<span>{status}</span></div>",
+        unsafe_allow_html=True,
+    )
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Future race — on the calendar, but qualifying hasn't run yet
+# ──────────────────────────────────────────────────────────────────────
+if selected_round in future["Round"].values:
+    event = future[future["Round"] == selected_round].iloc[0]
+    st.markdown(f"""
+<div class="f1-hero">
+    <div class="f1-hero-eyebrow">Round {event['Round']} · Season {year}</div>
+    <h1 class="f1-hero-title">{event['EventName']}</h1>
+    <div class="f1-hero-subtitle">{event['Location']} · {event['RaceUtc']:%A %d %B %Y}</div>
+</div>
+<div style="background:{F1_DARK_2};border:1px solid #2A2A38;border-left:4px solid #FFC107;border-radius:4px;padding:1.5rem;">
+    <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#FFC107;margin-bottom:0.75rem;">Prediction not available yet</div>
+    <div style="color:{F1_LIGHT};font-size:1.05rem;margin-bottom:0.75rem;">
+        The prediction appears after qualifying on <strong>{event['QualifyingUtc']:%A %d %B, %H:%M} UTC</strong>.
+    </div>
+    <div style="color:{F1_GREY};font-size:0.85rem;line-height:1.6;">
+        Race: {event['RaceUtc']:%A %d %B, %H:%M} UTC.<br>
+        The model needs the qualifying result: from recent form alone it names the winner about a third as often.
+        <a href="?season={year}&round={race_options[latest_label]}" target="_self" style="color:{F1_RED};text-decoration:none;">See the latest prediction →</a>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+    st.stop()
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -774,6 +855,15 @@ st.caption(
     "versions of this race, using the model's own past errors. Checked on 2025–26: "
     "drivers given ~40% won 44% of the time."
 )
+if not upcoming:
+    st.markdown(
+        f'<div style="font-size:0.8rem;color:{F1_GREY};margin:-0.25rem 0 0.75rem 0;">'
+        f'Δ = actual finish vs predicted, in F1 timing colours: '
+        f'<span style="color:{TIMING_EXACT};font-weight:700;">● exact</span> · '
+        f'<span style="color:{TIMING_CLOSE};font-weight:700;">● within 2 places</span> · '
+        f'<span style="color:{TIMING_OFF};font-weight:700;">● further off</span></div>',
+        unsafe_allow_html=True,
+    )
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -796,15 +886,8 @@ def render_prediction_row(row) -> str:
         delta_color = F1_GREY
     else:
         delta_int = int(delta)
-        if delta_int == 0:
-            delta_text = "—"
-            delta_color = F1_GREY
-        elif delta_int < 0:
-            delta_text = f"{delta_int}"
-            delta_color = "#00D26A"
-        else:
-            delta_text = f"+{delta_int}"
-            delta_color = F1_RED
+        delta_text = "exact" if delta_int == 0 else f"{delta_int:+d}".replace("-", "−")
+        delta_color = timing_colour(delta_int)
 
     chance_html = (
         f'<span style="color:{F1_LIGHT};font-variant-numeric:tabular-nums;">{chance(row["WinChance"])}</span>'

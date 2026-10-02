@@ -249,6 +249,34 @@ def save_new_rounds(year: int, load_fn, path: Path) -> None:
     print(f"\nSaved {len(df)} rows to {path} (rounds {start}-{new['Round'].max()} new)")
 
 
+def save_calendar(year: int) -> None:
+    """Save the season calendar: round, event, venue, qualifying and race start (UTC).
+
+    Lets the dashboard list races that haven't happened yet. Fetched once, like
+    saved rounds; delete the file to re-fetch after a calendar change.
+    """
+    path = DATA_RAW_DIR / f"calendar_{year}.csv"
+    if path.exists():
+        return
+    schedule = fastf1.get_event_schedule(year, include_testing=False)
+
+    def session_start(event, name):
+        # Qualifying isn't always the same session number (sprint weekends differ)
+        for i in range(1, 6):
+            if event[f"Session{i}"] == name:
+                return event[f"Session{i}DateUtc"]
+        return None
+
+    pd.DataFrame({
+        "Round": schedule["RoundNumber"],
+        "EventName": schedule["EventName"],
+        "Location": schedule["Location"],
+        "QualifyingUtc": schedule.apply(lambda e: session_start(e, "Qualifying"), axis=1),
+        "RaceUtc": schedule.apply(lambda e: session_start(e, "Race"), axis=1),
+    }).to_csv(path, index=False)
+    print(f"\nSaved {year} calendar ({len(schedule)} rounds) to {path}")
+
+
 if __name__ == "__main__":
     import sys
 
@@ -262,6 +290,8 @@ if __name__ == "__main__":
         years = [2022, 2023, 2024, 2025, 2026]
 
     for year in years:
+        save_calendar(year)
+
         if not qualifying_only:
             print(f"\n{'='*50}\nLoading {year} race results\n{'='*50}")
             save_new_rounds(year, load_season, DATA_RAW_DIR / f"season_{year}_results.csv")
