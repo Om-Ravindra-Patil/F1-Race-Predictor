@@ -141,6 +141,7 @@ f1-race-predictor/
 │   ├── load_season.py                    # season data loader (fastf1 + Jolpica)
 │   ├── features.py                       # feature engineering module
 │   ├── predict.py                        # training + per-race prediction logic
+│   ├── circuits.py                       # track outlines from fastf1 position data
 │   └── team_colors.py                    # F1 team colour mapping for the UI
 ├── tests/test_features.py                # pytest suite: features, data integrity, predictions
 ├── requirements.txt
@@ -179,7 +180,13 @@ python3 src/features.py
 # Saves to data/processed/features.csv
 ```
 
-Run notebooks in order (`01` → `07`) to reproduce the full analysis.
+Track outlines for the dashboard (run locally; only fetches circuits not yet saved in `data/circuits.json`):
+
+```bash
+python3 src/circuits.py
+```
+
+Run notebooks in order (`01` → `08`) to reproduce the full analysis.
 
 Run the tests (install `pytest` in your venv first — it isn't in `requirements.txt` because the deployed app doesn't need it):
 

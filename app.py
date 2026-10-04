@@ -7,9 +7,13 @@ Trained on earlier seasons only; beats the pole baseline on RMSE on the 2025 hol
 Run with: streamlit run app.py
 """
 
+import json
+from pathlib import Path
+
 import streamlit as st
 import pandas as pd
 from src import predict
+from src.features import CIRCUIT_ALIASES
 from src.team_colors import get_team_color
 
 # Data only changes on redeploy (a new push restarts the app), so results can be
@@ -40,6 +44,27 @@ def chance(p: float) -> str:
 
 
 @st.cache_data(show_spinner=False)
+def get_circuit_outlines() -> dict:
+    """Track outlines saved by src/circuits.py: {circuit: [[x, y], ...]} in a 0-1 box."""
+    path = Path(__file__).parent / "data" / "circuits.json"
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def circuit_svg(circuit: str, css_class: str, stroke: str, stroke_width: float = 2) -> str:
+    """Track outline as inline SVG, or "" for a circuit we have no outline for."""
+    points = get_circuit_outlines().get(CIRCUIT_ALIASES.get(circuit, circuit))
+    if not points:
+        return ""
+    width, height, pad = max(x for x, _ in points), max(y for _, y in points), 0.04
+    coords = " ".join(f"{x},{y}" for x, y in points)
+    return (
+        f'<svg class="{css_class}" viewBox="{-pad} {-pad} {width + 2 * pad} {height + 2 * pad}" aria-hidden="true">'
+        f'<polygon points="{coords}" fill="none" stroke="{stroke}" stroke-width="{stroke_width}" '
+        f'stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>'
+    )
+
+
+@st.cache_data(show_spinner=False)
 def get_seasons() -> list:
     """Seasons the dashboard can show, newest first. The first season in the
     data has no earlier season to train on, so it's left out."""
@@ -53,18 +78,24 @@ st.set_page_config(
     page_title="F1 Race Predictor",
     page_icon="🏁",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",  # open on desktop, closed on phones
 )
 
 
 # ──────────────────────────────────────────────────────────────────────
 # Custom CSS — F1 broadcast aesthetic
 # ──────────────────────────────────────────────────────────────────────
-F1_RED = "#E10600"
-F1_DARK = "#15151E"
-F1_DARK_2 = "#1F1F2C"
+F1_RED = "#FF1801"      # high-vis F1 red
+F1_DARK = "#0B0E14"     # carbon page background
+F1_SURFACE = "#12161F"  # sidebar
+F1_DARK_2 = "#161B26"   # cards (data colours validated against this)
 F1_LIGHT = "#FFFFFF"
 F1_GREY = "#949498"
+# Neon accents are decoration only (borders, glows, highlights). Colours that carry
+# meaning in the data (gain/lose bars, timing colours, podium medals) are separate.
+NEON_CYAN = "#00F2FE"
+NEON_BLUE = "#0066FF"
+NEON_GOLD = "#FFB800"
 
 st.markdown(f"""
 <style>
@@ -241,8 +272,11 @@ st.markdown(f"""
         background: transparent !important;
         z-index: 999990 !important;
     }}
-    /* Hide only the toolbar (Deploy/Share), NOT the whole header */
-    header[data-testid="stHeader"] [data-testid="stToolbar"] {{
+    /* Hide the toolbar's Deploy button and menu, but keep the toolbar itself:
+       on phones it holds the button that opens the sidebar */
+    [data-testid="stToolbarActions"],
+    [data-testid="stAppDeployButton"],
+    [data-testid="stMainMenu"] {{
         display: none !important;
     }}
 
@@ -256,27 +290,29 @@ st.markdown(f"""
         background: transparent !important;
     }}
 
-    /* Force sidebar to always show, even after a collapse attempt */
-    section[data-testid="stSidebar"] {{
-        background-color: {F1_DARK_2};
-        border-right: 1px solid #2A2A38;
-        min-width: 244px !important;
-        max-width: 244px !important;
-        transform: none !important;
-        visibility: visible !important;
-        margin-left: 0px !important;
-    }}
+    /* Desktop: keep the sidebar always open (no collapse). On phones it would
+       cover the whole page, so there Streamlit's normal open/close applies. */
+    @media (min-width: 769px) {{
+        section[data-testid="stSidebar"] {{
+            background-color: {F1_DARK_2};
+            border-right: 1px solid #2A2A38;
+            min-width: 244px !important;
+            max-width: 244px !important;
+            transform: none !important;
+            visibility: visible !important;
+            margin-left: 0px !important;
+        }}
 
-    section[data-testid="stSidebar"][aria-expanded="false"] {{
-        transform: none !important;
-        margin-left: 0px !important;
-        visibility: visible !important;
-    }}
+        section[data-testid="stSidebar"][aria-expanded="false"] {{
+            transform: none !important;
+            margin-left: 0px !important;
+            visibility: visible !important;
+        }}
 
-    /* Hide the collapse button so it can't be triggered */
-    [data-testid="stSidebarCollapseButton"],
-    button[data-testid="stBaseButton-headerNoPadding"] {{
-        display: none !important;
+        [data-testid="stSidebarCollapseButton"],
+        button[data-testid="stBaseButton-headerNoPadding"] {{
+            display: none !important;
+        }}
     }}
 
     /* Make selectboxes non-typeable — click to open, select only (no search box confusion) */
@@ -331,6 +367,159 @@ st.markdown(f"""
 </style>
 
 <div class="f1-top-bar"></div>
+""", unsafe_allow_html=True)
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Broadcast theme — textures, display font, glows and hover states
+# ──────────────────────────────────────────────────────────────────────
+st.markdown(f"""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap');
+
+    :root {{
+        --display: 'Barlow Condensed', 'Titillium Web', sans-serif;
+        --carbon: linear-gradient(45deg, rgba(255,255,255,0.022) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.022) 75%),
+                  linear-gradient(45deg, rgba(255,255,255,0.022) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.022) 75%);
+    }}
+
+    /* Page: carbon background with a faint technical grid */
+    .stApp {{
+        background-color: {F1_DARK};
+        background-image:
+            linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+        background-size: 48px 48px;
+    }}
+
+    /* Sidebar: carbon-fibre weave */
+    section[data-testid="stSidebar"] {{
+        background-color: {F1_SURFACE} !important;
+        background-image: var(--carbon);
+        background-size: 8px 8px;
+        background-position: 0 0, 4px 4px;
+        border-right: 1px solid #222837 !important;
+    }}
+    section[data-testid="stSidebar"] h1 {{
+        font-family: var(--display); font-weight: 800; font-size: 1.9rem !important;
+        letter-spacing: 0.02em; text-transform: uppercase;
+    }}
+
+    /* Display font for headlines, driver codes and numbers */
+    .f1-hero-title, .f1-metric-value, .f1-section-title, .f1-pred-code, .f1-pred-rank,
+    .why-head, .why-value, .podium-code, .podium-pos, .f1-metric-label {{
+        font-family: var(--display) !important;
+    }}
+    .f1-hero-title {{ font-size: 3.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }}
+    .f1-section-title {{ font-size: 1.35rem; font-weight: 700; letter-spacing: 0.12em; }}
+
+    /* Selects: dark fields with a glowing focus border */
+    .stSelectbox [data-baseweb="select"] > div {{
+        background: {F1_DARK} !important;
+        border: 1px solid #2A3040 !important;
+        border-radius: 6px !important;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }}
+    .stSelectbox [data-baseweb="select"] > div:hover {{ border-color: rgba(0,242,254,0.45) !important; }}
+    .stSelectbox [data-baseweb="select"] > div:focus-within {{
+        border-color: {NEON_CYAN} !important;
+        box-shadow: 0 0 0 1px {NEON_CYAN}, 0 0 14px rgba(0,242,254,0.35) !important;
+    }}
+
+    /* Model performance: glass card with a blue-to-orange neon border */
+    .perf-card {{
+        border: 1px solid transparent;
+        border-radius: 10px;
+        padding: 0.85rem 1rem;
+        background:
+            linear-gradient(rgba(22,27,38,0.88), rgba(22,27,38,0.88)) padding-box,
+            linear-gradient(135deg, {NEON_BLUE}, #FF8A00) border-box;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 18px rgba(0,102,255,0.12);
+        font-size: 0.85rem; color: {F1_GREY}; line-height: 1.6;
+    }}
+    .perf-season + .perf-season {{ border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.7rem; padding-top: 0.7rem; }}
+    .perf-season-title {{ font-family: var(--display); font-weight: 700; font-size: 1rem; color: {F1_LIGHT}; letter-spacing: 0.06em; }}
+
+    /* Live pill on the next-race banner */
+    .live-pill {{
+        display: inline-flex; align-items: center; gap: 0.4rem;
+        background: {F1_RED}; color: #fff; border-radius: 999px;
+        padding: 0.15rem 0.65rem; font-family: var(--display);
+        font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+    }}
+    .live-dot {{
+        width: 7px; height: 7px; border-radius: 50%; background: #fff;
+        animation: live-pulse 1.6s ease-in-out infinite;
+    }}
+    @keyframes live-pulse {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.25; }} }}
+
+    /* Hero with circuit outline */
+    .f1-hero {{ display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }}
+    .hero-circuit {{ width: 210px; flex-shrink: 0; filter: drop-shadow(0 0 6px rgba(0,242,254,0.45)); }}
+
+    /* Stat cards: tachometer speed lines on top, glow on hover */
+    .f1-metric-card {{
+        position: relative; overflow: hidden;
+        border-left: 3px solid {F1_RED} !important;
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%), {F1_DARK_2} !important;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }}
+    .f1-metric-card::before {{
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: repeating-linear-gradient(90deg, {F1_RED} 0 3px, transparent 3px 7px);
+        -webkit-mask-image: linear-gradient(90deg, #000, transparent 85%);
+                mask-image: linear-gradient(90deg, #000, transparent 85%);
+        opacity: 0.85;
+    }}
+    .f1-metric-card:hover {{
+        transform: translateY(-2px);
+        border-color: rgba(0,242,254,0.4) !important;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 0 18px rgba(0,242,254,0.18);
+    }}
+    .f1-metric-value {{ font-size: 2.6rem !important; font-weight: 800 !important; text-shadow: 0 0 14px rgba(0,242,254,0.25); }}
+
+    /* Podium: 3D blocks in team colour */
+    .podium-block {{
+        position: relative;
+        background: linear-gradient(180deg, color-mix(in srgb, var(--team) 22%, {F1_DARK_2}), #0E1119 85%) !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 26px rgba(0,0,0,0.5) !important;
+        transition: transform 0.2s;
+    }}
+    .podium-block::before {{
+        content: ''; position: absolute; left: 0; right: 0; top: -12px; height: 12px;
+        background: color-mix(in srgb, var(--team) 55%, transparent);
+        transform: perspective(60px) rotateX(40deg); transform-origin: bottom;
+    }}
+    .podium-col:hover .podium-block {{ transform: translateY(-3px); }}
+    .podium-code {{ font-size: 1.9rem !important; font-weight: 800; }}
+
+    /* Cards: soft glow on hover */
+    .why-card {{ position: relative; overflow: hidden; transition: box-shadow 0.2s, border-color 0.2s; }}
+    .why-card:hover {{ border-color: rgba(0,242,254,0.35) !important; box-shadow: 0 0 20px rgba(0,242,254,0.12); }}
+    .why-watermark {{
+        position: absolute; right: 2%; bottom: -10%; width: 34%; opacity: 0.07; pointer-events: none;
+    }}
+    .why-card > *:not(.why-watermark) {{ position: relative; }}
+
+    /* Race story: hovering a driver lights up their line in team colour */
+    .race-story .rs-line {{ transition: stroke 0.15s, stroke-width 0.15s, opacity 0.15s; }}
+    .race-story:hover .rs-driver:not(:hover):not(.rs-hl) .rs-line {{ opacity: 0.35; }}
+    .race-story .rs-driver:hover .rs-line {{ stroke: var(--team); stroke-width: 3; opacity: 1; }}
+    .race-story .rs-driver:hover .rs-label {{ fill: {F1_LIGHT}; font-weight: 700; }}
+
+    /* Predictions table: row glow on hover */
+    .f1-pred-row {{ transition: background 0.15s, box-shadow 0.15s; }}
+    .f1-pred-row:hover {{ background: rgba(0,242,254,0.04) !important; box-shadow: inset 3px 0 0 {NEON_CYAN}; }}
+
+    @media (max-width: 640px) {{
+        .hero-circuit {{ display: none; }}
+        .f1-hero-title {{ font-size: 2.1rem !important; }}
+    }}
+    @media (prefers-reduced-motion: reduce) {{
+        *, *::before {{ animation: none !important; transition: none !important; }}
+    }}
+</style>
 """, unsafe_allow_html=True)
 
 
@@ -395,20 +584,15 @@ with st.sidebar:
         if m["races"] == 0:
             continue
         metric_blocks.append(
-            f"<strong style='color: {F1_LIGHT};'>{season} · {m['races']} races</strong><br>"
+            f"<div class='perf-season'><div class='perf-season-title'>{season} · {m['races']} races</div>"
             f"Winner in top 3: <strong style='color: {F1_LIGHT};'>{m['winner_top3']}/{m['races']}</strong><br>"
             f"Exact winner: <strong style='color: {F1_LIGHT};'>{m['winner_top1']}/{m['races']}</strong><br>"
             f"RMSE: <strong style='color: {F1_LIGHT};'>{m['rmse']:.2f}</strong> "
-            f"<span style='color: {F1_GREY};'>(pole {m['pole_rmse']:.2f})</span>"
+            f"<span style='color: {F1_GREY};'>(pole {m['pole_rmse']:.2f})</span></div>"
         )
         if len(metric_blocks) == 2:
             break
-    st.markdown(
-        f"<div style='font-size: 0.85rem; color: {F1_GREY}; line-height: 1.6;'>"
-        + "<br><br>".join(metric_blocks)
-        + "</div>",
-        unsafe_allow_html=True,
-    )
+    st.markdown(f"<div class='perf-card'>{''.join(metric_blocks)}</div>", unsafe_allow_html=True)
 
     st.markdown("---")
     st.markdown(
@@ -449,7 +633,7 @@ if not upcoming_events.empty:
         f"<div style='display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:baseline;"
         f"background:{F1_DARK_2};border:1px solid #2A2A38;border-left:4px solid {F1_RED};"
         f"border-radius:4px;padding:0.6rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:{F1_GREY};'>"
-        f"<span style='font-size:0.7rem;font-weight:700;letter-spacing:0.15em;color:{F1_RED};'>NEXT RACE</span>"
+        f"<span class='live-pill'><span class='live-dot'></span>NEXT RACE</span>"
         f"<span style='color:{F1_LIGHT};font-weight:700;'>R{nxt['Round']} · {nxt['EventName']}</span>"
         f"<span>{status}</span></div>",
         unsafe_allow_html=True,
@@ -463,9 +647,12 @@ if selected_round in future["Round"].values:
     event = future[future["Round"] == selected_round].iloc[0]
     st.markdown(f"""
 <div class="f1-hero">
-    <div class="f1-hero-eyebrow">Round {event['Round']} · Season {year}</div>
-    <h1 class="f1-hero-title">{event['EventName']}</h1>
-    <div class="f1-hero-subtitle">{event['Location']} · {event['RaceUtc']:%A %d %B %Y}</div>
+    <div>
+        <div class="f1-hero-eyebrow">Round {event['Round']} · Season {year}</div>
+        <h1 class="f1-hero-title">{event['EventName']}</h1>
+        <div class="f1-hero-subtitle">{event['Location']} · {event['RaceUtc']:%A %d %B %Y}</div>
+    </div>
+    {circuit_svg(event['Location'], "hero-circuit", NEON_CYAN, 2.5)}
 </div>
 <div style="background:{F1_DARK_2};border:1px solid #2A2A38;border-left:4px solid #FFC107;border-radius:4px;padding:1.5rem;">
     <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#FFC107;margin-bottom:0.75rem;">Prediction not available yet</div>
@@ -545,9 +732,12 @@ if not upcoming:
 # ──────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <div class="f1-hero">
-    <div class="f1-hero-eyebrow">Round {metadata['round']} · Season {year}</div>
-    <h1 class="f1-hero-title">{metadata['event_name']}</h1>
-    <div class="f1-hero-subtitle">{metadata['circuit']} · {metadata['event_date']}</div>
+    <div>
+        <div class="f1-hero-eyebrow">Round {metadata['round']} · Season {year}</div>
+        <h1 class="f1-hero-title">{metadata['event_name']}</h1>
+        <div class="f1-hero-subtitle">{metadata['circuit']} · {metadata['event_date']}</div>
+    </div>
+    {circuit_svg(metadata['circuit'], "hero-circuit", NEON_CYAN, 2.5)}
 </div>
 """, unsafe_allow_html=True)
 
@@ -611,14 +801,14 @@ def render_podium_box(row, position: int, height_px: int) -> str:
     pos_color = position_colors.get(position, F1_LIGHT)
 
     return (
-        f'<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;margin:0 0.4rem;">'
+        f'<div class="podium-col" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;margin:0 0.4rem;">'
         f'<div style="text-align:center;margin-bottom:0.75rem;min-height:60px;">'
-        f'<div style="font-size:1.6rem;font-weight:900;color:{F1_LIGHT};line-height:1;">{driver_code}</div>'
+        f'<div class="podium-code" style="color:{F1_LIGHT};line-height:1;">{driver_code}</div>'
         f'<div style="font-size:0.7rem;color:{F1_GREY};margin-top:0.3rem;line-height:1.3;">{full_name}</div>'
         f'<div style="font-size:0.65rem;color:{team_color};margin-top:0.2rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">{team}</div>'
         f'</div>'
-        f'<div style="width:100%;height:{height_px}px;background:linear-gradient(180deg,{F1_DARK_2} 0%,#0E0E16 100%);border-top:4px solid {team_color};border-radius:4px 4px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:1rem;box-shadow:0 -2px 8px rgba(0,0,0,0.3);">'
-        f'<div style="font-size:2.5rem;font-weight:900;color:{pos_color};line-height:1;text-shadow:0 2px 4px rgba(0,0,0,0.5);">P{position}</div>'
+        f'<div class="podium-block" style="--team:{team_color};width:100%;height:{height_px}px;border-top:4px solid {team_color};border-radius:4px 4px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:1rem;box-shadow:0 -2px 8px rgba(0,0,0,0.3);">'
+        f'<div class="podium-pos" style="font-size:2.8rem;font-weight:800;color:{pos_color};line-height:1;text-shadow:0 2px 4px rgba(0,0,0,0.5);">P{position}</div>'
         f'</div>'
         f'</div>'
     )
@@ -697,13 +887,17 @@ with col_actual:
 WHY_GAIN = "#3B82F6"  # pushes towards P1 (diverging pair validated on F1_DARK_2)
 WHY_LOSE = F1_RED     # pushes towards the back
 
-st.markdown('<div class="f1-section-title">WHY THIS PREDICTION</div>', unsafe_allow_html=True)
+# Race story first, then the breakdown, both full width. Containers fix the page
+# order; the driver picker sits at the top of the race story and drives both.
+story_col, why_col = st.container(), st.container()
+story_col.markdown('<div class="f1-section-title">RACE STORY</div>', unsafe_allow_html=True)
+why_col.markdown('<div class="f1-section-title">WHY THIS PREDICTION</div>', unsafe_allow_html=True)
 st.markdown(f"""
 <style>
 .why-card {{ background:{F1_DARK_2}; border:1px solid #2A2A38; border-radius:4px; padding:1.25rem 1.5rem; }}
 .why-head {{ color:{F1_LIGHT}; font-size:1.05rem; font-weight:700; }}
 .why-sub {{ color:{F1_GREY}; font-size:0.8rem; margin:0.25rem 0 1.25rem 0; }}
-.why-row {{ display:grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) 5.5rem; gap:1rem; align-items:center; padding:0.55rem 0; }}
+.why-row {{ display:grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) 4.5rem; gap:1rem; align-items:center; padding:0.55rem 0; }}
 .why-label {{ color:{F1_LIGHT}; font-size:0.85rem; font-weight:600; }}
 .why-context {{ color:{F1_GREY}; font-size:0.75rem; margin-top:0.15rem; }}
 .why-track {{ position:relative; height:14px; }}
@@ -724,7 +918,7 @@ WHY_FACTORS = [("WhyQualifying", "Qualifying"), ("WhyDriverForm", "Driver form")
 why_scale = max(predictions[[col for col, _ in WHY_FACTORS]].abs().max().max(), 1e-9)
 
 driver_labels = [f"P{int(r['PredictedRank'])} · {r['Abbreviation']} — {r['FullName']}" for _, r in predictions.iterrows()]
-why_label = st.selectbox("Driver", driver_labels, key=f"why_{year}_{selected_round}")
+why_label = story_col.selectbox("Driver", driver_labels, key=f"why_{year}_{selected_round}")
 why = predictions.iloc[driver_labels.index(why_label)]
 
 
@@ -765,9 +959,10 @@ def why_row(col: str, label: str) -> str:
     )
 
 
-st.markdown(
+why_col.markdown(
     f'<div class="why-card">'
-    f'<div class="why-head">{why["Abbreviation"]} is predicted P{int(why["PredictedRank"])} · {chance(why["WinChance"])} to win, {chance(why["PodiumChance"])} podium</div>'
+    + circuit_svg(metadata["circuit"], "why-watermark", NEON_CYAN, 3)
+    + f'<div class="why-head">{why["Abbreviation"]} is predicted P{int(why["PredictedRank"])} · {chance(why["WinChance"])} to win, {chance(why["PodiumChance"])} podium</div>'
     f'<div class="why-sub">Predicted finish {why["PredictedPosition"]:.1f} vs a field average of {why["FieldAverage"]:.1f}. '
     f'The factors below add up exactly to the difference ({signed(why["PredictedPosition"] - why["FieldAverage"])} places).</div>'
     + "".join(why_row(col, label) for col, label in WHY_FACTORS)
@@ -812,38 +1007,38 @@ def race_story_svg(preds: pd.DataFrame, highlight: str) -> str:
         if len(points) < 2:
             continue
         is_hl = r["Abbreviation"] == highlight
-        colour = get_team_color(r["TeamName"]) if is_hl else "#4A4A58"
+        team = get_team_color(r["TeamName"])
+        colour = team if is_hl else "#4A4A58"
         path = " ".join(f"{x:.1f},{y(v):.1f}" for x, v in points)
         tip = f"{r['Abbreviation']} · " + " → ".join(
             f"{name} P{int(r[col])}" for name, col in stages if not pd.isna(r[col]))
-        parts.append(
-            f'<g><title>{tip}</title>'
-            f'<polyline points="{path}" fill="none" stroke="transparent" stroke-width="10"/>'  # hover target
-            f'<polyline points="{path}" fill="none" stroke="{colour}" stroke-width="{3 if is_hl else 1.5}" '
-            f'stroke-linejoin="round" stroke-linecap="round" opacity="{1 if is_hl else 0.9}"/>'
-            + ("".join(f'<circle cx="{x:.1f}" cy="{y(v):.1f}" r="4.5" fill="{colour}" stroke="{F1_DARK_2}" stroke-width="2"/>'
-                       for x, v in points) if is_hl else "")
-            + '</g>'
-        )
         # Driver codes at both ends, in text colours (bold white for the highlight)
         ink, weight = (F1_LIGHT, 700) if is_hl else (F1_GREY, 400)
         (x0, v0), (x1, v1) = points[0], points[-1]
-        parts.append(f'<text x="{x0 - 10:.1f}" y="{y(v0) + 4:.1f}" text-anchor="end" fill="{ink}" font-size="11" font-weight="{weight}">{r["Abbreviation"]}</text>')
-        parts.append(f'<text x="{x1 + 10:.1f}" y="{y(v1) + 4:.1f}" text-anchor="start" fill="{ink}" font-size="11" font-weight="{weight}">{r["Abbreviation"]}</text>')
+        parts.append(
+            f'<g class="rs-driver{" rs-hl" if is_hl else ""}" style="--team:{team}"><title>{tip}</title>'
+            f'<polyline points="{path}" fill="none" stroke="transparent" stroke-width="10"/>'  # hover target
+            f'<polyline class="rs-line" points="{path}" fill="none" stroke="{colour}" stroke-width="{3 if is_hl else 1.5}" '
+            f'stroke-linejoin="round" stroke-linecap="round"/>'
+            + ("".join(f'<circle cx="{x:.1f}" cy="{y(v):.1f}" r="4.5" fill="{colour}" stroke="{F1_DARK_2}" stroke-width="2"/>'
+                       for x, v in points) if is_hl else "")
+            + f'<text class="rs-label" x="{x0 - 8:.1f}" y="{y(v0) + 4:.1f}" text-anchor="end" fill="{ink}" font-size="11" font-weight="{weight}">{r["Abbreviation"]}</text>'
+            f'<text class="rs-label" x="{x1 + 8:.1f}" y="{y(v1) + 4:.1f}" text-anchor="start" fill="{ink}" font-size="11" font-weight="{weight}">{r["Abbreviation"]}</text>'
+            '</g>'
+        )
 
     return (
-        f'<svg viewBox="0 0 {width} {height}" width="100%" role="img" '
+        f'<svg class="race-story" viewBox="0 0 {width} {height}" width="100%" role="img" '
         f'aria-label="Qualifying, predicted and actual positions for every driver; {highlight} highlighted" '
         f'style="display:block;font-family:inherit;">' + "".join(parts) + "</svg>"
     )
 
 
-st.markdown('<div class="f1-section-title">RACE STORY</div>', unsafe_allow_html=True)
-st.caption(
+story_col.caption(
     f"Every driver from qualifying to {'the predicted finish' if upcoming else 'predicted finish to the actual result'}. "
-    f"{why['Abbreviation']} is highlighted — pick another driver above. Hover a line for exact positions."
+    f"{why['Abbreviation']} is highlighted (pick a driver above; the breakdown below follows). Hover any line to light it up."
 )
-st.markdown(
+story_col.markdown(
     f'<div class="why-card">{race_story_svg(predictions, why["Abbreviation"])}</div>',
     unsafe_allow_html=True,
 )

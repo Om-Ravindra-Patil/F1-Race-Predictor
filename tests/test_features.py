@@ -245,3 +245,14 @@ def test_save_new_rounds_nothing_new(tmp_path):
 
     save_new_rounds(2026, no_data, path)
     assert path.read_text() == "Round,Abbreviation\n1,AAA\n"
+
+
+def test_circuit_outlines_are_valid():
+    # A circuit with no outline just shows no map, so missing ones don't fail the build
+    import json
+    outlines = json.loads((FEATURES_FILE.parents[1] / "circuits.json").read_text())
+    assert len(outlines) >= 20
+    for circuit, points in outlines.items():
+        xs, ys = zip(*points)
+        assert len(points) >= 100, circuit
+        assert min(xs) >= 0 and min(ys) >= 0 and max(max(xs), max(ys)) == pytest.approx(1), circuit
