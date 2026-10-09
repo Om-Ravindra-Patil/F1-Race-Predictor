@@ -24,13 +24,15 @@ The model beats the pole baseline by **0.44 positions of RMSE** — it predicts 
 
 2026 brought new chassis and power-unit rules, a 22-car grid (Cadillac) and Audi replacing Sauber. The model — trained only on the 2022–2025 era — was tested on every 2026 race run so far ([notebook 07](notebooks/07_validation_2026.ipynb)):
 
-| 2026, rounds 1–15 | Pole baseline | Linear Regression |
+| 2026, rounds 1–16 | Pole baseline | Linear Regression |
 |---|---|---|
-| RMSE | 5.18 | **4.79** |
-| Top-1 accuracy | 66.7% | 66.7% |
-| Top-3 accuracy | 93.3% | 86.7% |
+| RMSE | 5.14 | **4.77** |
+| Top-1 accuracy | 68.8% | 68.8% |
+| Top-3 accuracy | 93.8% | 87.5% |
 
-The RMSE advantage over the pole baseline (+0.38 positions) is almost unchanged from the 2025 holdout (+0.44): qualifying and form features don't depend on the rulebook. Absolute errors rise for both, as expected with a bigger grid and new cars.
+The RMSE advantage over the pole baseline (+0.36 positions) is close to the 2025 holdout's (+0.44): qualifying and form features don't depend on the rulebook. Absolute errors rise for both, as expected with a bigger grid and new cars.
+
+*Figures as of round 16 (Bahrain, 4 Oct 2026). The season updates automatically; the [dashboard](https://f1-race-predictor-orp.streamlit.app/) sidebar always shows the current numbers.*
 
 ## Live demo
 
@@ -60,9 +62,9 @@ Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024 — a ~60 percentag
 | 2023   | 0.584 | 439 |
 | 2024   | 0.732 | 479 |
 | 2025   | 0.651 | 479 |
-| 2026*  | 0.639 | 330 |
+| 2026*  | 0.640 | 352 |
 
-\*2026 season in progress (rounds 1–15), new regulations.
+\*2026 season in progress (rounds 1–16), new regulations.
 
 Grid → finish correlation rose steadily through the 2022 regulation cycle as cars converged, peaking in 2024. The 2025 figure broke the trend — qualifying became *less* predictive of race outcomes than in 2024. The likely driver is increased mid-season car development volatility ahead of the 2026 regulation reset, though small-sample noise can't be ruled out.
 

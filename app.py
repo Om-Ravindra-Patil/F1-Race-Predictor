@@ -16,13 +16,16 @@ from src import predict
 from src.features import CIRCUIT_ALIASES
 from src.team_colors import get_team_color
 
-# Data only changes on redeploy (a new push restarts the app), so results can be
-# cached for the life of the process: switching races doesn't retrain the model.
-predict_race = st.cache_data(show_spinner=False)(predict.predict_race)
-get_race_metadata = st.cache_data(show_spinner=False)(predict.get_race_metadata)
-get_available_races = st.cache_data(show_spinner=False)(predict.get_available_races)
-get_calendar = st.cache_data(show_spinner=False)(predict.get_calendar)
-season_metrics = st.cache_data(show_spinner=False)(predict.season_metrics)
+# Cached so switching races doesn't retrain the model. The GitHub Action commits new
+# race data to a running app, and the cache doesn't notice file changes, so entries
+# expire after 10 minutes: new data shows up within 10 minutes of the bot's commit.
+CACHE_TTL = 600
+cache = st.cache_data(show_spinner=False, ttl=CACHE_TTL)
+predict_race = cache(predict.predict_race)
+get_race_metadata = cache(predict.get_race_metadata)
+get_available_races = cache(predict.get_available_races)
+get_calendar = cache(predict.get_calendar)
+season_metrics = cache(predict.season_metrics)
 
 
 # F1 timing-screen language for prediction accuracy: purple = exactly right,
@@ -43,7 +46,7 @@ def chance(p: float) -> str:
     return "<1%" if 0 < p < 0.005 else f"{p:.0%}"
 
 
-@st.cache_data(show_spinner=False)
+@cache
 def get_circuit_outlines() -> dict:
     """Track outlines saved by src/circuits.py: {circuit: [[x, y], ...]} in a 0-1 box."""
     path = Path(__file__).parent / "data" / "circuits.json"
@@ -64,7 +67,7 @@ def circuit_svg(circuit: str, css_class: str, stroke: str, stroke_width: float =
     )
 
 
-@st.cache_data(show_spinner=False)
+@cache
 def get_seasons() -> list:
     """Seasons the dashboard can show, newest first. The first season in the
     data has no earlier season to train on, so it's left out."""
