@@ -351,3 +351,25 @@ DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,First
 23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,20.0,,,0 days 00:01:38.600000,,,,,,,2026,16,Bahrain Grand Prix,2026-10-04,Kuala Lumpur
 77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,21.0,,,0 days 00:01:38.611000,,,,,,,2026,16,Bahrain Grand Prix,2026-10-04,Kuala Lumpur
 11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,22.0,,,0 days 00:01:38.933000,,,,,,,2026,16,Bahrain Grand Prix,2026-10-04,Kuala Lumpur
+3,,VER,max_verstappen,Red Bull,,red_bull,Max,Verstappen,Max Verstappen,,,1.0,,,0 days 00:01:33.241000,0 days 00:01:31.639000,0 days 00:01:31.373000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+16,,LEC,leclerc,Ferrari,,ferrari,Charles,Leclerc,Charles Leclerc,,,2.0,,,0 days 00:01:32.774000,0 days 00:01:31.953000,0 days 00:01:31.427000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+44,,HAM,hamilton,Ferrari,,ferrari,Lewis,Hamilton,Lewis Hamilton,,,3.0,,,0 days 00:01:32.429000,0 days 00:01:31.529000,0 days 00:01:31.496000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+12,,ANT,antonelli,Mercedes,,mercedes,Andrea Kimi,Antonelli,Andrea Kimi Antonelli,,,4.0,,,0 days 00:01:33.601000,0 days 00:01:32.079000,0 days 00:01:31.562000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+1,,NOR,norris,McLaren,,mclaren,Lando,Norris,Lando Norris,,,5.0,,,0 days 00:01:32.775000,0 days 00:01:31.895000,0 days 00:01:31.712000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,6.0,,,0 days 00:01:33.617000,0 days 00:01:32.212000,0 days 00:01:31.747000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+81,,PIA,piastri,McLaren,,mclaren,Oscar,Piastri,Oscar Piastri,,,7.0,,,0 days 00:01:33.076000,0 days 00:01:32.245000,0 days 00:01:31.860000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+10,,GAS,gasly,Alpine F1 Team,,alpine,Pierre,Gasly,Pierre Gasly,,,8.0,,,0 days 00:01:33.182000,0 days 00:01:32.602000,0 days 00:01:32.225000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+30,,LAW,lawson,RB F1 Team,,rb,Liam,Lawson,Liam Lawson,,,9.0,,,0 days 00:01:32.885000,0 days 00:01:32.319000,0 days 00:01:32.369000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+41,,LIN,arvid_lindblad,RB F1 Team,,rb,Arvid,Lindblad,Arvid Lindblad,,,10.0,,,0 days 00:01:33.288000,0 days 00:01:32.498000,0 days 00:01:32.781000,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+27,,HUL,hulkenberg,Audi,,audi,Nico,Hülkenberg,Nico Hülkenberg,,,11.0,,,0 days 00:01:33.147000,0 days 00:01:32.784000,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+87,,BEA,bearman,Haas F1 Team,,haas,Oliver,Bearman,Oliver Bearman,,,12.0,,,0 days 00:01:33.356000,0 days 00:01:32.908000,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+31,,OCO,ocon,Haas F1 Team,,haas,Esteban,Ocon,Esteban Ocon,,,13.0,,,0 days 00:01:33.803000,0 days 00:01:33.323000,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+55,,SAI,sainz,Williams,,williams,Carlos,Sainz,Carlos Sainz,,,14.0,,,0 days 00:01:33.774000,0 days 00:01:33.526000,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,15.0,,,0 days 00:01:34.169000,0 days 00:01:33.658000,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,16.0,,,0 days 00:01:33.261000,0 days 00:01:33.787000,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,17.0,,,0 days 00:01:34.223000,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,18.0,,,0 days 00:01:34.289000,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,19.0,,,0 days 00:01:34.946000,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,20.0,,,0 days 00:01:35.123000,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,21.0,,,0 days 00:01:35.984000,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,22.0,,,,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
