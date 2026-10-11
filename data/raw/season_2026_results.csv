@@ -351,3 +351,25 @@ DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,First
 63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,20.0,20,7.0,,,,,Retired,0.0,49.0,2026,16,Bahrain Grand Prix,2026-10-04,Kuala Lumpur
 23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,21.0,R,18.0,,,,,Retired,0.0,41.0,2026,16,Bahrain Grand Prix,2026-10-04,Kuala Lumpur
 77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,22.0,R,19.0,,,,,Retired,0.0,7.0,2026,16,Bahrain Grand Prix,2026-10-04,Kuala Lumpur
+3,,VER,max_verstappen,Red Bull,,red_bull,Max,Verstappen,Max Verstappen,,,1.0,1,1.0,,,,0 days 01:42:00.785000,Finished,25.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+16,,LEC,leclerc,Ferrari,,ferrari,Charles,Leclerc,Charles Leclerc,,,2.0,2,2.0,,,,0 days 00:00:07.335000,Finished,18.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+12,,ANT,antonelli,Mercedes,,mercedes,Andrea Kimi,Antonelli,Andrea Kimi Antonelli,,,3.0,3,4.0,,,,0 days 00:00:24.573000,Finished,15.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+1,,NOR,norris,McLaren,,mclaren,Lando,Norris,Lando Norris,,,4.0,4,5.0,,,,0 days 00:00:40.506000,Finished,12.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+81,,PIA,piastri,McLaren,,mclaren,Oscar,Piastri,Oscar Piastri,,,5.0,5,6.0,,,,0 days 00:00:49.644000,Finished,10.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+44,,HAM,hamilton,Ferrari,,ferrari,Lewis,Hamilton,Lewis Hamilton,,,6.0,6,3.0,,,,0 days 00:00:53.188000,Finished,8.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+30,,LAW,lawson,RB F1 Team,,rb,Liam,Lawson,Liam Lawson,,,7.0,7,8.0,,,,0 days 00:01:21.666000,Finished,6.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+27,,HUL,hulkenberg,Audi,,audi,Nico,Hülkenberg,Nico Hülkenberg,,,8.0,8,10.0,,,,0 days 00:01:23.386000,Finished,4.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,9.0,9,19.0,,,,0 days 00:01:24.677000,Finished,2.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,10.0,10,22.0,,,,0 days 00:01:30.862000,Finished,1.0,62.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+10,,GAS,gasly,Alpine F1 Team,,alpine,Pierre,Gasly,Pierre Gasly,,,11.0,11,7.0,,,,0 days 00:00:02.171000,Lapped,0.0,61.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+87,,BEA,bearman,Haas F1 Team,,haas,Oliver,Bearman,Oliver Bearman,,,12.0,12,11.0,,,,0 days 00:00:05.006000,Lapped,0.0,61.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+31,,OCO,ocon,Haas F1 Team,,haas,Esteban,Ocon,Esteban Ocon,,,13.0,13,12.0,,,,0 days 00:00:25.647000,Lapped,0.0,61.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+55,,SAI,sainz,Williams,,williams,Carlos,Sainz,Carlos Sainz,,,14.0,14,13.0,,,,0 days 00:00:58.139000,Lapped,0.0,61.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+41,,LIN,arvid_lindblad,RB F1 Team,,rb,Arvid,Lindblad,Arvid Lindblad,,,15.0,15,9.0,,,,0 days 00:01:00.950000,Lapped,0.0,61.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,16.0,16,20.0,,,,0 days 00:01:14.454000,Lapped,0.0,61.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,17.0,17,17.0,,,,0 days 00:00:20.520000,Lapped,0.0,60.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,18.0,18,16.0,,,,,Retired,0.0,59.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,19.0,19,18.0,,,,0 days 00:00:17.347000,Lapped,0.0,59.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,20.0,R,21.0,,,,,Retired,0.0,36.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,21.0,R,15.0,,,,,Retired,0.0,29.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,22.0,R,14.0,,,,,Retired,0.0,7.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
