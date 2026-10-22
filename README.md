@@ -1,42 +1,70 @@
 # F1 Race Winner Predictor
 
-A machine learning project predicting Formula 1 race outcomes from qualifying performance, recent form, and circuit characteristics. Trained on 2022-2024 seasons, validated on the 2025 season as a true holdout, and deployed as an interactive dashboard.
+Predicts every driver's finishing position in Formula 1 races from qualifying, recent form and circuit type, and publishes a live prediction for each 2026 race as soon as qualifying ends.
 
-> **Status:** Phases 1–4 complete — validated model, live dashboard, head-to-head model benchmarks, and live predictions for 2026 race weekends. **[▶ Try the live dashboard](https://f1-race-predictor-orp.streamlit.app/)**. See [Roadmap](#roadmap) for the full picture.
+**[▶ Live dashboard](https://f1-race-predictor-orp.streamlit.app/)** · example race page: [2026 Singapore GP](https://f1-race-predictor-orp.streamlit.app/?season=2026&round=17)
 
-## Headline result
+## At a glance
 
-The final 6-feature linear regression was trained on 2022-2024 and tested on 24 races of 2025 — a season the model never saw during development.
+- **Validated on unseen seasons.** Trained on 2022–2024, tested on all of 2025, then on 2026 under brand-new regulations. Both times it beats the "finish in qualifying order" baseline on overall error.
+- **Live, with no manual steps.** A scheduled GitHub Action fetches each race weekend's data, rebuilds the features, runs the test suite and redeploys. The prediction for Sunday's race is up on Saturday evening.
+- **Honest numbers.** Unit tests caught a target leak in one of my own features; the headline figure dropped from 100% to 91.7% and the correction is documented below. Win probabilities are checked against real outcomes before being shown.
+- **Explainable.** For each driver, the dashboard shows exactly how qualifying, driver form and team form add up to the prediction.
+- **Engineered like a product:** append-only data loading with an API fallback, 36 pytest tests (features, data integrity, predictions and the app itself), shareable links per race.
 
-| Metric | Pole baseline | Linear Regression (final) |
+## How it works
+
+```mermaid
+flowchart LR
+    A["fastf1 + Jolpica API<br/>race & qualifying results"] --> B["load_season.py<br/>append new rounds"]
+    B --> C["features.py<br/>6 leak-free features"]
+    C --> D["predict.py<br/>linear regression +<br/>10,000 simulated races"]
+    D --> E["Streamlit dashboard"]
+    F["GitHub Action<br/>every 6h on race weekends"] -->|fetch, test, commit| B
+    E --> G(("Live site"))
+```
+
+For each driver and race, the model predicts a finishing position; the lowest prediction is the predicted winner. Simulating each race 10,000 times with the model's own past errors turns those positions into win and podium chances.
+
+## Results
+
+| | Pole baseline | Model |
 |---|---|---|
-| RMSE | 4.69 | **4.25** |
-| Top-1 accuracy | 66.7% | 50.0% |
-| Top-3 accuracy | 95.8% | 91.7% (22/24 races) |
+| **2025 holdout** (24 races, never seen during development) | | |
+| RMSE (positions) | 4.69 | **4.25** |
+| Winner in predicted top 3 | 95.8% | 91.7% (22/24) |
+| Exact winner | 66.7% | 50.0% |
+| **2026 so far** (rounds 1–16, new regulations) | | |
+| RMSE (positions) | 5.14 | **4.77** |
+| Winner in predicted top 3 | 93.8% | 87.5% (14/16) |
+| Exact winner | 68.8% | 68.8% |
 
-The model beats the pole baseline by **0.44 positions of RMSE** — it predicts the whole field's finishing order substantially better, and puts the eventual winner in its top 3 in 22 of 24 races. The pole baseline is better at naming the exact winner (2025 had unusually high pole-to-win conversion), but it says nothing about the other 19 drivers; the model ranks the entire grid.
+The model's edge is ranking the whole grid: it beats the pole baseline on RMSE by 0.44 positions in 2025 and 0.36 in 2026. Picking the pole-sitter is better at naming the exact winner, but it says nothing about the other 19–21 drivers.
+
+*2026 figures as of round 16 (Bahrain, 4 Oct 2026). The season updates automatically; the [dashboard](https://f1-race-predictor-orp.streamlit.app/) sidebar always shows the current numbers.*
 
 > **Correction (Sept 2026):** earlier versions of this README reported 100% top-3 accuracy. That figure was inflated by a leak in `TeamFormLast3`: team form was computed over the team's previous *rows*, and with two cars per race the second driver's feature included their teammate's result from the same race. Team form is now aggregated per race before the rolling window, a regression test guards it, and all numbers above are from the corrected pipeline.
 
 ![2025 race-by-race accuracy](notebooks/chart_2025_race_accuracy.png)
 
-### Surviving the 2026 regulation reset
+## What I'd do next
 
-2026 brought new chassis and power-unit rules, a 22-car grid (Cadillac) and Audi replacing Sauber. The model — trained only on the 2022–2025 era — was tested on every 2026 race run so far ([notebook 07](notebooks/07_validation_2026.ipynb)):
+- **Practice-pace features** (long-run pace from Friday practice) for an earlier, pre-qualifying prediction. Blocked for now: fastf1 3.7 can't parse 2026 car telemetry.
+- **Use the official starting grid** once it's published. The model currently assumes grid = qualifying order, so it misses late grid penalties (Hadjar at Bahrain 2026).
+- **Season review** after the final race (Abu Dhabi, 6 Dec 2026).
 
-| 2026, rounds 1–16 | Pole baseline | Linear Regression |
-|---|---|---|
-| RMSE | 5.14 | **4.77** |
-| Top-1 accuracy | 68.8% | 68.8% |
-| Top-3 accuracy | 93.8% | 87.5% |
+---
 
-The RMSE advantage over the pole baseline (+0.36 positions) is close to the 2025 holdout's (+0.44): qualifying and form features don't depend on the rulebook. Absolute errors rise for both, as expected with a bigger grid and new cars.
+## Dashboard
 
-*Figures as of round 16 (Bahrain, 4 Oct 2026). The season updates automatically; the [dashboard](https://f1-race-predictor-orp.streamlit.app/) sidebar always shows the current numbers.*
+Pick any race from 2023–2026, or the next 2026 race once qualifying is done:
 
-## Live demo
+- predicted vs actual podium, and the full grid with each driver's chance to win and reach the podium ([calibration check: notebook 08](notebooks/08_win_probability_calibration.ipynb))
+- a race-story chart tracing every driver from qualifying to predicted finish to result
+- a per-driver breakdown of why the model predicts each position (exact for a linear model)
+- accuracy in F1 timing colours, circuit maps drawn from car position data, and a next-race countdown
 
-**[▶ Try the dashboard](https://f1-race-predictor-orp.streamlit.app/)** — select any race from 2023–2026 and see predicted vs actual podiums, or the live prediction for the next 2026 race once qualifying is done, full-grid predictions with each driver's chance to win and reach the podium (from 10,000 simulated races, calibrated on past seasons — [notebook 08](notebooks/08_win_probability_calibration.ipynb)), a per-driver breakdown of *why* the model predicts each position (exact for a linear model: qualifying, driver form and team form add up to the prediction), a race-story chart tracing every driver from qualifying to predicted finish to result, and biggest-climber callouts, rendered in F1 broadcast styling with team colours. Every race has a shareable link, e.g. [`?season=2026&round=15`](https://f1-race-predictor-orp.streamlit.app/?season=2026&round=15).
+Every race has a shareable link, e.g. [`?season=2026&round=17`](https://f1-race-predictor-orp.streamlit.app/?season=2026&round=17).
 
 ## Key findings from multi-season EDA (2022-2024)
 
@@ -44,13 +72,13 @@ The RMSE advantage over the pole baseline (+0.36 positions) is close to the 2025
 
 ![Champions by season](notebooks/chart_champions_by_season.png)
 
-Verstappen won every championship in the dataset, but the margin to second place collapsed from 270 points (2023) to 55 points (2024) — the largest year-on-year compression in modern F1.
+Verstappen won every championship in the dataset, but the margin to second place collapsed from 270 points (2023) to 55 points (2024), the largest year-on-year compression in modern F1.
 
 ### Constructor balance reset between 2023 and 2024
 
 ![Constructor dominance](notebooks/chart_constructor_dominance.png)
 
-Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024 — a ~60 percentage point swing. McLaren went from zero wins to 25%, the steepest single-season rise in the dataset.
+Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024, a ~60 percentage point swing. McLaren went from zero wins to 25%, the steepest single-season rise in the dataset.
 
 ### Qualifying predictiveness rose, then broke trend in 2025
 
@@ -66,9 +94,9 @@ Red Bull's win rate fell from 95.5% in 2023 to 37.5% in 2024 — a ~60 percentag
 
 \*2026 season in progress (rounds 1–16), new regulations.
 
-Grid → finish correlation rose steadily through the 2022 regulation cycle as cars converged, peaking in 2024. The 2025 figure broke the trend — qualifying became *less* predictive of race outcomes than in 2024. The likely driver is increased mid-season car development volatility ahead of the 2026 regulation reset, though small-sample noise can't be ruled out.
+Grid → finish correlation rose steadily through the 2022 regulation cycle as cars converged, peaking in 2024. The 2025 figure broke the trend: qualifying became *less* predictive of race outcomes than in 2024. The likely driver is increased mid-season car development volatility ahead of the 2026 regulation reset, though small-sample noise can't be ruled out.
 
-**Implication for modelling**: a model cannot assume grid-to-finish stationarity across seasons. This is exactly why the 2025 holdout matters — it's the cleanest possible test of whether features generalise across regimes, not just within a single trend.
+**Implication for modelling**: a model cannot assume grid-to-finish stationarity across seasons. This is why the 2025 holdout matters: it's the cleanest possible test of whether features generalise across regimes, not just within a single trend.
 
 ## Modelling approach
 
@@ -76,7 +104,7 @@ Grid → finish correlation rose steadily through the 2022 regulation cycle as c
 
 Reformulated "predict the winner" as **regression on finish position**. For each driver-race row, predict the finish position; pick the lowest predicted as winner. Advantages over binary classification: every row carries a label, no class imbalance issues, and the same model gives podium predictions for free.
 
-**Retirements are kept, not dropped.** A driver who retires keeps their official classified position (usually at the back of the field), so the model learns that a DNF is a bad result — which is how it should read for anyone using the predictions. Only non-starters, who have no finish position, are excluded.
+**Retirements are kept, not dropped.** A driver who retires keeps their official classified position (usually at the back of the field), so the model learns that a DNF is a bad result, which is how it should read for anyone using the predictions. Only non-starters, who have no finish position, are excluded.
 
 ### Feature engineering
 
@@ -93,31 +121,31 @@ Six features, each leak-free (rolling features use `.shift(1)` to prevent target
 
 Three additional feature iterations (driver-circuit history, team momentum slope, qualifying gap z-score, pole-to-P2 gap, race-vs-quali pace, grid penalty indicator) were tested and dropped after diagnostics showed redundancy with the core feature set.
 
-A driver DNF-rate feature was originally dismissed as uninformative, but that was a bug: it counted rows with no finish position, and retirements keep their classified position, so the rate was almost always 0. Fixed (Sept 2026) to use the official classification and retested as a 7th feature: a small gain on 2024/2025 but worse on 2026 (top-1 66.7% → 46.7%), with a counter-intuitive sign — not adopted.
+A driver DNF-rate feature was originally dismissed as uninformative, but that was a bug: it counted rows with no finish position, and retirements keep their classified position, so the rate was almost always 0. Fixed (Sept 2026) to use the official classification and retested as a 7th feature: a small gain on 2024/2025 but worse on 2026 (top-1 66.7% → 46.7%), with a counter-intuitive sign, so it was not adopted.
 
 ### Train/test methodology
 
-Strict temporal splits — never random:
+Strict temporal splits, never random:
 
 - **Initial selection**: train 2022-2023, test 2024
 - **Final validation**: train 2022-2024, test 2025 (true holdout, never used during model selection)
+- **Live 2026**: each race is predicted by a model trained only on earlier seasons
 - **Hyperparameter tuning**: TimeSeriesSplit cross-validation within training data
 
 ### Models compared
 
-Pole baseline, form baseline, linear regression, XGBoost (default), XGBoost (tuned via 81-combination GridSearchCV).
+Pole baseline, form baseline, linear regression, Random Forest and XGBoost (both tuned with GridSearchCV).
 
 ![Feature importance](notebooks/chart_feature_importance.png)
 
-The 6-feature linear regression was selected as the final model — best generalisation, fewest hyperparameters to defend, most interpretable coefficients. XGBoost showed mild overfitting that tuning didn't fully resolve.
+The 6-feature linear regression was selected as the final model: best generalisation, fewest hyperparameters to defend, most interpretable coefficients. Random Forest roughly ties it on 2025 RMSE (4.24 vs 4.25) but overfits, with train–test gaps of +0.265 (RF) and +0.262 (XGBoost) against +0.043 for linear regression, and lower top-3 accuracy (87.5% vs 91.7%).
 
 ## Tech stack
 
-- **Python 3.9**
-- **Data**: `fastf1` (primary), Jolpica API (Ergast replacement fallback)
-- **Analysis**: `pandas`, `numpy`, `matplotlib`, `seaborn`
-- **Modelling**: `scikit-learn 1.6`, `xgboost 2.1`
-- **Deployment**: - Streamlit Community Cloud — [live dashboard](https://f1-race-predictor-orp.streamlit.app/)
+- **Python 3.9**: `pandas`, `numpy`, `scikit-learn`, `xgboost` (benchmarks), `matplotlib`, `seaborn`
+- **Data**: `fastf1` (primary), Jolpica API (Ergast replacement, fallback)
+- **App**: Streamlit on Streamlit Community Cloud
+- **Automation and testing**: GitHub Actions, `pytest`
 
 ## Project structure
 
@@ -127,9 +155,9 @@ f1-race-predictor/
 ├── app.py                                # Streamlit dashboard (entry point)
 ├── cache/                                # fastf1 local cache (gitignored)
 ├── data/
-│   ├── raw/                              # raw race + qualifying results per season
-│   └── processed/
-│       └── features.csv        # engineered feature dataset
+│   ├── raw/                              # race + qualifying results per season, 2026 calendar
+│   ├── processed/features.csv            # engineered feature dataset
+│   └── circuits.json                     # track outlines for the dashboard
 ├── notebooks/
 │   ├── 01_eda_2024_season.ipynb          # single-season exploration
 │   ├── 02_multi_season_eda.ipynb         # 2022–2024 comparative analysis
@@ -142,14 +170,15 @@ f1-race-predictor/
 ├── src/
 │   ├── load_season.py                    # season data loader (fastf1 + Jolpica)
 │   ├── features.py                       # feature engineering module
-│   ├── predict.py                        # training + per-race prediction logic
+│   ├── predict.py                        # training, prediction, simulations, explanations
 │   ├── circuits.py                       # track outlines from fastf1 position data
 │   └── team_colors.py                    # F1 team colour mapping for the UI
-├── tests/test_features.py                # pytest suite: features, data integrity, predictions
+├── tests/
+│   ├── test_features.py                  # features, data integrity, predictions
+│   └── test_app.py                       # dashboard: links, fallbacks, future races
 ├── requirements.txt
 └── README.md
 ```
-
 
 ## Setup
 
@@ -188,9 +217,15 @@ Track outlines for the dashboard (run locally; only fetches circuits not yet sav
 python3 src/circuits.py
 ```
 
+Run the dashboard:
+
+```bash
+streamlit run app.py
+```
+
 Run notebooks in order (`01` → `08`) to reproduce the full analysis.
 
-Run the tests (install `pytest` in your venv first — it isn't in `requirements.txt` because the deployed app doesn't need it):
+Run the tests (install `pytest` in your venv first; it isn't in `requirements.txt` because the deployed app doesn't need it):
 
 ```bash
 pytest
@@ -198,7 +233,7 @@ pytest
 
 ### Live data updates (automated)
 
-A [GitHub Action](.github/workflows/update-data.yml) checks for new 2026 data every 6 hours from Friday to Monday. When qualifying or a race result lands, it rebuilds the features, runs the tests and pushes — Streamlit Cloud redeploys, so the dashboard shows the next race's prediction after qualifying and the result after the race. It can also be run by hand from the repo's **Actions** tab (**Run workflow**).
+A [GitHub Action](.github/workflows/update-data.yml) checks for new 2026 data every 6 hours from Friday to Monday. When qualifying or a race result lands, it rebuilds the features, runs the tests and pushes. Streamlit Cloud redeploys, so the dashboard shows the next race's prediction after qualifying and the result after the race. It can also be run by hand from the repo's **Actions** tab (**Run workflow**).
 
 Because the Action commits to `main`, run `git pull` before working locally. To update by hand instead:
 
@@ -206,43 +241,15 @@ Because the Action commits to `main`, run `git pull` before working locally. To 
 python3 src/load_season.py 2026 && python3 src/features.py && pytest && git add -A && git commit -m "2026 data update" && git push
 ```
 
-## What this project demonstrates
+## Project history
 
-- **End-to-end ML pipeline**: raw data → cleaning → feature engineering → temporal validation → deployment
-- **Honest negative results**: documented two failed feature engineering iterations alongside the successful approach
-- **True holdout validation**: model selected on 2024 was tested on 2025 (genuinely unseen) — the strongest possible generalisation test
-- **Production-quality engineering**: defensive data loading with API fallback, leak-free rolling features, reusable evaluation framework, time-series-aware cross-validation
-- **Clear analytical writing**: every modelling decision documented with reasoning, including non-obvious findings (e.g. season-level non-stationarity affecting cross-validation strategy)
-
-
-### Phase 1: Validated model (complete)
-- Multi-season data pipeline (2022–2026)
-- Feature engineering with leak prevention
-- Baseline + tuned ML models (Linear Regression, XGBoost)
-- True holdout validation on 2025 — beats the pole baseline on RMSE (4.25 vs 4.69), winner in top 3 in 22/24 races
-
-### Phase 2: Interactive dashboard (complete)
-- Streamlit dashboard with race-by-race predictions and team-coloured visualisations
-- Live deployment → [f1-race-predictor-orp.streamlit.app](https://f1-race-predictor-orp.streamlit.app/)
-- Per-race view: predicted vs actual podium, full-grid predictions with win/podium chances, biggest-climber callouts
-
-### Phase 3: Model expansion (complete)
-- Random Forest and tuned XGBoost benchmarked head-to-head against linear regression on the 2025 holdout
-- Random Forest roughly ties linear regression on 2025 RMSE (4.24 vs 4.25) but overfits: train–test gaps of +0.265 (RF) and +0.262 (XGBoost) against +0.043 for linear regression, with lower top-3 accuracy (87.5% vs 91.7%)
-- 6-feature linear regression confirmed as the right production choice
-
-### Phase 4: Engineering polish + live 2026 predictions (complete)
-- pytest suite covering feature engineering, data integrity and predictions; found and fixed a teammate leak in `TeamFormLast3`
-- Model tested on the 2026 season across the regulation reset — RMSE advantage over the pole baseline holds
-- Live predictions for upcoming 2026 races, built from qualifying before the race is run; debut drivers and new teams get estimated form (marked in the UI)
-
-- Scheduled GitHub Action keeps 2026 data and predictions current without manual steps
-
-### Next
-- Race telemetry features via fastf1 lap data
+1. **Validated model**: multi-season data pipeline, leak-free features, temporal validation on 2025.
+2. **Interactive dashboard**: Streamlit app deployed to Streamlit Community Cloud.
+3. **Model comparison**: Random Forest and XGBoost benchmarked against linear regression; linear regression kept (see above).
+4. **Live 2026 predictions**: pytest suite (which caught the team-form leak), 2026 validation, calibrated win/podium chances, per-driver explanations, automated weekly updates and a broadcast-style redesign.
 
 ## Author
 
-**Om Patil** — MSc Data Science, Newcastle University (graduating September 2026). Open to UK Data Science / Data Analyst roles. Holds Graduate Visa (no sponsorship required).
+**Om Patil**, MSc Data Science, Newcastle University (2026). Open to UK Data Science / Data Analyst roles. Holds Graduate Visa (no sponsorship required).
 
 [LinkedIn](https://www.linkedin.com/in/om-patil-nu) · [GitHub](https://github.com/Om-Ravindra-Patil)
