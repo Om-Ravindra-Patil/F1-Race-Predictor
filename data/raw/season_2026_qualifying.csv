@@ -373,3 +373,25 @@ DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,First
 11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,20.0,,,0 days 00:01:35.123000,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
 77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,21.0,,,0 days 00:01:35.984000,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
 6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,22.0,,,,,,,,,,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+12,,ANT,antonelli,Mercedes,,mercedes,Andrea Kimi,Antonelli,Andrea Kimi Antonelli,,,1.0,,,0 days 00:01:35.390000,0 days 00:01:34.278000,0 days 00:01:34.035000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+3,,VER,max_verstappen,Red Bull,,red_bull,Max,Verstappen,Max Verstappen,,,2.0,,,0 days 00:01:35.215000,0 days 00:01:34.471000,0 days 00:01:34.214000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,3.0,,,0 days 00:01:35.286000,0 days 00:01:34.887000,0 days 00:01:34.250000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+16,,LEC,leclerc,Ferrari,,ferrari,Charles,Leclerc,Charles Leclerc,,,4.0,,,0 days 00:01:35.200000,0 days 00:01:34.198000,0 days 00:01:34.267000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+44,,HAM,hamilton,Ferrari,,ferrari,Lewis,Hamilton,Lewis Hamilton,,,5.0,,,0 days 00:01:35.355000,0 days 00:01:34.833000,0 days 00:01:34.311000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,6.0,,,0 days 00:01:35.730000,0 days 00:01:34.305000,0 days 00:01:34.476000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+81,,PIA,piastri,McLaren,,mclaren,Oscar,Piastri,Oscar Piastri,,,7.0,,,0 days 00:01:35.842000,0 days 00:01:34.818000,0 days 00:01:34.803000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+1,,NOR,norris,McLaren,,mclaren,Lando,Norris,Lando Norris,,,8.0,,,0 days 00:01:35.029000,0 days 00:01:34.539000,0 days 00:01:35.049000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+41,,LIN,arvid_lindblad,RB F1 Team,,rb,Arvid,Lindblad,Arvid Lindblad,,,9.0,,,0 days 00:01:35.755000,0 days 00:01:34.950000,0 days 00:01:36.049000,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+30,,LAW,lawson,RB F1 Team,,rb,Liam,Lawson,Liam Lawson,,,10.0,,,0 days 00:01:35.662000,0 days 00:01:35.058000,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+10,,GAS,gasly,Alpine F1 Team,,alpine,Pierre,Gasly,Pierre Gasly,,,11.0,,,0 days 00:01:35.969000,0 days 00:01:35.080000,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+27,,HUL,hulkenberg,Audi,,audi,Nico,Hülkenberg,Nico Hülkenberg,,,12.0,,,0 days 00:01:35.704000,0 days 00:01:35.158000,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,13.0,,,0 days 00:01:35.632000,0 days 00:01:35.691000,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,14.0,,,0 days 00:01:35.898000,0 days 00:01:35.722000,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,15.0,,,0 days 00:01:36.240000,0 days 00:01:35.818000,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+87,,BEA,bearman,Haas F1 Team,,haas,Oliver,Bearman,Oliver Bearman,,,16.0,,,0 days 00:01:36.175000,0 days 00:01:36.031000,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+31,,OCO,ocon,Haas F1 Team,,haas,Esteban,Ocon,Esteban Ocon,,,17.0,,,0 days 00:01:36.531000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,18.0,,,0 days 00:01:36.677000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+55,,SAI,sainz,Williams,,williams,Carlos,Sainz,Carlos Sainz,,,19.0,,,0 days 00:01:36.770000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,20.0,,,0 days 00:01:36.967000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,21.0,,,0 days 00:01:37.433000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,22.0,,,0 days 00:01:37.523000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
