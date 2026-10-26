@@ -373,3 +373,25 @@ DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,First
 18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,20.0,R,21.0,,,,,Retired,0.0,36.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
 43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,21.0,R,15.0,,,,,Retired,0.0,29.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
 5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,22.0,R,14.0,,,,,Retired,0.0,7.0,2026,17,Singapore Grand Prix,2026-10-11,Marina Bay
+12,,ANT,antonelli,Mercedes,,mercedes,Andrea Kimi,Antonelli,Andrea Kimi Antonelli,,,1.0,1,1.0,,,,0 days 01:35:16.650000,Finished,25.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+16,,LEC,leclerc,Ferrari,,ferrari,Charles,Leclerc,Charles Leclerc,,,2.0,2,4.0,,,,0 days 00:00:13.078000,Finished,18.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+3,,VER,max_verstappen,Red Bull,,red_bull,Max,Verstappen,Max Verstappen,,,3.0,3,2.0,,,,0 days 00:00:17.485000,Finished,15.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+44,,HAM,hamilton,Ferrari,,ferrari,Lewis,Hamilton,Lewis Hamilton,,,4.0,4,5.0,,,,0 days 00:00:18.515000,Finished,12.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+1,,NOR,norris,McLaren,,mclaren,Lando,Norris,Lando Norris,,,5.0,5,8.0,,,,0 days 00:00:30.521000,Finished,10.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,6.0,6,3.0,,,,0 days 00:00:34.373000,Finished,8.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+81,,PIA,piastri,McLaren,,mclaren,Oscar,Piastri,Oscar Piastri,,,7.0,7,7.0,,,,0 days 00:00:52.674000,Finished,6.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,8.0,8,6.0,,,,0 days 00:00:54.303000,Finished,4.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+30,,LAW,lawson,RB F1 Team,,rb,Liam,Lawson,Liam Lawson,,,9.0,9,9.0,,,,0 days 00:01:19.183000,Finished,2.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+10,,GAS,gasly,Alpine F1 Team,,alpine,Pierre,Gasly,Pierre Gasly,,,10.0,10,10.0,,,,0 days 00:01:27.516000,Finished,1.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+27,,HUL,hulkenberg,Audi,,audi,Nico,Hülkenberg,Nico Hülkenberg,,,11.0,11,11.0,,,,0 days 00:01:34.945000,Finished,0.0,56.0,2026,18,United States Grand Prix,2026-10-25,Austin
+41,,LIN,arvid_lindblad,RB F1 Team,,rb,Arvid,Lindblad,Arvid Lindblad,,,12.0,12,14.0,,,,0 days 00:00:06.344000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,13.0,13,21.0,,,,0 days 00:00:14.197000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+31,,OCO,ocon,Haas F1 Team,,haas,Esteban,Ocon,Esteban Ocon,,,14.0,14,15.0,,,,0 days 00:00:21.042000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,15.0,15,22.0,,,,0 days 00:00:49.418000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,16.0,16,12.0,,,,0 days 00:01:00.668000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,17.0,17,17.0,,,,0 days 00:01:02.176000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+55,,SAI,sainz,Williams,,williams,Carlos,Sainz,Carlos Sainz,,,18.0,18,16.0,,,,0 days 00:01:02.835000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,19.0,19,18.0,,,,0 days 00:01:22.809000,Lapped,0.0,55.0,2026,18,United States Grand Prix,2026-10-25,Austin
+77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,20.0,R,19.0,,,,,Retired,0.0,48.0,2026,18,United States Grand Prix,2026-10-25,Austin
+43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,21.0,R,20.0,,,,,Retired,0.0,35.0,2026,18,United States Grand Prix,2026-10-25,Austin
+87,,BEA,bearman,Haas F1 Team,,haas,Oliver,Bearman,Oliver Bearman,,,22.0,R,13.0,,,,,Retired,0.0,24.0,2026,18,United States Grand Prix,2026-10-25,Austin
