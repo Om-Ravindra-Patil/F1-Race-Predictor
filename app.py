@@ -31,7 +31,7 @@ season_metrics = cache(predict.season_metrics)
 # F1 timing-screen language for prediction accuracy: purple = exactly right,
 # green = within 2 places, yellow = further off. Validated on the dark surface
 # (colour-blind separation 12.3); always shown with the number, never colour alone.
-TIMING_EXACT, TIMING_CLOSE, TIMING_OFF = "#A855F7", "#10B981", "#FBBF24"
+TIMING_EXACT, TIMING_CLOSE, TIMING_OFF = "#B06CF8", "#10B981", "#FBBF24"
 
 
 def timing_colour(delta: float) -> str:
@@ -39,6 +39,12 @@ def timing_colour(delta: float) -> str:
     if abs(delta) == 0:
         return TIMING_EXACT
     return TIMING_CLOSE if abs(delta) <= 2 else TIMING_OFF
+
+
+def team_chip(colour: str) -> str:
+    """Small team-colour square shown before a team name (the name itself stays in text colour)."""
+    return (f'<span style="display:inline-block;width:8px;height:8px;border-radius:2px;'
+            f'background:{colour};margin-right:0.4rem;vertical-align:1px;"></span>')
 
 
 def chance(p: float) -> str:
@@ -94,11 +100,7 @@ F1_SURFACE = "#12161F"  # sidebar
 F1_DARK_2 = "#161B26"   # cards (data colours validated against this)
 F1_LIGHT = "#FFFFFF"
 F1_GREY = "#949498"
-# Neon accents are decoration only (borders, glows, highlights). Colours that carry
-# meaning in the data (gain/lose bars, timing colours, podium medals) are separate.
-NEON_CYAN = "#00F2FE"
-NEON_BLUE = "#0066FF"
-NEON_GOLD = "#FFB800"
+F1_RED_DEEP = "#E10600"  # behind white text (passes 4.5:1, F1_RED doesn't)
 
 st.markdown(f"""
 <style>
@@ -123,39 +125,6 @@ st.markdown(f"""
         top: 0;
         z-index: 50;
         pointer-events: none;
-    }}
-
-    /* Validation banner — chyron-style */
-    .f1-validation-banner {{
-        background: linear-gradient(90deg, rgba(225, 6, 0, 0.12) 0%, rgba(225, 6, 0, 0.02) 100%);
-        border-left: 3px solid {F1_RED};
-        padding: 0.65rem 1.25rem;
-        margin: 0.5rem 0 0 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-    }}
-    .f1-validation-banner-left {{ color: {F1_LIGHT}; }}
-    .f1-validation-banner-right {{ color: #00D26A; }}
-    .f1-validation-banner .pulse {{
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background: #00D26A;
-        border-radius: 50%;
-        margin-right: 0.5rem;
-        vertical-align: middle;
-        box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.7);
-        animation: pulse-glow 2s infinite;
-    }}
-    @keyframes pulse-glow {{
-        0% {{ box-shadow: 0 0 0 0 rgba(0, 210, 106, 0.6); }}
-        70% {{ box-shadow: 0 0 0 6px rgba(0, 210, 106, 0); }}
-        100% {{ box-shadow: 0 0 0 0 rgba(0, 210, 106, 0); }}
     }}
 
     /* Hero header */
@@ -196,12 +165,11 @@ st.markdown(f"""
     .f1-metric-card {{
         background: {F1_DARK_2};
         border: 1px solid #2A2A38;
-        border-left: 3px solid {F1_RED};
         padding: 1.25rem 1.5rem;
         border-radius: 4px;
     }}
     .f1-metric-label {{
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -355,7 +323,7 @@ st.markdown(f"""
         }}
         .f1-pred-header, .f1-pred-row {{
             grid-template-columns: 40px 1.5fr 1fr 50px !important;
-            font-size: 0.7rem !important;
+            font-size: 0.75rem !important;
         }}
         /* Hide less-critical columns on mobile to prevent squishing */
         .f1-pred-header > div:nth-child(5),
@@ -386,14 +354,7 @@ st.markdown(f"""
                   linear-gradient(45deg, rgba(255,255,255,0.022) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.022) 75%);
     }}
 
-    /* Page: carbon background with a faint technical grid */
-    .stApp {{
-        background-color: {F1_DARK};
-        background-image:
-            linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-        background-size: 48px 48px;
-    }}
+    .stApp {{ background-color: {F1_DARK}; }}
 
     /* Sidebar: carbon-fibre weave */
     section[data-testid="stSidebar"] {{
@@ -423,64 +384,42 @@ st.markdown(f"""
         border-radius: 6px !important;
         transition: border-color 0.2s, box-shadow 0.2s;
     }}
-    .stSelectbox [data-baseweb="select"] > div:hover {{ border-color: rgba(0,242,254,0.45) !important; }}
+    .stSelectbox [data-baseweb="select"] > div:hover {{ border-color: #4A5266 !important; }}
     .stSelectbox [data-baseweb="select"] > div:focus-within {{
-        border-color: {NEON_CYAN} !important;
-        box-shadow: 0 0 0 1px {NEON_CYAN}, 0 0 14px rgba(0,242,254,0.35) !important;
+        border-color: {F1_LIGHT} !important;
+        box-shadow: 0 0 0 1px {F1_LIGHT} !important;
     }}
 
-    /* Model performance: glass card with a blue-to-orange neon border */
+    /* Model performance */
     .perf-card {{
-        border: 1px solid transparent;
-        border-radius: 10px;
+        border: 1px solid #2A3040;
+        border-radius: 6px;
         padding: 0.85rem 1rem;
-        background:
-            linear-gradient(rgba(22,27,38,0.88), rgba(22,27,38,0.88)) padding-box,
-            linear-gradient(135deg, {NEON_BLUE}, #FF8A00) border-box;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 0 18px rgba(0,102,255,0.12);
+        background: {F1_DARK_2};
         font-size: 0.85rem; color: {F1_GREY}; line-height: 1.6;
     }}
     .perf-season + .perf-season {{ border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.7rem; padding-top: 0.7rem; }}
     .perf-season-title {{ font-family: var(--display); font-weight: 700; font-size: 1rem; color: {F1_LIGHT}; letter-spacing: 0.06em; }}
 
-    /* Live pill on the next-race banner */
+    /* Next-race label */
     .live-pill {{
-        display: inline-flex; align-items: center; gap: 0.4rem;
-        background: {F1_RED}; color: #fff; border-radius: 999px;
+        display: inline-flex; align-items: center;
+        background: {F1_RED_DEEP}; color: #fff; border-radius: 999px;
         padding: 0.15rem 0.65rem; font-family: var(--display);
         font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
     }}
-    .live-dot {{
-        width: 7px; height: 7px; border-radius: 50%; background: #fff;
-        animation: live-pulse 1.6s ease-in-out infinite;
-    }}
-    @keyframes live-pulse {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.25; }} }}
 
     /* Hero with circuit outline */
     .f1-hero {{ display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }}
-    .hero-circuit {{ width: 210px; flex-shrink: 0; filter: drop-shadow(0 0 6px rgba(0,242,254,0.45)); }}
+    .hero-circuit {{ width: 210px; flex-shrink: 0; opacity: 0.85; }}
 
-    /* Stat cards: tachometer speed lines on top, glow on hover */
+    /* Stat cards: lift slightly on hover */
     .f1-metric-card {{
-        position: relative; overflow: hidden;
-        border-left: 3px solid {F1_RED} !important;
-        background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%), {F1_DARK_2} !important;
-        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        background: {F1_DARK_2} !important;
+        transition: transform 0.2s, border-color 0.2s;
     }}
-    .f1-metric-card::before {{
-        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-        background: repeating-linear-gradient(90deg, {F1_RED} 0 3px, transparent 3px 7px);
-        -webkit-mask-image: linear-gradient(90deg, #000, transparent 85%);
-                mask-image: linear-gradient(90deg, #000, transparent 85%);
-        opacity: 0.85;
-    }}
-    .f1-metric-card:hover {{
-        transform: translateY(-2px);
-        border-color: rgba(0,242,254,0.4) !important;
-        box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 0 18px rgba(0,242,254,0.18);
-    }}
-    .f1-metric-value {{ font-size: 2.6rem !important; font-weight: 800 !important; text-shadow: 0 0 14px rgba(0,242,254,0.25); }}
+    .f1-metric-card:hover {{ transform: translateY(-2px); border-color: #4A5266 !important; }}
+    .f1-metric-value {{ font-size: 2.6rem !important; font-weight: 800 !important; }}
 
     /* Podium: 3D blocks in team colour */
     .podium-block {{
@@ -498,8 +437,7 @@ st.markdown(f"""
     .podium-code {{ font-size: 1.9rem !important; font-weight: 800; }}
 
     /* Cards: soft glow on hover */
-    .why-card {{ position: relative; overflow: hidden; transition: box-shadow 0.2s, border-color 0.2s; }}
-    .why-card:hover {{ border-color: rgba(0,242,254,0.35) !important; box-shadow: 0 0 20px rgba(0,242,254,0.12); }}
+    .why-card {{ position: relative; overflow: hidden; }}
     .why-watermark {{
         position: absolute; right: 2%; bottom: -10%; width: 34%; opacity: 0.07; pointer-events: none;
     }}
@@ -512,8 +450,8 @@ st.markdown(f"""
     .race-story .rs-driver:hover .rs-label {{ fill: {F1_LIGHT}; font-weight: 700; }}
 
     /* Predictions table: row glow on hover */
-    .f1-pred-row {{ transition: background 0.15s, box-shadow 0.15s; }}
-    .f1-pred-row:hover {{ background: rgba(0,242,254,0.04) !important; box-shadow: inset 3px 0 0 {NEON_CYAN}; }}
+    .f1-pred-row {{ transition: background 0.15s; }}
+    .f1-pred-row:hover {{ background: rgba(255,255,255,0.03) !important; }}
 
     @media (max-width: 640px) {{
         .hero-circuit {{ display: none; }}
@@ -603,7 +541,7 @@ with st.sidebar:
         <div style='font-size: 0.8rem; color: {F1_GREY};'>
         Built by <a href='https://www.linkedin.com/in/om-patil-nu' style='color: {F1_RED}; text-decoration: none;'>Om Patil</a><br>
         <a href='https://github.com/Om-Ravindra-Patil/F1-Race-Predictor' style='color: {F1_RED}; text-decoration: none;'>GitHub</a><br><br>
-        <span style='font-size: 0.7rem;'>Unofficial fan project. Not associated with Formula 1, the FIA or any team.</span>
+        <span style='font-size: 0.75rem;'>Unofficial fan project. Not associated with Formula 1, the FIA or any team.</span>
         </div>
         """,
         unsafe_allow_html=True,
@@ -634,9 +572,9 @@ if not upcoming_events.empty:
                   f"style='color:{F1_RED};text-decoration:none;font-weight:700;'>see the prediction →</a>")
     st.markdown(
         f"<div style='display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:baseline;"
-        f"background:{F1_DARK_2};border:1px solid #2A2A38;border-left:4px solid {F1_RED};"
+        f"background:{F1_DARK_2};border:1px solid #2A2A38;"
         f"border-radius:4px;padding:0.6rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:{F1_GREY};'>"
-        f"<span class='live-pill'><span class='live-dot'></span>NEXT RACE</span>"
+        f"<span class='live-pill'>NEXT RACE</span>"
         f"<span style='color:{F1_LIGHT};font-weight:700;'>R{nxt['Round']} · {nxt['EventName']}</span>"
         f"<span>{status}</span></div>",
         unsafe_allow_html=True,
@@ -655,9 +593,9 @@ if selected_round in future["Round"].values:
         <h1 class="f1-hero-title">{event['EventName']}</h1>
         <div class="f1-hero-subtitle">{event['Location']} · {event['RaceUtc']:%A %d %B %Y}</div>
     </div>
-    {circuit_svg(event['Location'], "hero-circuit", NEON_CYAN, 2.5)}
+    {circuit_svg(event['Location'], "hero-circuit", F1_LIGHT, 2)}
 </div>
-<div style="background:{F1_DARK_2};border:1px solid #2A2A38;border-left:4px solid #FFC107;border-radius:4px;padding:1.5rem;">
+<div style="background:{F1_DARK_2};border:1px solid #2A2A38;border-radius:4px;padding:1.5rem;">
     <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#FFC107;margin-bottom:0.75rem;">Prediction not available yet</div>
     <div style="color:{F1_LIGHT};font-size:1.05rem;margin-bottom:0.75rem;">
         The prediction appears after qualifying on <strong>{event['QualifyingUtc']:%A %d %B, %H:%M} UTC</strong>.
@@ -740,7 +678,7 @@ st.markdown(f"""
         <h1 class="f1-hero-title">{metadata['event_name']}</h1>
         <div class="f1-hero-subtitle">{metadata['circuit']} · {metadata['event_date']}</div>
     </div>
-    {circuit_svg(metadata['circuit'], "hero-circuit", NEON_CYAN, 2.5)}
+    {circuit_svg(metadata['circuit'], "hero-circuit", F1_LIGHT, 2)}
 </div>
 """, unsafe_allow_html=True)
 
@@ -807,8 +745,8 @@ def render_podium_box(row, position: int, height_px: int) -> str:
         f'<div class="podium-col" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;margin:0 0.4rem;">'
         f'<div style="text-align:center;margin-bottom:0.75rem;min-height:60px;">'
         f'<div class="podium-code" style="color:{F1_LIGHT};line-height:1;">{driver_code}</div>'
-        f'<div style="font-size:0.7rem;color:{F1_GREY};margin-top:0.3rem;line-height:1.3;">{full_name}</div>'
-        f'<div style="font-size:0.65rem;color:{team_color};margin-top:0.2rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">{team}</div>'
+        f'<div style="font-size:0.75rem;color:{F1_GREY};margin-top:0.3rem;line-height:1.3;">{full_name}</div>'
+        f'<div style="font-size:0.75rem;color:#C9CCD6;margin-top:0.2rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">{team_chip(team_color)}{team}</div>'
         f'</div>'
         f'<div class="podium-block" style="--team:{team_color};width:100%;height:{height_px}px;border-top:4px solid {team_color};border-radius:4px 4px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:1rem;box-shadow:0 -2px 8px rgba(0,0,0,0.3);">'
         f'<div class="podium-pos" style="font-size:2.8rem;font-weight:800;color:{pos_color};line-height:1;text-shadow:0 2px 4px rgba(0,0,0,0.5);">P{position}</div>'
@@ -907,7 +845,7 @@ st.markdown(f"""
 .why-zero {{ position:absolute; left:50%; top:-4px; bottom:-4px; width:1px; background:#4A4A58; }}
 .why-bar {{ position:absolute; top:0; height:14px; }}
 .why-value {{ color:{F1_LIGHT}; font-size:0.85rem; font-variant-numeric:tabular-nums; text-align:right; }}
-.why-legend {{ display:flex; justify-content:space-between; color:{F1_GREY}; font-size:0.72rem; margin-top:0.75rem; }}
+.why-legend {{ display:flex; justify-content:space-between; color:{F1_GREY}; font-size:0.75rem; margin-top:0.75rem; }}
 .why-swatch {{ display:inline-block; width:10px; height:10px; border-radius:2px; margin:0 0.35rem; vertical-align:-1px; }}
 @media (max-width: 640px) {{
     .why-row {{ grid-template-columns: 1fr 4.5rem; }}
@@ -964,7 +902,7 @@ def why_row(col: str, label: str) -> str:
 
 why_col.markdown(
     f'<div class="why-card">'
-    + circuit_svg(metadata["circuit"], "why-watermark", NEON_CYAN, 3)
+    + circuit_svg(metadata["circuit"], "why-watermark", F1_LIGHT, 3)
     + f'<div class="why-head">{why["Abbreviation"]} is predicted P{int(why["PredictedRank"])} · {chance(why["WinChance"])} to win, {chance(why["PodiumChance"])} podium</div>'
     f'<div class="why-sub">Predicted finish {why["PredictedPosition"]:.1f} vs a field average of {why["FieldAverage"]:.1f}. '
     f'The factors below add up exactly to the difference ({signed(why["PredictedPosition"] - why["FieldAverage"])} places).</div>'
@@ -1099,7 +1037,7 @@ def render_prediction_row(row) -> str:
         f'<div class="f1-pred-code">{driver_code}</div>'
         f'<div class="f1-pred-name">{full_name}{" · est. form" if row["FormEstimated"] else ""}</div>'
         f'</div>'
-        f'<div class="f1-pred-cell f1-pred-team" style="color:{team_color};">{team}</div>'
+        f'<div class="f1-pred-cell f1-pred-team" style="color:#C9CCD6;">{team_chip(team_color)}{team}</div>'
         f'<div class="f1-pred-cell">{chance_html}</div>'
         f'<div class="f1-pred-cell f1-pred-num">{quali}</div>'
         f'<div class="f1-pred-cell f1-pred-num">{actual}</div>'
@@ -1126,7 +1064,7 @@ st.markdown(f"""
     padding: 0.85rem 1rem 0.85rem 0.85rem;
     background: #0E0E16;
     border-bottom: 1px solid #2A2A38;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -1225,7 +1163,7 @@ footer_html = f"""
     ">
         <div>
             <div style="
-                font-size: 0.7rem;
+                font-size: 0.75rem;
                 font-weight: 700;
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
@@ -1241,7 +1179,7 @@ footer_html = f"""
         </div>
         <div>
             <div style="
-                font-size: 0.7rem;
+                font-size: 0.75rem;
                 font-weight: 700;
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
