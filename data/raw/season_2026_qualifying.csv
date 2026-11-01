@@ -395,3 +395,25 @@ DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,First
 23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,20.0,,,0 days 00:01:36.967000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
 11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,21.0,,,0 days 00:01:37.433000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
 77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,22.0,,,0 days 00:01:37.523000,,,,,,,2026,18,United States Grand Prix,2026-10-25,Austin
+44,,HAM,hamilton,Ferrari,,ferrari,Lewis,Hamilton,Lewis Hamilton,,,1.0,,,0 days 00:01:17.341000,0 days 00:01:16.953000,0 days 00:01:16.514000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,2.0,,,0 days 00:01:17.659000,0 days 00:01:17.027000,0 days 00:01:16.523000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+16,,LEC,leclerc,Ferrari,,ferrari,Charles,Leclerc,Charles Leclerc,,,3.0,,,0 days 00:01:17.506000,0 days 00:01:16.944000,0 days 00:01:16.633000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+3,,VER,max_verstappen,Red Bull,,red_bull,Max,Verstappen,Max Verstappen,,,4.0,,,0 days 00:01:17.942000,0 days 00:01:16.876000,0 days 00:01:16.692000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+12,,ANT,antonelli,Mercedes,,mercedes,Andrea Kimi,Antonelli,Andrea Kimi Antonelli,,,5.0,,,0 days 00:01:17.918000,0 days 00:01:17.133000,0 days 00:01:16.707000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+1,,NOR,norris,McLaren,,mclaren,Lando,Norris,Lando Norris,,,6.0,,,0 days 00:01:17.733000,0 days 00:01:16.728000,0 days 00:01:16.824000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,7.0,,,0 days 00:01:17.385000,0 days 00:01:17.047000,0 days 00:01:16.900000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+41,,LIN,arvid_lindblad,RB F1 Team,,rb,Arvid,Lindblad,Arvid Lindblad,,,8.0,,,0 days 00:01:18.210000,0 days 00:01:17.135000,0 days 00:01:17.117000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+30,,LAW,lawson,RB F1 Team,,rb,Liam,Lawson,Liam Lawson,,,8.0,,,,0 days 00:01:17.207000,0 days 00:01:17.029000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+10,,GAS,gasly,Alpine F1 Team,,alpine,Pierre,Gasly,Pierre Gasly,,,9.0,,,0 days 00:01:18.194000,0 days 00:01:17.278000,0 days 00:01:17.153000,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+27,,HUL,hulkenberg,Audi,,audi,Nico,Hülkenberg,Nico Hülkenberg,,,10.0,,,0 days 00:01:17.868000,0 days 00:01:17.306000,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,11.0,,,0 days 00:01:18.517000,0 days 00:01:17.640000,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+81,,PIA,piastri,McLaren,,mclaren,Oscar,Piastri,Oscar Piastri,,,12.0,,,0 days 00:01:17.659000,0 days 00:01:17.646000,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,13.0,,,0 days 00:01:17.727000,0 days 00:01:17.680000,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+87,,BEA,bearman,Haas F1 Team,,haas,Oliver,Bearman,Oliver Bearman,,,14.0,,,0 days 00:01:18.083000,0 days 00:01:18.083000,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+55,,SAI,sainz,Williams,,williams,Carlos,Sainz,Carlos Sainz,,,15.0,,,0 days 00:01:18.521000,0 days 00:01:18.885000,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,16.0,,,0 days 00:01:18.630000,,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,17.0,,,0 days 00:01:18.908000,,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+50,,nan,ryo_hirakawa,Haas F1 Team,,haas,Ryo,Hirakawa,Ryo Hirakawa,,,18.0,,,0 days 00:01:18.958000,,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,19.0,,,0 days 00:01:19.072000,,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,20.0,,,0 days 00:01:19.105000,,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,21.0,,,0 days 00:01:19.852000,,,,,,,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
