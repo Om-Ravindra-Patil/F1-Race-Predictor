@@ -417,3 +417,25 @@ DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,First
 77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,20.0,R,21.0,,,,,Retired,0.0,42.0,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
 18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,21.0,R,19.0,,,,,Retired,0.0,5.0,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
 14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,22.0,R,17.0,,,,,Retired,0.0,5.0,2026,19,Mexico City Grand Prix,2026-11-01,Mexico City
+1,,NOR,norris,McLaren,,mclaren,Lando,Norris,Lando Norris,,,1.0,1,-1.0,,,,0 days 01:35:23.504000,Finished,25.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+3,,VER,max_verstappen,Red Bull,,red_bull,Max,Verstappen,Max Verstappen,,,2.0,2,-1.0,,,,0 days 00:00:14.602000,Finished,18.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,3.0,3,-1.0,,,,0 days 00:00:24.485000,Finished,15.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,4.0,4,-1.0,,,,0 days 00:00:33.991000,Finished,12.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+12,,ANT,antonelli,Mercedes,,mercedes,Andrea Kimi,Antonelli,Andrea Kimi Antonelli,,,5.0,5,-1.0,,,,0 days 00:00:36.017000,Finished,10.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+81,,PIA,piastri,McLaren,,mclaren,Oscar,Piastri,Oscar Piastri,,,6.0,6,-1.0,,,,0 days 00:00:56.475000,Finished,8.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+16,,LEC,leclerc,Ferrari,,ferrari,Charles,Leclerc,Charles Leclerc,,,7.0,7,-1.0,,,,0 days 00:01:13.586000,Finished,6.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+30,,LAW,lawson,RB F1 Team,,rb,Liam,Lawson,Liam Lawson,,,8.0,8,-1.0,,,,0 days 00:01:15.402000,Finished,4.0,71.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+44,,HAM,hamilton,Ferrari,,ferrari,Lewis,Hamilton,Lewis Hamilton,,,9.0,9,-1.0,,,,0 days 00:00:04.427000,Lapped,2.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+27,,HUL,hulkenberg,Audi,,audi,Nico,Hülkenberg,Nico Hülkenberg,,,10.0,10,-1.0,,,,0 days 00:00:17.105000,Lapped,1.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+41,,LIN,arvid_lindblad,RB F1 Team,,rb,Arvid,Lindblad,Arvid Lindblad,,,11.0,11,-1.0,,,,0 days 00:00:19.130000,Lapped,0.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,12.0,12,-1.0,,,,0 days 00:00:36.856000,Lapped,0.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,13.0,13,-1.0,,,,0 days 00:00:50.488000,Lapped,0.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+10,,GAS,gasly,Alpine F1 Team,,alpine,Pierre,Gasly,Pierre Gasly,,,14.0,14,-1.0,,,,0 days 00:00:58.677000,Lapped,0.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,15.0,15,-1.0,,,,0 days 00:01:04.101000,Lapped,0.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,16.0,16,-1.0,,,,0 days 00:01:16.420000,Lapped,0.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+87,,BEA,bearman,Haas F1 Team,,haas,Oliver,Bearman,Oliver Bearman,,,17.0,17,-1.0,,,,0 days 00:01:26.711000,Lapped,0.0,70.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,18.0,18,-1.0,,,,0 days 00:00:27.120000,Lapped,0.0,69.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+55,,SAI,sainz,Williams,,williams,Carlos,Sainz,Carlos Sainz,,,19.0,19,-1.0,,,,0 days 00:00:32.463000,Lapped,0.0,69.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+51,,nan,rafael_camara,Haas F1 Team,,haas,Rafael,Camara,Rafael Camara,,,20.0,20,-1.0,,,,0 days 00:00:51.715000,Lapped,0.0,69.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,21.0,R,-1.0,,,,,Retired,0.0,30.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,22.0,W,-1.0,,,,,Did not start,0.0,0.0,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
