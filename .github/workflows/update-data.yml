@@ -12,7 +12,9 @@ permissions:
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest moved to 26.04 (Nov 2026), which has no Python 3.9.
+    # Upgrade runner and Python together (locally and on Streamlit Cloud too).
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
