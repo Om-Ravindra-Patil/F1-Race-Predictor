@@ -110,6 +110,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,ALB,Alexander Albon,Williams,17,20,17,0,Lapped,96.967,94.035,2.932,1.344986808,19.66666667,16.66666667,0.4,13,0.5,0.179,1.2,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,ALB,Alexander Albon,Williams,16,16,14,0,Finished,78.63,76.514,2.116,0.9820883982,18.66666667,17.5,0.4,13,0.1,0.009,0.8,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,ALB,Alexander Albon,Williams,-1,10,15,0,Lapped,,,,,16.33333333,16,0.4,15.75,-0.1,,0.6,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,ALB,Alexander Albon,Williams,16,16,,0,,95.856,93.893,1.963,0.01001589937,15.33333333,16.33333333,0.2,15.66666667,0.3,0.258,0.2,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,ALO,Fernando Alonso,Alpine,8,8,9,2,Finished,91.621,90.558,1.063,-0.2848488237,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,ALO,Fernando Alonso,Alpine,7,7,16,0,Water pump,89.147,88.2,0.947,-0.4230173902,9,8,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,ALO,Fernando Alonso,Alpine,10,10,17,0,+1 Lap,78.815,77.868,0.947,-0.5170979171,12.5,9.5,0.5,,,0.286,5,0,0
@@ -222,6 +223,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,ALO,Fernando Alonso,Aston Martin,12,15,16,0,Lapped,95.818,94.035,1.783,0.3230571878,15,16.5,0.4,11.5,0.4,0.179,-0.8,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,ALO,Fernando Alonso,Aston Martin,17,17,22,0,Retired,78.908,76.514,2.394,1.257853492,13.33333333,14.5,0.2,18.25,0.6,0.009,-0.6,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,ALO,Fernando Alonso,Aston Martin,-1,9,12,0,Lapped,,,,,18,18.33333333,0.4,9,0.8,,0.6,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,ALO,Fernando Alonso,Aston Martin,19,19,,0,,97.4,93.893,3.507,0.7323515044,16.66666667,17.83333333,0.2,10.33333333,0.2,0.258,0.8,0,1
 2025,1,Australian Grand Prix,2025-03-16,Melbourne,ANT,Kimi Antonelli,Mercedes,16,16,4,12,Finished,76.525,75.096,1.429,0.7996542512,,4.666666667,,,0,0.084,,0,0
 2025,2,Chinese Grand Prix,2025-03-23,Shanghai,ANT,Kimi Antonelli,Mercedes,8,8,6,8,Finished,91.103,90.641,0.462,-0.6335096341,4,5.333333333,0,,-0.2,0.082,,0,0
 2025,3,Japanese Grand Prix,2025-04-06,Suzuka,ANT,Kimi Antonelli,Mercedes,6,6,6,8,Finished,87.555,86.983,0.572,-0.4668154696,5,4.166666667,0,,-0.2,0.012,-7,0,0
@@ -266,6 +268,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,ANT,Kimi Antonelli,Mercedes,1,1,1,25,Finished,94.035,94.035,0,-1.262757009,3.333333333,6.666666667,0,13,1.7,0.179,-4.2,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,ANT,Kimi Antonelli,Mercedes,4,5,3,15,Finished,76.707,76.514,0.193,-0.9254521619,2,7.166666667,0,6,-2.6,0.009,-3,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,ANT,Kimi Antonelli,Mercedes,-1,3,5,10,Finished,,,,,2.333333333,5,0,2,-0.4,,-3.2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,ANT,Kimi Antonelli,Mercedes,1,1,,0,,93.893,93.893,0,-0.9083421269,3,4.5,0,3,-0.6,0.258,-0.6,0,1
 2024,2,Saudi Arabian Grand Prix,2024-03-09,Jeddah,BEA,Oliver Bearman,Ferrari,11,11,7,6,Finished,88.642,87.472,1.17,0.09170209087,,5.833333333,,,-0.4,0.319,,0,1
 2024,17,Azerbaijan Grand Prix,2024-09-15,Baku,BEA,Oliver Bearman,Haas,10,11,10,1,Finished,102.968,101.365,1.603,0.20658369,7,14.66666667,0,,-0.2,0.321,,0,1
 2024,21,São Paulo Grand Prix,2024-11-03,São Paulo,BEA,Oliver Bearman,Haas,15,17,12,0,Finished,91.229,83.405,7.824,1.243253253,8.5,10.5,0,,-2.3,0.173,-2.5,0,0
@@ -313,6 +316,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,BEA,Oliver Bearman,Haas,13,16,22,0,Retired,96.031,94.035,1.996,0.5125010599,11.66666667,11.83333333,0,9,0.8,0.179,-0.75,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,BEA,Oliver Bearman,Haas,14,14,19,0,Retired,78.083,76.514,1.569,0.4394858572,16,15,0.2,4,0.8,0.009,0,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,BEA,Oliver Bearman,Haas,-1,8,17,0,Lapped,,,,,17.66666667,15.5,0.4,9,-0.3,,1,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,BEA,Oliver Bearman,Haas,22,22,,0,,108.005,93.893,10,3.769997284,19.33333333,17.5,0.4,10,1,0.258,3.2,0,1
 2025,1,Australian Grand Prix,2025-03-16,Melbourne,BOR,Gabriel Bortoleto,Kick Sauber,15,15,16,0,Retired,76.516,75.096,1.42,0.7838861611,,13.5,,,0.7,0.084,,0,0
 2025,2,Chinese Grand Prix,2025-03-23,Shanghai,BOR,Gabriel Bortoleto,Kick Sauber,19,19,14,0,Lapped,92.141,90.641,1.5,1.376832769,16,12.16666667,1,,-0.4,0.082,,0,0
 2025,3,Japanese Grand Prix,2025-04-06,Suzuka,BOR,Gabriel Bortoleto,Kick Sauber,17,17,19,0,Finished,88.622,86.983,1.639,1.180859377,15,13.83333333,0.5,,0.2,0.012,-2,0,0
@@ -357,6 +361,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,BOR,Gabriel Bortoleto,Audi,21,13,13,0,Lapped,95.632,94.035,1.597,0.1576273276,18.33333333,14.16666667,0.2,18,-0.2,0.179,2.8,1,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,BOR,Gabriel Bortoleto,Audi,13,13,11,0,Finished,77.68,76.514,1.166,0.03972566702,17.66666667,13.83333333,0.2,10,-0.9,0.009,2.8,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,BOR,Gabriel Bortoleto,Audi,-1,22,16,0,Lapped,,,,,15.33333333,13.5,0.2,20,1.4,,2.2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,BOR,Gabriel Bortoleto,Audi,15,15,,0,,95.993,93.893,2.1,0.0741091493,13.33333333,12.83333333,0.2,17,0.3,0.258,1.4,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,BOT,Valtteri Bottas,Alfa Romeo,6,6,6,8,Finished,91.56,90.558,1.002,-0.3531632654,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,BOT,Valtteri Bottas,Alfa Romeo,8,8,15,0,Cooling system,89.183,88.2,0.983,-0.3839749,6,8,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,BOT,Valtteri Bottas,Alfa Romeo,12,12,8,4,Finished,79.251,77.868,1.383,-0.06332258392,10.5,10.5,0.5,,,0.286,3.5,0,0
@@ -445,6 +450,8 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,BOT,Valtteri Bottas,Cadillac,19,22,20,0,Retired,97.523,94.035,3.488,1.839497572,19,17.83333333,0.2,16,0.3,0.179,-1.8,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,BOT,Valtteri Bottas,Cadillac,21,21,20,0,Retired,79.852,76.514,3.338,2.194264459,20.33333333,19.33333333,0.4,13,0.1,0.009,-2.2,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,BOT,Valtteri Bottas,Cadillac,-1,20,22,0,Did not start,,,,,19.66666667,18.66666667,0.6,12.66666667,0,,-2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,BOT,Valtteri Bottas,Cadillac,21,21,,0,,97.601,93.893,3.708,0.8263861265,20.66666667,19.33333333,0.8,17.5,0,0.258,-0.4,0,1
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,CAM,Rafael Camara,Haas,17,17,,0,,96.22,93.893,2.327,0.1803074539,,17.5,,,,0.258,,0,1
 2024,16,Italian Grand Prix,2024-09-01,Monza,COL,Franco Colapinto,Williams,18,18,12,0,Finished,81.061,79.327,1.734,1.130981189,,15,,,-0.7,0.109,,0,0
 2024,17,Azerbaijan Grand Prix,2024-09-15,Baku,COL,Franco Colapinto,Williams,8,9,8,4,Finished,102.473,101.365,1.108,-0.3543539214,12,13.33333333,0,,-1.8,0.321,,0,1
 2024,18,Singapore Grand Prix,2024-09-22,Marina Bay,COL,Franco Colapinto,Williams,12,12,11,0,Lapped,90.481,89.525,0.956,0.03748957651,10,11,0,,1.8,0.155,-3.5,0,1
@@ -492,6 +499,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,COL,Franco Colapinto,Alpine,20,14,21,0,Retired,95.722,94.035,1.687,0.2376740342,17,16,0.4,13.5,-0.6,0.179,1.8,1,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,COL,Franco Colapinto,Alpine,11,11,8,4,Finished,77.64,76.514,1.126,4.723622713e-05,18.33333333,15.33333333,0.6,14,-1.2,0.009,3,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,COL,Franco Colapinto,Alpine,-1,17,13,0,Lapped,,,,,16.66666667,13.5,0.6,16,-1.5,,2.8,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,COL,Franco Colapinto,Alpine,10,10,,0,,94.982,93.893,1.089,-0.3988709651,14,12.66666667,0.4,14.5,1.3,0.258,0.6,0,1
 2022,16,Italian Grand Prix,2022-09-11,Monza,DEV,Nyck De Vries,Williams,8,13,9,2,Finished,82.471,80.161,2.31,0.7359467022,,15.5,,,0.2,0.145,,0,0
 2023,1,Bahrain Grand Prix,2023-03-05,Sakhir,DEV,Nyck De Vries,AlphaTauri,19,19,14,0,Lapped,92.121,89.708,2.413,1.380157779,9,14.5,0,,-1.8,0.138,,0,0
 2023,2,Saudi Arabian Grand Prix,2023-03-19,Jeddah,DEV,Nyck De Vries,AlphaTauri,18,18,14,0,Finished,90.244,88.265,1.979,0.2387633098,11.5,13.5,0,,-1.2,0.155,-4.5,0,1
@@ -622,6 +630,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,GAS,Pierre Gasly,Alpine,10,11,10,1,Finished,95.08,94.035,1.045,-0.3333258057,15,16,0.2,12.75,1.1,0.179,5,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,GAS,Pierre Gasly,Alpine,9,9,10,1,Finished,77.153,76.514,0.639,-0.4830376586,12.33333333,15.33333333,0.2,11.75,-2.7,0.009,3.6,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,GAS,Pierre Gasly,Alpine,-1,18,14,0,Lapped,,,,,10.33333333,13.5,0.2,8.5,-1.6,,4.2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,GAS,Pierre Gasly,Alpine,9,9,,0,,94.559,93.893,0.666,-0.5967647222,11.33333333,12.66666667,0,14.66666667,,0.258,1.2,0,1
 2025,1,Australian Grand Prix,2025-03-16,Melbourne,HAD,Isack Hadjar,Racing Bulls,11,11,20,0,Retired,76.175,75.096,1.079,0.1864507491,,13.5,,,,0.084,,0,0
 2025,2,Chinese Grand Prix,2025-03-23,Shanghai,HAD,Isack Hadjar,Racing Bulls,7,7,11,0,Finished,91.079,90.641,0.438,-0.6799915393,20,14.66666667,1,,,0.082,,0,0
 2025,3,Japanese Grand Prix,2025-04-06,Suzuka,HAD,Isack Hadjar,Racing Bulls,7,7,8,4,Finished,87.569,86.983,0.586,-0.4451964932,15.5,14.66666667,0.5,,,0.012,6.5,0,0
@@ -663,6 +672,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,HAD,Isack Hadjar,Red Bull Racing,3,3,6,8,Finished,94.25,94.035,0.215,-1.071534321,6,3.666666667,0,16,0.3,0.179,-3.4,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,HAD,Isack Hadjar,Red Bull Racing,7,7,12,0,Finished,76.9,76.514,0.386,-0.7340037334,7,4.333333333,0,13,0,0.009,-2,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,HAD,Isack Hadjar,Red Bull Racing,-1,7,3,15,Finished,,,,,9.333333333,5.5,0,8,0.6,,-0.6,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,HAD,Isack Hadjar,Red Bull Racing,5,5,,0,,94.592,93.893,0.699,-0.5813262021,7,4.5,0,6,-1.1,0.258,-1.2,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,HAM,Lewis Hamilton,Mercedes,5,5,3,15,Finished,91.048,90.558,0.49,-0.9265566121,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,HAM,Lewis Hamilton,Mercedes,15,16,10,1,Finished,90.343,88.2,2.143,0.8740608954,3,3.5,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,HAM,Lewis Hamilton,Mercedes,5,5,4,12,Finished,78.825,77.868,0.957,-0.506690226,6.5,5.5,0,,,0.286,-4,0,0
@@ -775,6 +785,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,HAM,Lewis Hamilton,Ferrari,5,5,4,12,Finished,94.311,94.035,0.276,-1.017280443,5,4.166666667,0.2,11.25,-0.1,0.179,4.6,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,HAM,Lewis Hamilton,Ferrari,1,1,2,18,Finished,76.514,76.514,0,-1.11690059,4.333333333,3.5,0.2,4,-0.6,0.009,4.2,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,HAM,Lewis Hamilton,Ferrari,-1,11,9,2,Lapped,,,,,4,3.333333333,0,9.5,0.2,,0.8,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,HAM,Lewis Hamilton,Ferrari,12,12,,0,,95.253,93.893,1.36,-0.2720879671,5,4.666666667,0,5.666666667,1.7,0.258,0.4,0,1
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,HIR,Ryo Hirakawa,Haas,18,,13,0,Finished,,76.514,,,,15,,,1.5,0.009,,0,0
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,HUL,Nico Hulkenberg,Aston Martin,17,17,17,0,Finished,92.777,90.558,2.219,1.009765842,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,HUL,Nico Hulkenberg,Aston Martin,17,18,12,0,Finished,90.543,88.2,2.343,1.090963619,17,14.5,0,,,0.025,,0,1
@@ -868,6 +879,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,HUL,Nico Hulkenberg,Audi,11,12,11,0,Finished,95.158,94.035,1.123,-0.2639519934,10,14.16666667,0,9,-1.3,0.179,-3.6,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,HUL,Nico Hulkenberg,Audi,10,10,16,0,Finished,77.306,76.514,0.792,-0.3312676609,10,13.83333333,0,13.66666667,-1.9,0.009,-3.6,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,HUL,Nico Hulkenberg,Audi,-1,6,10,1,Lapped,,,,,11.66666667,13.5,0,13.66666667,1.1,,-2.2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,HUL,Nico Hulkenberg,Audi,13,13,,0,,95.46,93.893,1.567,-0.1752463413,12.33333333,12.83333333,0,11.33333333,,0.258,0,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,LAT,Nicholas Latifi,Williams,20,20,16,0,Finished,93.634,90.558,3.076,1.969527752,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,LAT,Nicholas Latifi,Williams,18,19,18,0,Accident,91.817,88.2,3.617,2.472633967,16,14.5,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,LAT,Nicholas Latifi,Williams,18,19,16,0,+1 Lap,81.372,77.868,3.504,2.144148704,17,15.25,0.5,,-0.4,0.286,-2.5,0,0
@@ -945,6 +957,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,LAW,Liam Lawson,Racing Bulls,9,10,9,2,Finished,95.058,94.035,1.023,-0.3528927784,8.666666667,9.666666667,0,10,1.6,0.179,-1.6,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,LAW,Liam Lawson,Racing Bulls,22,8,9,2,Finished,77.029,76.514,0.515,-0.6060407941,7.666666667,10,0,18,0.6,0.009,-1.8,1,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,LAW,Liam Lawson,Racing Bulls,-1,5,8,4,Finished,,,,,8.333333333,11.66666667,0,8,0.6,,-1.2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,LAW,Liam Lawson,Racing Bulls,8,8,,0,,95.048,93.893,1.155,-0.367993925,8.666666667,11.16666667,0,15,-0.3,0.258,-0.6,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,LEC,Charles Leclerc,Ferrari,1,1,1,26,Finished,90.558,90.558,0,-1.475311963,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,LEC,Charles Leclerc,Ferrari,2,2,2,19,Finished,88.225,88.2,0.025,-1.422938945,1,1.5,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,LEC,Charles Leclerc,Ferrari,1,1,1,26,Finished,77.868,77.868,0,-1.502706267,1.5,2,0,,,0.286,0,0,0
@@ -1057,6 +1070,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,LEC,Charles Leclerc,Ferrari,4,4,2,18,Finished,94.198,94.035,0.163,-1.11778353,3.333333333,4.166666667,0.2,6.75,0,0.179,3.6,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,LEC,Charles Leclerc,Ferrari,3,3,4,12,Finished,76.633,76.514,0.119,-0.9988572589,2.666666667,3.5,0,3.5,-0.8,0.009,-0.4,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,LEC,Charles Leclerc,Ferrari,-1,4,7,6,Finished,,,,,2.666666667,3.333333333,0,12,1.2,,0,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,LEC,Charles Leclerc,Ferrari,11,11,,0,,95.04,93.893,1.147,-0.3717365965,4.333333333,4.666666667,0,3.333333333,,0.258,0.2,0,1
 2026,1,Australian Grand Prix,2026-03-08,Melbourne,LIN,Arvid Lindblad,Racing Bulls,9,9,8,4,Lapped,79.971,78.518,1.453,-0.2792520962,,13.66666667,,,-0.1,0.293,,0,0
 2026,2,Chinese Grand Prix,2026-03-15,Shanghai,LIN,Arvid Lindblad,Racing Bulls,15,15,12,0,Lapped,93.784,92.064,1.72,0.09628413485,8,13.83333333,0,,-3,0.222,,0,0
 2026,3,Japanese Grand Prix,2026-03-29,Suzuka,LIN,Arvid Lindblad,Racing Bulls,10,10,14,0,Finished,90.109,88.778,1.331,-0.3032088715,10,12.5,0,,-0.4,0.298,-2,0,0
@@ -1077,6 +1091,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,LIN,Arvid Lindblad,Racing Bulls,14,9,12,0,Lapped,94.95,94.035,0.915,-0.4489488262,10.66666667,9.666666667,0,,0.9,0.179,-2.4,1,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,LIN,Arvid Lindblad,Racing Bulls,8,8,18,0,Retired,77.117,76.514,0.603,-0.5187482463,12.33333333,10,0,,0.1,0.009,-1.4,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,LIN,Arvid Lindblad,Racing Bulls,-1,14,11,0,Lapped,,,,,15,11.66666667,0.2,,0.4,,0.8,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,LIN,Arvid Lindblad,Racing Bulls,6,6,,0,,94.668,93.893,0.775,-0.5457708226,13.66666667,11.16666667,0.2,,,0.258,1.8,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,MAG,Kevin Magnussen,Haas,7,7,5,10,Finished,91.461,90.558,0.903,-0.4640342445,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,MAG,Kevin Magnussen,Haas,10,10,9,2,Finished,89.546,88.2,1.346,0.009703542887,5,8,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,MAG,Kevin Magnussen,Haas,16,17,14,0,+1 Lap,80.254,77.868,2.386,0.9805688362,7,8.5,0,,,0.286,-1.5,0,0
@@ -1277,6 +1292,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,NOR,Lando Norris,McLaren,8,8,5,10,Finished,94.539,94.035,0.504,-0.8144954527,10.66666667,9.333333333,0.2,3.5,-2.1,0.179,2.6,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,NOR,Lando Norris,McLaren,6,6,5,10,Finished,76.728,76.514,0.214,-0.9046209857,6,6,0.2,4.25,0.3,0.009,3,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,NOR,Lando Norris,McLaren,-1,1,1,25,Finished,,,,,4.666666667,5.5,0.2,6.75,0.4,,2.4,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,NOR,Lando Norris,McLaren,4,4,,0,,94.244,93.893,0.351,-0.7441324136,3.666666667,5.166666667,0,15,-0.6,0.258,-0.4,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,OCO,Esteban Ocon,Alpine,11,11,7,6,Finished,91.782,90.558,1.224,-0.104543494,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,OCO,Esteban Ocon,Alpine,5,5,6,8,Finished,89.068,88.2,0.868,-0.5086939659,7,8,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,OCO,Esteban Ocon,Alpine,8,8,7,6,Finished,79.061,77.868,1.193,-0.2610687154,6.5,9.5,0,,1.5,0.286,-1.5,0,0
@@ -1474,6 +1490,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,PER,Sergio Perez,Cadillac,18,21,19,0,Lapped,97.433,94.035,3.398,1.759450866,16.66666667,17.83333333,0.2,5,-0.6,0.179,-2.6,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,PER,Sergio Perez,Cadillac,20,20,17,0,Finished,79.105,76.514,2.591,1.453269764,18.33333333,19.33333333,0.2,13.33333333,0.4,0.009,-2.6,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,PER,Sergio Perez,Cadillac,-1,21,18,0,Lapped,,,,,17.66666667,18.66666667,0,7.333333333,0.2,,-3.4,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,PER,Sergio Perez,Cadillac,18,18,,0,,97.383,93.893,3.49,0.7243983274,18,19.33333333,0,6.5,,0.258,-2.8,0,1
 2023,1,Bahrain Grand Prix,2023-03-05,Sakhir,PIA,Oscar Piastri,McLaren,18,18,20,0,Retired,92.101,89.708,2.393,1.355050306,,11.5,,,-1.3,0.138,,0,0
 2023,2,Saudi Arabian Grand Prix,2023-03-19,Jeddah,PIA,Oscar Piastri,McLaren,8,9,15,0,Finished,89.243,88.265,0.978,-0.2408234728,20,15,1,,3.3,0.155,,0,1
 2023,3,Australian Grand Prix,2023-04-02,Melbourne,PIA,Oscar Piastri,McLaren,16,16,8,4,Finished,78.517,76.732,1.785,1.254964321,17.5,14,0.5,,-2.7,0.236,4,0,0
@@ -1564,6 +1581,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,PIA,Oscar Piastri,McLaren,7,7,7,6,Finished,94.803,94.035,0.768,-0.5796917802,8,9.333333333,0,9,-0.9,0.179,2,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,PIA,Oscar Piastri,McLaren,12,12,7,6,Finished,77.646,76.514,1.132,0.005999000845,6,6,0,7,0.4,0.009,1.6,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,PIA,Oscar Piastri,McLaren,-1,12,6,8,Finished,,,,,6.333333333,5.5,0,9,-0.8,,0.4,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,PIA,Oscar Piastri,McLaren,7,7,,0,,94.763,93.893,0.87,-0.5013265982,6.666666667,5.166666667,0,12.33333333,,0.258,-2.8,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,RIC,Daniel Ricciardo,McLaren,18,18,14,0,Finished,92.945,90.558,2.387,1.197910534,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,RIC,Daniel Ricciardo,McLaren,14,12,17,0,Gearbox,89.773,88.2,1.573,0.2558881339,14,14.5,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,RIC,Daniel Ricciardo,McLaren,7,7,6,8,Finished,79.032,77.868,1.164,-0.2912510196,15.5,13.25,0.5,,-1.7,0.286,0.5,0,0
@@ -1723,6 +1741,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,RUS,George Russell,Mercedes,6,6,8,4,Finished,94.305,94.035,0.27,-1.02261689,10,6.666666667,0,5.5,-1.3,0.179,2.8,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,RUS,George Russell,Mercedes,2,2,6,8,Finished,76.523,76.514,0.009,-1.107972944,12.33333333,7.166666667,0,5.5,-0.1,0.009,3.2,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,RUS,George Russell,Mercedes,-1,2,4,12,Finished,,,,,7.666666667,5,0,6,0.6,,4.2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,RUS,George Russell,Mercedes,3,3,,0,,94.224,93.893,0.331,-0.7534890924,6,4.5,0,3.666666667,,0.258,4.6,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,SAI,Carlos Sainz,Ferrari,3,3,2,18,Finished,90.687,90.558,0.129,-1.330843718,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,SAI,Carlos Sainz,Ferrari,3,3,3,15,Finished,88.402,88.2,0.202,-1.230980035,2,1.5,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,SAI,Carlos Sainz,Ferrari,9,9,20,0,Spun off,78.469,77.868,0.601,-0.8772040301,2.5,2,0,,0.1,0.286,-0.5,0,0
@@ -1834,6 +1853,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,SAI,Carlos Sainz,Williams,16,19,18,0,Lapped,96.77,94.035,2.735,1.169773461,13.66666667,16.66666667,0.2,11.25,-1.1,0.179,1,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,SAI,Carlos Sainz,Williams,15,15,15,0,Finished,78.521,76.514,2.007,0.8739646743,16.33333333,17.5,0.2,6.75,-0.4,0.009,1.2,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,SAI,Carlos Sainz,Williams,-1,15,19,0,Lapped,,,,,15.66666667,16,0,9.5,-0.7,,0.8,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,SAI,Carlos Sainz,Williams,14,14,,0,,95.588,93.893,1.695,-0.1153635968,17.33333333,16.33333333,0,4.666666667,,0.258,1.4,0,1
 2023,1,Bahrain Grand Prix,2023-03-05,Sakhir,SAR,Logan Sargeant,Williams,16,16,12,0,Lapped,91.652,89.708,1.944,0.7913875423,,15.5,,,-0.7,0.138,,0,0
 2023,2,Saudi Arabian Grand Prix,2023-03-19,Jeddah,SAR,Logan Sargeant,Williams,20,20,16,0,Finished,128.51,88.265,10,4.08168597,12,14.16666667,0,,0.5,0.155,,0,1
 2023,3,Australian Grand Prix,2023-04-02,Melbourne,SAR,Logan Sargeant,Williams,18,18,16,0,Retired,78.557,76.732,1.825,1.3204707,14,14.83333333,0,,2.2,0.236,-4,0,0
@@ -1981,6 +2001,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,STR,Lance Stroll,Aston Martin,22,18,15,0,Lapped,96.677,94.035,2.642,1.087058531,18,16.5,0.8,13,2.4,0.179,-0.5,1,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,STR,Lance Stroll,Aston Martin,19,19,21,0,Retired,79.072,76.514,2.558,1.420535058,15.66666667,14.5,0.6,14.25,0.7,0.009,-0.75,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,STR,Lance Stroll,Aston Martin,-1,19,21,0,Retired,,,,,18.66666667,18.33333333,0.6,12.5,-0.2,,-0.2,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,STR,Lance Stroll,Aston Martin,20,20,,0,,97.55,93.893,3.657,0.8025265955,19,17.83333333,0.6,12.66666667,,0.258,0,0,1
 2022,1,Bahrain Grand Prix,2022-03-20,Sakhir,TSU,Yuki Tsunoda,AlphaTauri,16,16,8,4,Finished,92.75,90.558,2.192,0.9795283021,,,,,,0.123,,0,0
 2022,2,Saudi Arabian Grand Prix,2022-03-27,Jeddah,TSU,Yuki Tsunoda,AlphaTauri,19,20,19,0,Power Unit,,88.2,,,8,14,0,,,0.025,,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,TSU,Yuki Tsunoda,AlphaTauri,13,13,15,0,+1 Lap,79.424,77.868,1.556,0.1167304726,13.5,13.75,0.5,,-1.1,0.286,-4.5,0,0
@@ -2188,6 +2209,7 @@ Year,Round,EventName,EventDate,Circuit,Abbreviation,FullName,TeamName,GridPositi
 2026,18,United States Grand Prix,2026-10-25,Austin,VER,Max Verstappen,Red Bull Racing,2,2,3,15,Finished,94.214,94.035,0.179,-1.103553004,1.333333333,3.666666667,0,1.5,0.2,0.179,-2,0,0
 2026,19,Mexico City Grand Prix,2026-11-01,Mexico City,VER,Max Verstappen,Red Bull Racing,5,4,1,25,Finished,76.692,76.514,0.178,-0.9403315735,1.666666667,4.333333333,0,2.75,0.6,0.009,-1.2,0,0
 2026,20,São Paulo Grand Prix,2026-11-08,São Paulo,VER,Max Verstappen,Red Bull Racing,-1,16,2,18,Finished,,,,,1.666666667,5.5,0,2.75,-0.8,,-1.6,0,0
+2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas,VER,Max Verstappen,Red Bull Racing,2,2,,0,,94.151,93.893,0.258,-0.7876409701,2,4.5,0,2.333333333,,0.258,-3.2,0,1
 2022,3,Australian Grand Prix,2022-04-10,Melbourne,VET,Sebastian Vettel,Aston Martin,17,18,19,0,Accident,81.149,77.868,3.281,1.912057192,,13.5,,,-0.9,0.286,,0,0
 2022,4,Emilia Romagna Grand Prix,2022-04-24,Imola,VET,Sebastian Vettel,Aston Martin,13,9,8,4,Finished,79.957,78.793,1.164,-0.1388225343,19,14.16666667,1,,0.2,0.003,,1,0
 2022,5,Miami Grand Prix,2022-05-08,Miami,VET,Sebastian Vettel,Aston Martin,20,13,17,0,Collision,90.214,88.796,1.418,0.2744146546,13.5,12.33333333,0.5,,-1.5,0.19,0,1,1

@@ -439,3 +439,25 @@ DriverNumber,BroadcastName,Abbreviation,DriverId,TeamName,TeamColor,TeamId,First
 77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,20.0,,,,,,,,,,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
 11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,21.0,,,,,,,,,,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
 5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,22.0,,,,,,,,,,2026,20,São Paulo Grand Prix,2026-11-08,São Paulo
+12,,ANT,antonelli,Mercedes,,mercedes,Andrea Kimi,Antonelli,Andrea Kimi Antonelli,,,1.0,,,0 days 00:01:34.684000,0 days 00:01:35.086000,0 days 00:01:33.893000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+3,,VER,max_verstappen,Red Bull,,red_bull,Max,Verstappen,Max Verstappen,,,2.0,,,0 days 00:01:35.264000,0 days 00:01:34.394000,0 days 00:01:34.151000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+63,,RUS,russell,Mercedes,,mercedes,George,Russell,George Russell,,,3.0,,,0 days 00:01:34.664000,0 days 00:01:34.617000,0 days 00:01:34.224000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+1,,NOR,norris,McLaren,,mclaren,Lando,Norris,Lando Norris,,,4.0,,,0 days 00:01:35.109000,0 days 00:01:34.766000,0 days 00:01:34.244000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+6,,HAD,hadjar,Red Bull,,red_bull,Isack,Hadjar,Isack Hadjar,,,5.0,,,0 days 00:01:35.413000,0 days 00:01:35.064000,0 days 00:01:34.592000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+41,,LIN,arvid_lindblad,RB F1 Team,,rb,Arvid,Lindblad,Arvid Lindblad,,,6.0,,,0 days 00:01:35.456000,0 days 00:01:34.963000,0 days 00:01:34.668000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+81,,PIA,piastri,McLaren,,mclaren,Oscar,Piastri,Oscar Piastri,,,7.0,,,0 days 00:01:35.491000,0 days 00:01:34.763000,0 days 00:01:34.899000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+30,,LAW,lawson,RB F1 Team,,rb,Liam,Lawson,Liam Lawson,,,8.0,,,0 days 00:01:35.489000,0 days 00:01:35.048000,0 days 00:01:35.090000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+10,,GAS,gasly,Alpine F1 Team,,alpine,Pierre,Gasly,Pierre Gasly,,,9.0,,,0 days 00:01:35.718000,0 days 00:01:34.559000,0 days 00:01:35.105000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+43,,COL,colapinto,Alpine F1 Team,,alpine,Franco,Colapinto,Franco Colapinto,,,10.0,,,0 days 00:01:35.930000,0 days 00:01:34.982000,0 days 00:01:35.314000,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+16,,LEC,leclerc,Ferrari,,ferrari,Charles,Leclerc,Charles Leclerc,,,11.0,,,0 days 00:01:35.040000,0 days 00:01:35.197000,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+44,,HAM,hamilton,Ferrari,,ferrari,Lewis,Hamilton,Lewis Hamilton,,,12.0,,,0 days 00:01:35.743000,0 days 00:01:35.253000,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+27,,HUL,hulkenberg,Audi,,audi,Nico,Hülkenberg,Nico Hülkenberg,,,13.0,,,0 days 00:01:35.710000,0 days 00:01:35.460000,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+55,,SAI,sainz,Williams,,williams,Carlos,Sainz,Carlos Sainz,,,14.0,,,0 days 00:01:35.588000,0 days 00:01:35.641000,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+5,,BOR,bortoleto,Audi,,audi,Gabriel,Bortoleto,Gabriel Bortoleto,,,15.0,,,0 days 00:01:36.149000,0 days 00:01:35.993000,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+23,,ALB,albon,Williams,,williams,Alexander,Albon,Alexander Albon,,,16.0,,,0 days 00:01:35.856000,0 days 00:01:36.125000,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+51,,CAM,rafael_camara,Haas F1 Team,,haas,Rafael,Camara,Rafael Camara,,,17.0,,,0 days 00:01:36.220000,,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+11,,PER,perez,Cadillac F1 Team,,cadillac,Sergio,Pérez,Sergio Pérez,,,18.0,,,0 days 00:01:37.383000,,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+14,,ALO,alonso,Aston Martin,,aston_martin,Fernando,Alonso,Fernando Alonso,,,19.0,,,0 days 00:01:37.400000,,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+18,,STR,stroll,Aston Martin,,aston_martin,Lance,Stroll,Lance Stroll,,,20.0,,,0 days 00:01:37.550000,,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+77,,BOT,bottas,Cadillac F1 Team,,cadillac,Valtteri,Bottas,Valtteri Bottas,,,21.0,,,0 days 00:01:37.601000,,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
+87,,BEA,bearman,Haas F1 Team,,haas,Oliver,Bearman,Oliver Bearman,,,22.0,,,0 days 00:01:48.005000,,,,,,,2026,21,Las Vegas Grand Prix,2026-11-21,Las Vegas
