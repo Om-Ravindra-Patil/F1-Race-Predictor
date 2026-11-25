@@ -133,6 +133,20 @@ def test_dataset_every_race_has_grid_positions(features):
     assert (missing < 0.5).all(), missing[missing >= 0.5]
 
 
+def test_dataset_every_race_has_qualifying_times(features):
+    # A race whose qualifying was saved without lap times loses its gap-to-pole feature
+    # and silently drops out of training and the season metrics
+    missing = features["QualifyingGapToPole"].isna().groupby([features["Year"], features["Round"]]).mean()
+    assert (missing < 0.5).all(), missing[missing >= 0.5]
+
+
+def test_qualifying_without_times_is_not_saved():
+    from src.load_season import has_qualifying_times
+    assert not has_qualifying_times(pd.DataFrame({"Q1": [None, None], "Position": [1, 2]}))
+    assert has_qualifying_times(pd.DataFrame({"Q1": ["1:30.1", None], "Position": [1, 2]}))
+    assert not has_qualifying_times(None)
+
+
 def test_dataset_teammates_share_team_form(features):
     per_team_race = features.groupby(["Year", "Round", "TeamName"])["TeamFormLast3"].nunique()
     assert (per_team_race <= 1).all()

@@ -200,6 +200,12 @@ def load_season(year: int, max_rounds: int = 24, start_round: int = 1) -> pd.Dat
     print(f"  DEBUG: combined DataFrame shape = {combined.shape}")
     return combined
 
+def has_qualifying_times(df: Optional[pd.DataFrame]) -> bool:
+    """Qualifying with no lap times at all is incomplete: sources sometimes publish the
+    order before the times. Saved rounds are never re-fetched, so don't save it yet."""
+    return df is not None and len(df) > 0 and df["Q1"].notna().any()
+
+
 def load_qualifying_season(year: int, max_rounds: int = 24, start_round: int = 1) -> pd.DataFrame:
     """Load available qualifying results for a season, from start_round onwards."""
     all_results = []
@@ -208,13 +214,13 @@ def load_qualifying_season(year: int, max_rounds: int = 24, start_round: int = 1
         print(f"Loading {year} Round {round_num} qualifying...")
         df = load_qualifying_results(year, round_num)
 
-        if df is not None and len(df) > 0:
+        if has_qualifying_times(df):
             all_results.append(df)
             print(f"  Loaded {len(df)} drivers (fastf1)")
         else:
-            print(f"  fastf1 returned no qualifying data, trying Jolpica...")
+            print(f"  fastf1 returned no (or incomplete) qualifying data, trying Jolpica...")
             df = load_qualifying_results_jolpica(year, round_num)
-            if df is not None and len(df) > 0:
+            if has_qualifying_times(df):
                 all_results.append(df)
                 print(f"  Loaded {len(df)} drivers (Jolpica)")
             else:
@@ -273,8 +279,44 @@ def save_calendar(year: int) -> None:
         "Location": schedule["Location"],
         "QualifyingUtc": schedule.apply(lambda e: session_start(e, "Qualifying"), axis=1),
         "RaceUtc": schedule.apply(lambda e: session_start(e, "Race"), axis=1),
+        "Sprint": schedule.apply(lambda e: session_start(e, "Sprint") is not None, axis=1),
     }).to_csv(path, index=False)
     print(f"\nSaved {year} calendar ({len(schedule)} rounds) to {path}")
+
+
+def save_standings(year: int) -> None:
+    """Save the official drivers' and constructors' standings after the latest round.
+
+    Taken from Jolpica rather than summed from our race results, because those
+    leave out sprint points. Overwritten on every run (standings change each round).
+    """
+    for kind in ("driver", "constructor"):
+        resp = requests.get(f"{JOLPICA_BASE}/{year}/{kind}standings.json?limit=100", timeout=15)
+        resp.raise_for_status()
+        lists = resp.json()["MRData"]["StandingsTable"]["StandingsLists"]
+        if not lists:
+            print(f"No {kind} standings for {year} yet")
+            continue
+        standings = lists[0]
+        rows = []
+        for s in standings[f"{kind.capitalize()}Standings"]:
+            row = {
+                "Round": int(standings["round"]),
+                "Position": int(s.get("position", 0)),
+                "Points": float(s["points"]),
+                "Wins": int(s["wins"]),
+            }
+            if kind == "driver":
+                driver = s["Driver"]
+                row["Abbreviation"] = driver.get("code")
+                row["FullName"] = f"{driver.get('givenName', '')} {driver.get('familyName', '')}".strip()
+                row["TeamName"] = s["Constructors"][-1]["name"]  # latest team if they switched
+            else:
+                row["TeamName"] = s["Constructor"]["name"]
+            rows.append(row)
+        path = DATA_RAW_DIR / f"standings_{year}_{kind}s.csv"
+        pd.DataFrame(rows).to_csv(path, index=False)
+        print(f"Saved {year} {kind} standings after round {standings['round']} to {path}")
 
 
 if __name__ == "__main__":
@@ -291,6 +333,10 @@ if __name__ == "__main__":
 
     for year in years:
         save_calendar(year)
+        try:
+            save_standings(year)
+        except Exception as e:  # standings are extra; never block the race-data update
+            print(f"Could not update {year} standings: {e}")
 
         if not qualifying_only:
             print(f"\n{'='*50}\nLoading {year} race results\n{'='*50}")

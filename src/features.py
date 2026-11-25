@@ -18,6 +18,15 @@ DATA_RAW = PROJECT_ROOT / "data" / "raw"
 DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
 DATA_PROCESSED.mkdir(parents=True, exist_ok=True)
 
+# Jolpica/Ergast team names mapped to the names fastf1 uses
+TEAM_NAMES = {
+    "Red Bull": "Red Bull Racing",
+    "Alpine F1 Team": "Alpine",
+    "RB F1 Team": "Racing Bulls",  # Ergast's name; only appears in 2026 / upcoming rows
+    "Haas F1 Team": "Haas",
+    "Cadillac F1 Team": "Cadillac",
+}
+
 # Rebranded teams mapped to their current name, so team form carries across seasons
 TEAM_LINEAGE = {
     "AlphaTauri": "Racing Bulls",
@@ -127,14 +136,7 @@ def load_combined_data() -> pd.DataFrame:
     merged["Circuit"] = merged["Circuit"].replace(CIRCUIT_ALIASES)
 
     # Normalise team names (handles Jolpica vs fastf1 inconsistencies)
-    team_name_map = {
-        "Red Bull": "Red Bull Racing",
-        "Alpine F1 Team": "Alpine",
-        "RB F1 Team": "Racing Bulls",  # Ergast's name; only appears in 2026 / upcoming rows
-        "Haas F1 Team": "Haas",
-        "Cadillac F1 Team": "Cadillac",
-    }
-    merged["TeamName"] = merged["TeamName"].replace(team_name_map)
+    merged["TeamName"] = merged["TeamName"].replace(TEAM_NAMES)
 
     # One spelling per driver (sources differ, e.g. "Kimi Antonelli" vs "Andrea Kimi Antonelli")
     merged["FullName"] = merged.groupby("Abbreviation")["FullName"].transform(lambda s: s.mode().iat[0])

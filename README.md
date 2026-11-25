@@ -10,6 +10,7 @@ Predicts every driver's finishing position in Formula 1 races from qualifying, r
 - **Live, with no manual steps.** A scheduled GitHub Action fetches each race weekend's data, rebuilds the features, runs the test suite and redeploys. The prediction for Sunday's race is up on Saturday evening.
 - **Honest numbers.** Unit tests caught a target leak in one of my own features; the headline figure dropped from 100% to 91.7% and the correction is documented below. Win probabilities are checked against real outcomes before being shown.
 - **Explainable.** For each driver, the dashboard shows exactly how qualifying, driver form and team form add up to the prediction.
+- **Championship outlook.** Official drivers' and constructors' standings (sprint points included), exact "champion" maths once a lead can't be overturned, and each final position's chances from simulating the remaining races.
 - **Engineered like a product:** append-only data loading with an API fallback, 36 pytest tests (features, data integrity, predictions and the app itself), shareable links per race.
 
 ## How it works
@@ -63,6 +64,7 @@ Pick any race from 2023–2026, or the next 2026 race once qualifying is done:
 - a race-story chart tracing every driver from qualifying to predicted finish to result
 - a per-driver breakdown of why the model predicts each position (exact for a linear model)
 - accuracy in F1 timing colours, circuit maps drawn from car position data, and a next-race countdown
+- the drivers' and constructors' championships: official standings, champion badges, and final-position chances from 10,000 simulations of the races still to run
 
 Every race has a shareable link, e.g. [`?season=2026&round=17`](https://f1-race-predictor-orp.streamlit.app/?season=2026&round=17).
 
@@ -155,7 +157,7 @@ f1-race-predictor/
 ├── app.py                                # Streamlit dashboard (entry point)
 ├── cache/                                # fastf1 local cache (gitignored)
 ├── data/
-│   ├── raw/                              # race + qualifying results per season, 2026 calendar
+│   ├── raw/                              # results, qualifying, official standings per season; 2026 calendar
 │   ├── processed/features.csv            # engineered feature dataset
 │   └── circuits.json                     # track outlines for the dashboard
 ├── notebooks/
@@ -171,10 +173,12 @@ f1-race-predictor/
 │   ├── load_season.py                    # season data loader (fastf1 + Jolpica)
 │   ├── features.py                       # feature engineering module
 │   ├── predict.py                        # training, prediction, simulations, explanations
+│   ├── championship.py                   # standings, title maths, season simulation
 │   ├── circuits.py                       # track outlines from fastf1 position data
 │   └── team_colors.py                    # F1 team colour mapping for the UI
 ├── tests/
 │   ├── test_features.py                  # features, data integrity, predictions
+│   ├── test_championship.py              # title maths and simulation
 │   └── test_app.py                       # dashboard: links, fallbacks, future races
 ├── requirements.txt
 └── README.md

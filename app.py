@@ -12,7 +12,7 @@ from pathlib import Path
 
 import streamlit as st
 import pandas as pd
-from src import predict
+from src import championship, predict
 from src.features import CIRCUIT_ALIASES
 from src.team_colors import get_team_color
 
@@ -26,6 +26,7 @@ get_race_metadata = cache(predict.get_race_metadata)
 get_available_races = cache(predict.get_available_races)
 get_calendar = cache(predict.get_calendar)
 season_metrics = cache(predict.season_metrics)
+simulate_championship = cache(championship.simulate_championship)
 
 
 # F1 timing-screen language for prediction accuracy: purple = exactly right,
@@ -1145,6 +1146,61 @@ st.markdown(
 # ──────────────────────────────────────────────────────────────────────
 # Footer — context for first-time visitors
 # ──────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────────────────
+# Championship — official standings, title maths, final-position chances
+# ──────────────────────────────────────────────────────────────────────
+champ = simulate_championship(year)
+if champ:
+    events_left = champ["events"]
+    st.markdown(f'<div class="f1-section-title">CHAMPIONSHIP · {year}</div>', unsafe_allow_html=True)
+    if events_left.empty:
+        st.caption(f"Final standings after round {champ['after_round']}, sprint points included.")
+    else:
+        st.caption(
+            f"Official standings after round {champ['after_round']}, sprint points included. "
+            f"Still to run: {', '.join(events_left['EventName'])}. Final-position chances come from "
+            f"10,000 simulations of those races; a race without qualifying yet uses a form-only "
+            f"estimate, which is less accurate than the race-day model."
+        )
+
+    def outlook(row, status: str) -> str:
+        if status == "Champion":
+            return (f'<span style="background:{F1_RED_DEEP};color:#fff;border-radius:999px;padding:0.1rem 0.55rem;'
+                    f'font-family:var(--display);font-weight:700;letter-spacing:0.08em;font-size:0.75rem;">CHAMPION</span>')
+        if events_left.empty:
+            return ""
+        chances = row[[c for c in row.index if isinstance(c, int)]].astype(float).sort_values(ascending=False)
+        if chances.iloc[0] >= 0.995:
+            return f"Locked P{chances.index[0]}"
+        likely = [f"P{pos} {chance(p)}" for pos, p in chances.items() if p >= 0.01][:2]
+        return " · ".join(likely)
+
+    def standings_card(kind: str, title: str, limit: int) -> str:
+        df, status = champ[kind], champ[f"{kind}_status"]
+        rows = []
+        for i, row in df.head(limit).iterrows():
+            team = row["TeamName"]
+            label = (f'<strong style="color:{F1_LIGHT};">{row["Abbreviation"]}</strong> '
+                     f'<span style="color:{F1_GREY};">{row["FullName"]}</span>') if kind == "drivers" else (
+                     f'<strong style="color:{F1_LIGHT};">{team}</strong>')
+            rows.append(
+                f'<div style="display:grid;grid-template-columns:2rem minmax(0,1fr) 4rem minmax(0,9rem);gap:0.75rem;'
+                f'align-items:center;padding:0.5rem 0;border-top:1px solid #222837;font-size:0.85rem;">'
+                f'<div style="font-family:var(--display);font-weight:700;font-size:1.1rem;color:{F1_LIGHT};">{int(row["Position"])}</div>'
+                f'<div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{team_chip(get_team_color(team))}{label}</div>'
+                f'<div style="text-align:right;color:{F1_LIGHT};font-variant-numeric:tabular-nums;">{row["Points"]:g}</div>'
+                f'<div style="text-align:right;color:{F1_GREY};font-variant-numeric:tabular-nums;">{outlook(row, status.loc[i])}</div>'
+                f'</div>'
+            )
+        return (f'<div class="why-card" style="background:{F1_DARK_2};border:1px solid #2A2A38;border-radius:4px;padding:1rem 1.25rem;">'
+                f'<div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;'
+                f'color:{F1_GREY};margin-bottom:0.5rem;">{title}</div>' + "".join(rows) + '</div>')
+
+    drivers_col, teams_col = st.columns(2, gap="large")
+    drivers_col.markdown(standings_card("drivers", "Drivers", 10), unsafe_allow_html=True)
+    teams_col.markdown(standings_card("constructors", "Constructors", 11), unsafe_allow_html=True)
+
+
 st.markdown('<div class="f1-section-title">ABOUT</div>', unsafe_allow_html=True)
 
 footer_html = f"""
